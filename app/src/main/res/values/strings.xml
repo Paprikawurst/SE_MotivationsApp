@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SE_MotivationsApp</string>
+    <string name="openNavDrawer">Navigation Drawer Open</string>
+    <string name="closeNavDrawer">Navigation Drawer Close</string>
 </resources>
