@@ -1,14 +1,11 @@
 <resources>
     <string name="app_name">SE_MotivationsApp</string>
-    <string name="openNavDrawer">Navigation Drawer Open</string>
-    <string name="closeNavDrawer">Navigation Drawer Close</string>
+
     <string name="addgoal">add Goal</string>
     <string name="rewards">Rewards</string>
     <string name="shop">Shop</string>
-    <string name="points">Points</string>
-    <string name="number_points">0</string>
-    <string name="savings">Savings</string>
+
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="home">Home</string>
 </resources>
