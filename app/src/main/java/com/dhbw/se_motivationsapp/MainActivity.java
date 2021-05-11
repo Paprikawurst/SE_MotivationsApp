@@ -12,27 +12,41 @@ import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.security.Key;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
+    private TextView points_text;
+    private SharedPreferences sp;
+    private int points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        points_text = findViewById(R.id.points);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();
+
+        //SharedPreferences auslesen
+        sp = getSharedPreferences("SP", 0);
+        points = sp.getInt("points", 0);
+        points_text.setText(String.valueOf(points));
 
 
     }
