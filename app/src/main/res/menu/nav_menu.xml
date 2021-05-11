@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="addGoal"
+        android:title="@string/addgoal"
         android:icon="@drawable/outline_add_box_24" />
     <item
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/outline_home_24" />
     <item
-        android:title="Rewards"
+        android:title="@string/rewards"
         android:icon="@drawable/outline_emoji_events_20" />
     <item
-        android:title="Shop"
+        android:title="@string/shop"
         android:icon="@drawable/outline_storefront_24" />
 
 </menu>
