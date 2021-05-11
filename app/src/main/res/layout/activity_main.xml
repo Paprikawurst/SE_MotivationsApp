@@ -19,7 +19,8 @@
                 android:id="@+id/main_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/white">
+                android:background="@color/white"
+                app:title="Your Goals">
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -30,7 +31,8 @@
         android:layout_height="match_parent"
         app:menu="@menu/nav_menu"
         android:id="@+id/nav_menu"
-        android:layout_gravity="start" />
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header_layout" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
 
