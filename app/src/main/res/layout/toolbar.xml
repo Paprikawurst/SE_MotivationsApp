@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
+            android:layout_centerVertical="true"
             app:srcCompat="@drawable/outline_psychology_24" />
 
         <TextView
@@ -24,6 +25,7 @@
             android:padding="16dp"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/app_icon"
+            android:layout_centerVertical="true"
             android:text="Your Goals"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -35,6 +37,7 @@
             android:text="Punkte:"
             android:padding="16dp"
             android:layout_marginStart="16dp"
+            android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/points"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -47,6 +50,7 @@
             android:text="0"
             android:padding="16dp"
             android:layout_marginStart="16dp"
+            android:layout_centerVertical="true"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
