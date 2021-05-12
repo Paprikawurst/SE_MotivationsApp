@@ -19,11 +19,11 @@
             app:srcCompat="@drawable/outline_psychology_24" />
 
         <TextView
-            android:id="@+id/your_goals"
+            android:id="@+id/variabel_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/app_icon"
             android:layout_centerVertical="true"
             android:text="Your Goals"
@@ -34,11 +34,12 @@
             android:id="@+id/points_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Points:"
-            android:padding="16dp"
-            android:layout_marginStart="16dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="-8dp"
             android:layout_toStartOf="@+id/points"
+            android:padding="16dp"
+            android:text="Points:"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

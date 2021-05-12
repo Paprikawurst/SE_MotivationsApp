@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     private TextView points_text;
+    private TextView title;
     private SharedPreferences sp;
     private int points;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         points_text = findViewById(R.id.points);
+        title = findViewById(R.id.variabel_text);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -57,15 +59,19 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.home2:
+                    title.setText("Your Goals");
                     selectedFragment = new Home();
                     break;
                 case R.id.goal:
+                    title.setText("Add New Goal");
                     selectedFragment = new Goal();
                     break;
                 case R.id.reward:
+                    title.setText("Achievements");
                     selectedFragment = new Reward();
                     break;
                 case R.id.shop2:
+                    title.setText("Shop");
                     selectedFragment = new Shop();
                     break;
             }
