@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Shop">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_red"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Shop" />
+        android:layout_height="wrap_content"
+        app:liv_title="Red Skin"
+        app:liv_subtitle="Red skin for your app"
+        app:liv_multiline="false"
 
-</FrameLayout>
+    />
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_title="Blue Skin"
+        app:liv_subtitle="Blue skin for your app"
+        app:liv_multiline="false"
+
+        />
+
+
+
+</LinearLayout>
