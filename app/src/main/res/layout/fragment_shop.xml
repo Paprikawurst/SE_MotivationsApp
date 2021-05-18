@@ -12,20 +12,363 @@
         android:id="@+id/list_item_red"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liv_title="Red Skin"
+        app:liv_title="Red Skin 10P"
         app:liv_subtitle="Red skin for your app"
         app:liv_multiline="false"
 
-    />
+    >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_red"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/list_item_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liv_title="Blue Skin"
+        app:liv_title="Blue Skin 10P"
         app:liv_subtitle="Blue skin for your app"
         app:liv_multiline="false"
 
-        />
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_blue"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_title="Black Skin 10P"
+        app:liv_subtitle="Black skin for your app"
+        app:liv_multiline="false"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_black"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_title="Green Skin 10P"
+        app:liv_subtitle="Green skin for your app"
+        app:liv_multiline="false"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_green"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_gold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_title="Gold Skin 10P"
+        app:liv_subtitle="Gold skin for your app"
+        app:liv_multiline="false"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_gold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_gold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_gold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_orange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_title="Orange Skin 10P"
+        app:liv_subtitle="Orange skin for your app"
+        app:liv_multiline="false"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_orange"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_yellow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_title="Yellow Skin 10P"
+        app:liv_subtitle="Yellow skin for your app"
+        app:liv_multiline="false"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_yellow"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_title="Gray Skin 10P"
+        app:liv_subtitle="Gray skin for your app"
+        app:liv_multiline="false"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:id="@+id/button_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/checkBox_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:text="@string/activate"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:enabled="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
+
 
 
 

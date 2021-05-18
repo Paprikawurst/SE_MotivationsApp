@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
 
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();
 
