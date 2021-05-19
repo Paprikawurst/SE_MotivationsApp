@@ -61,4 +61,16 @@ public class Reward extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_reward, container, false);
     }
+
+
+    public void onButtonReward1Click (View view)
+    {
+
+    }
+
+    public void onButtonReward2Click (View view)
+    {
+
+    }
+
 }

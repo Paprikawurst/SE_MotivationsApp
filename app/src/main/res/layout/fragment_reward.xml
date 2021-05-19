@@ -9,12 +9,12 @@
     tools:context=".Reward" >
 
     <com.lucasurbas.listitemview.ListItemView
-        android:id="@+id/list_item_firstGoal"
+        android:id="@+id/list_item_Reward1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
         app:liv_subtitle="Create your first goal!"
-        app:liv_title="Goal 0/1"
+        app:liv_title="Create a goal"
 
         >
 
@@ -25,28 +25,32 @@
             >
 
             <Button
-                android:id="@+id/button_FirstGoal"
+                android:id="@+id/button_Reward1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
                 android:checkable="false"
                 android:text="@string/purchase"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="onButtonReward1Click"
+                />
 
-            <CheckBox
-                android:id="@+id/checkBox_red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="148dp"
-                android:text="@string/activate"
+            <ProgressBar
+                android:id="@+id/progressBar_Reward1"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="57dp"
+                android:layout_height="21dp"
+                android:progress="25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.54"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:enabled="false" />
+                app:layout_constraintVertical_bias="0.5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -54,12 +58,12 @@
     </com.lucasurbas.listitemview.ListItemView>
 
     <com.lucasurbas.listitemview.ListItemView
-        android:id="@+id/list_item_blue2"
+        android:id="@+id/list_item_Reward2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
-        app:liv_subtitle="Blue skin for your app"
-        app:liv_title="Blue Skin 10P"
+        app:liv_subtitle="SubPlaceholder"
+        app:liv_title="Placeholder"
 
         >
 
@@ -69,30 +73,33 @@
 
             >
 
-            <CheckBox
-                android:id="@+id/checkBox_blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="148dp"
-                android:text="@string/activate"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:enabled="false" />
-
             <ProgressBar
-                android:id="@+id/determinateBar"
+                android:id="@+id/progressBar_Reward2"
                 style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="114dp"
-                android:layout_height="44dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="57dp"
+                android:layout_height="21dp"
                 android:progress="25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.54"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.407" />
+                app:layout_constraintVertical_bias="0.5" />
 
+            <Button
+                android:id="@+id/button_Reward2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="onButtonReward2Click"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
