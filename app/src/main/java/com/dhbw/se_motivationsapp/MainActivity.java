@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.goal:
                     title.setText("Add New Goal");
-                    selectedFragment = new Goal();
+                    selectedFragment = new AddGoal();
                     break;
                 case R.id.reward:
                     title.setText("Achievements");
