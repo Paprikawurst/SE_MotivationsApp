@@ -10,36 +10,12 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/stardDateId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="start-date"
-        app:layout_constraintEnd_toStartOf="@+id/startDateInputID"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DescriptionInputId" />
-
-    <EditText
-        android:id="@+id/startDateInputID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DescriptionInputId" />
-
-    <TextView
         android:id="@+id/TitleId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="32dp"
         android:text="Title:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintEnd_toStartOf="@+id/InputTitelId"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +23,7 @@
         android:id="@+id/InputTitelId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="goal1"
@@ -60,12 +36,11 @@
         android:id="@+id/descriptionId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="48dp"
         android:text="description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintEnd_toStartOf="@+id/DescriptionInputId"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/TitleId" />
 
     <EditText
         android:id="@+id/DescriptionInputId"
@@ -84,35 +59,34 @@
         android:id="@+id/endDateInputId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startDateInputID" />
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionInputId" />
 
     <TextView
         android:id="@+id/endDateId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:text="end-date"
         app:layout_constraintEnd_toStartOf="@+id/endDateInputId"
         app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startDateInputID" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionId" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="206dp"
         android:layout_height="38dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/outline_add_box_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endDateInputId" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <CheckBox
         android:id="@+id/NotifcationId"
@@ -123,5 +97,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endDateInputId" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NotifcationId">
+
+        <RadioButton
+            android:id="@+id/radioButtoneasy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="easy" />
+
+        <RadioButton
+            android:id="@+id/radioButtonmedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="medium" />
+
+        <RadioButton
+            android:id="@+id/radioButtonhard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hard" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/difficultyid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="difficulty"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NotifcationId" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
