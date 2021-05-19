@@ -108,7 +108,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
             editor.putStringSet(key, goalset);
             editor.commit();
-            //Toast.makeText(this,"Sucessfully added", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(),"Sucessfully added", Toast.LENGTH_SHORT).show();
 
 
         }
