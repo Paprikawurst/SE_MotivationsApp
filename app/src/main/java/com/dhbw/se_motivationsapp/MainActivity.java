@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNav;
     private TextView points_text;
     private TextView title;
-    private SharedPreferences sp = getSharedPreferences("SP", 0);
+    //private SharedPreferences sp = getSharedPreferences("SP", 0);
     private int points;
     private int goalnumber;
     @Override
@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         //SharedPreferences auslesen
 
-        points = sp.getInt("points", 0);
-        points_text.setText(String.valueOf(points));
+        //points = sp.getInt("points", 0);
+        //points_text.setText(String.valueOf(points));
 
-        goalnumber = sp.getInt("goalnumber", 0);
+        //goalnumber = sp.getInt("goalnumber", 0);
 
 
     }

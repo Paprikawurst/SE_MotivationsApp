@@ -361,15 +361,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_gray"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:enabled="false" />
+                tools:enabled="false"
+
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </com.lucasurbas.listitemview.ListItemView>
-
-
-
 
 
 </LinearLayout>
