@@ -63,4 +63,20 @@ public class Goal {
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
+
+    public LocalDate getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(LocalDate start_date) {
+        this.start_date = start_date;
+    }
+
+    public ArrayList<String> getSubgoals() {
+        return subgoals;
+    }
+
+    public void setSubgoals(ArrayList<String> subgoals) {
+        this.subgoals = subgoals;
+    }
 }
