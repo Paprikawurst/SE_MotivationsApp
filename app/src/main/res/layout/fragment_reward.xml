@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
-        app:liv_subtitle="Create your first goal!"
-        app:liv_title="Create a goal"
+        app:liv_subtitle="complete for 10 points"
+        app:liv_title="Create your first goal!"
 
         >
 
@@ -47,10 +47,10 @@
                 android:progress="25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.54"
+                app:layout_constraintHorizontal_bias="0.593"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintVertical_bias="0.509" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,8 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
-        app:liv_subtitle="SubPlaceholder"
-        app:liv_title="Placeholder"
+        app:liv_subtitle="complete for 20 points"
+        app:liv_title="Log in on 3 different days!"
 
         >
 
@@ -81,10 +81,10 @@
                 android:progress="25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.54"
+                app:layout_constraintHorizontal_bias="0.593"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintVertical_bias="0.509" />
 
             <Button
                 android:id="@+id/button_Reward2"
