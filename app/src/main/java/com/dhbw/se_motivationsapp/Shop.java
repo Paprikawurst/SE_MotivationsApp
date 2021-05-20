@@ -1,12 +1,31 @@
 package com.dhbw.se_motivationsapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,14 +34,10 @@ import android.view.ViewGroup;
  */
 public class Shop extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    private int points;
+    private SharedPreferences spref;
 
     public Shop() {
         // Required empty public constructor
@@ -40,8 +55,6 @@ public class Shop extends Fragment {
     public static Shop newInstance(String param1, String param2) {
         Shop fragment = new Shop();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,17 +62,51 @@ public class Shop extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
+        spref = getContext().getSharedPreferences("SP",0);
+        points = spref.getInt("points", 0);
+
+
+
 
     }
+
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        CheckBox checkbox_red;
+        CheckBox checkbox_blue;
+        CheckBox checkbox_black;
+        CheckBox checkbox_green;
+        CheckBox checkbox_gold;
+        CheckBox checkbox_orange;
+        CheckBox checkbox_yellow;
+        CheckBox checkbox_gray;
+        view = inflater.inflate(R.layout.fragment_shop, container, false);
+
+        checkbox_red = view.findViewById(R.id.checkBox_red);
+        checkbox_blue = view.findViewById(R.id.checkBox_blue);
+        checkbox_black = view.findViewById(R.id.checkBox_black);
+        checkbox_green = view.findViewById(R.id.checkBox_green);
+        checkbox_gold = view.findViewById(R.id.checkBox_gold);
+        checkbox_orange = view.findViewById(R.id.checkBox_orange);
+        checkbox_yellow = view.findViewById(R.id.checkBox_yellow);
+        checkbox_gray = view.findViewById(R.id.checkBox_gray);
+
+        checkbox_red.setEnabled(false);
+        checkbox_blue.setEnabled(false);
+        checkbox_black.setEnabled(false);
+        checkbox_green.setEnabled(false);
+        checkbox_gold.setEnabled(false);
+        checkbox_orange.setEnabled(false);
+        checkbox_yellow.setEnabled(false);
+        checkbox_gray.setEnabled(false);
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shop, container, false);
+        return view;
     }
 }

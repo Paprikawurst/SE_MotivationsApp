@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView points_text;
     private TextView title;
     private SharedPreferences spref;
+
     private int points;
     private int goalnumber;
     @Override
