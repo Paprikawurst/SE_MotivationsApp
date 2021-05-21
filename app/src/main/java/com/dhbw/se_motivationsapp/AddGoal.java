@@ -165,7 +165,20 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
             editor.putStringSet(key, goalset);
             editor.commit();
-            Toast.makeText(getActivity(), "Sucessfully added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Sucessfully added", Toast.LENGTH_SHORT).show();
+            dateButton.setText(getTodaysDate());
+            if (easy.isChecked()) {
+                easy.setChecked(false);
+            } else if (medium.isChecked()) {
+                medium.setChecked(false);
+            } else if (hard.isChecked()) {
+                hard.setChecked(false);
+            }
+            title.setText("exampleGoal");
+            description.setText("");
+            if (notification.isChecked()) {
+                notification.setChecked(false);
+            }
 
 
         } else if (v.equals(dateButton)) {
