@@ -7,13 +7,13 @@ import java.util.Date;
 public class Goal {
     private String title;
     private String description;
-    private Date end_date;
+    private String end_date;
     private LocalDate start_date;
     private boolean notification;
     private int difficulty;
     private ArrayList<String> subgoals;
 
-    public Goal(String title, String description, Date end_date, boolean notification, int difficulty,
+    public Goal(String title, String description, String end_date, boolean notification, int difficulty,
                 ArrayList<String> subgoals, LocalDate start_date) {
         this.title = title;
         this.description = description;
@@ -40,11 +40,11 @@ public class Goal {
         this.description = description;
     }
 
-    public Date getEnd_date() {
+    public String getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Date end_date) {
+    public void setEnd_date(String end_date) {
         this.end_date = end_date;
     }
 

@@ -1,12 +1,16 @@
 package com.dhbw.se_motivationsapp;
 
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -17,6 +21,7 @@ import androidx.fragment.app.Fragment;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +35,9 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     private RadioButton medium;
     private RadioButton hard;
     private ImageButton addbtn;
+
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
 
     private SharedPreferences sp;
 
@@ -54,22 +62,68 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_goal, container, false);
         title = view.findViewById(R.id.InputTitelId);
         description = view.findViewById(R.id.DescriptionInputId);
-        end_date = view.findViewById(R.id.endDateInputId);
+        //end_date = view.findViewById(R.id.endDateInputId);
         notification = view.findViewById(R.id.NotifcationId);
         easy = view.findViewById(R.id.radioButtoneasy);
         medium = view.findViewById(R.id.radioButtonmedium);
         hard = view.findViewById(R.id.radioButtonhard);
         addbtn = view.findViewById(R.id.addbtn);
+
+        initDatePicker();
+        dateButton = view.findViewById(R.id.datePickerBtn);
+        dateButton.setText(getTodaysDate());
+
+        dateButton.setOnClickListener(this);
         addbtn.setOnClickListener(this);
         sp = view.getContext().getSharedPreferences("SP", 0);
 
         return view;
     }
 
+    private String getTodaysDate() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        month++;
+        String date = makeDateString(year, month, day);
+
+
+        return date;
+    }
+
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month++;
+                String date = makeDateString(year, month, day);
+                dateButton.setText(date);
+            }
+        };
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
+        // datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+    }
+
+    private String makeDateString(int year, int month, int day) {
+        return day + "." + getMonthFormat(month) + "." + year;
+    }
+
+
     @Override
     public void onClick(View v) {
-        if (v == addbtn) {
-            Date end = (Date) end_date.getText();
+        if (v.equals(addbtn)) {
+            System.out.println("TestAdd");
+            String endstring = String.valueOf(end_date.getText());
+
             int dif = 0;
             if (easy.isChecked()) {
                 dif = 1;
@@ -83,7 +137,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             String t = String.valueOf(title.getText());
 
 
-            Goal newGoal = new Goal(t, String.valueOf(description.getText()), end, notification.isChecked(),
+            Goal newGoal = new Goal(t, String.valueOf(description.getText()), "22.11.99", notification.isChecked(),
                     dif, subgoals, start_date);
 
 
@@ -108,9 +162,58 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
             editor.putStringSet(key, goalset);
             editor.commit();
-            //Toast.makeText(getActivity(),"Sucessfully added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Sucessfully added", Toast.LENGTH_SHORT).show();
 
 
+        } else if (v.equals(dateButton)) {
+            System.out.println("test");
+            datePickerDialog.show();
         }
+    }
+
+    private String getMonthFormat(int month) {
+        String s;
+        switch (month) {
+            case 1:
+                s = "Jan";
+                break;
+            case 2:
+                s = "Feb";
+                break;
+            case 3:
+                s = "Mar";
+                break;
+            case 4:
+                s = "Apr";
+                break;
+            case 5:
+                s = "May";
+                break;
+            case 6:
+                s = "Jun";
+                break;
+            case 7:
+                s = "Jul";
+                break;
+            case 8:
+                s = "Aug";
+                break;
+            case 9:
+                s = "Sep";
+                break;
+            case 10:
+                s = "Oct";
+                break;
+            case 11:
+                s = "Nov";
+                break;
+            case 12:
+                s = "Dec";
+                break;
+            default:
+                s = "Jan";
+                break;
+        }
+        return s;
     }
 }
