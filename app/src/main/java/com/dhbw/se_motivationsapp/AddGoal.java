@@ -29,7 +29,6 @@ import java.util.Set;
 public class AddGoal extends Fragment implements View.OnClickListener {
     private EditText title;
     private EditText description;
-    private EditText end_date;
     private CheckBox notification;
     private RadioButton easy;
     private RadioButton medium;
@@ -121,8 +120,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.equals(addbtn)) {
-            System.out.println("TestAdd");
-            String endstring = String.valueOf(end_date.getText());
+            String endstring = (String) dateButton.getText();
 
             int dif = 0;
             if (easy.isChecked()) {
@@ -154,9 +152,14 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             goalset.add(String.valueOf(newGoal.isNotification()));
             goalset.add(String.valueOf(newGoal.getDifficulty()));
             int i = 0;
-            while (newGoal.getSubgoals().get(i) != null) {
-                goalset.add(String.valueOf(goalset.add(String.valueOf(i))));
+            try {
+                while (newGoal.getSubgoals().get(i) != null) {
+                    goalset.add(String.valueOf(goalset.add(String.valueOf(i))));
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(e.getMessage());
             }
+
 
             goalset.add(String.valueOf(newGoal.getStart_date()));
 
