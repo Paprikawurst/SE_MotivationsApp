@@ -169,7 +169,6 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
 
         } else if (v.equals(dateButton)) {
-            System.out.println("test");
             datePickerDialog.show();
         }
     }
