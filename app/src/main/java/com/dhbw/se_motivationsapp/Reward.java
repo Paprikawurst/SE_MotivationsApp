@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Reward extends Fragment implements View.OnClickListener
 {
@@ -37,38 +38,43 @@ public class Reward extends Fragment implements View.OnClickListener
 
     }
 
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public void onClick(View v) {
-        switch (v.getId())
-        {
-            //TODO: ieine logik hier hin
-            case R.id.button_Reward1:
-                //logic
-                break;
-            case R.id.button_Reward2:
-                //logic
-                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_reward, container, false);
 
-       Button btnReward1 = view.findViewById(R.id.button_Reward1);
+        Button btnReward1 = view.findViewById(R.id.button_Reward1);
         Button btnReward2 = view.findViewById(R.id.button_Reward2);
 
         //Set EventListener for Buttons
         btnReward1.setOnClickListener(this);
         btnReward2.setOnClickListener(this);
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reward, container, false);
+        return view;
     }
 
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.button_Reward1:
+                onBtnReward1Click();
+                break;
+            case R.id.button_Reward2:
+                Toast.makeText(getContext() , "Reward2 Button", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+    public void onBtnReward1Click()
+    {
+        Toast.makeText(getContext() , "Reward1 Button", Toast.LENGTH_SHORT).show();
+    }
 
 }
