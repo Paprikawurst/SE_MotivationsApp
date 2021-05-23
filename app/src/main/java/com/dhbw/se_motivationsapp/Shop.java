@@ -14,6 +14,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Shop#newInstance} factory method to
@@ -189,7 +195,9 @@ public class Shop extends Fragment {
                 editor.commit();
 
                 TextView points_text;
-                points_text = view.findViewById(R.id.points);
+
+                View test = getActivity().findViewById(R.id.toolbar);
+                points_text = test.findViewById(R.id.points);
                 points_text.setText(String.valueOf(points));
             }else{
                 if(points < 10) {
