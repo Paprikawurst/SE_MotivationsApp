@@ -196,8 +196,8 @@ public class Shop extends Fragment {
 
                 TextView points_text;
 
-                View test = getActivity().findViewById(R.id.toolbar);
-                points_text = test.findViewById(R.id.points);
+                View view_toolbar = getActivity().findViewById(R.id.toolbar);
+                points_text = view_toolbar.findViewById(R.id.points);
                 points_text.setText(String.valueOf(points));
             }else{
                 if(points < 10) {
