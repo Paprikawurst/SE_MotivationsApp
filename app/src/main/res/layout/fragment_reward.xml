@@ -8,21 +8,18 @@
     android:orientation="vertical"
     tools:context=".Reward" >
 
+    <!-- 1st Reward -->
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/list_item_Reward1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
         app:liv_subtitle="complete for 10 points"
-        app:liv_title="Create your first goal!"
-
-        >
+        app:liv_title="Create your first goal!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            >
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/button_Reward1"
@@ -35,9 +32,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.946"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:onClick="onButtonReward1Click"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
                 android:id="@+id/progressBar_Reward1"
@@ -53,25 +48,33 @@
                 app:layout_constraintVertical_bias="0.509" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.lucasurbas.listitemview.ListItemView>
 
+    <!-- 2nd Reward -->
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/list_item_Reward2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
         app:liv_subtitle="complete for 20 points"
-        app:liv_title="Log in on 3 different days!"
-
-        >
+        app:liv_title="Log in on 3 different days!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent">
 
-            >
+            <Button
+                android:id="@+id/button_Reward2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:checkable="false"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
                 android:id="@+id/progressBar_Reward2"
@@ -86,23 +89,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.509" />
 
-            <Button
-                android:id="@+id/button_Reward2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:checkable="false"
-                android:text="@string/purchase"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.946"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:onClick="onButtonReward2Click"
-                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.lucasurbas.listitemview.ListItemView>
-
 </LinearLayout>
