@@ -25,7 +25,7 @@
             >
 
             <Button
-                android:id="@+id/button_red"
+                android:id="@+id/id_button_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -44,7 +44,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_red"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_red"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -70,7 +70,7 @@
             >
 
             <Button
-                android:id="@+id/button_blue"
+                android:id="@+id/id_button_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -89,7 +89,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_blue"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_blue"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -115,7 +115,7 @@
             >
 
             <Button
-                android:id="@+id/button_black"
+                android:id="@+id/id_button_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -134,7 +134,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_black"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_black"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -160,7 +160,7 @@
             >
 
             <Button
-                android:id="@+id/button_green"
+                android:id="@+id/id_button_green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -179,7 +179,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_green"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_green"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -205,7 +205,7 @@
             >
 
             <Button
-                android:id="@+id/button_gold"
+                android:id="@+id/id_button_gold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -224,7 +224,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_gold"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_gold"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -250,7 +250,7 @@
             >
 
             <Button
-                android:id="@+id/button_orange"
+                android:id="@+id/id_button_orange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -269,7 +269,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_orange"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_orange"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -295,7 +295,7 @@
             >
 
             <Button
-                android:id="@+id/button_yellow"
+                android:id="@+id/id_button_yellow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -314,7 +314,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_yellow"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_yellow"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -340,7 +340,7 @@
             >
 
             <Button
-                android:id="@+id/button_gray"
+                android:id="@+id/id_button_gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -359,7 +359,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_gray"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_gray"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false"
 

@@ -1,31 +1,18 @@
 package com.dhbw.se_motivationsapp;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import android.content.SharedPreferences;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.RadioButton;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,6 +64,7 @@ public class Shop extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         CheckBox checkbox_red;
         CheckBox checkbox_blue;
         CheckBox checkbox_black;
@@ -105,8 +93,130 @@ public class Shop extends Fragment {
         checkbox_yellow.setEnabled(false);
         checkbox_gray.setEnabled(false);
 
+        Button button_red;
+        Button button_blue;
+        Button button_black;
+        Button button_green;
+        Button button_gold;
+        Button button_orange;
+        Button button_yellow;
+        Button button_gray;
+
+        button_red = view.findViewById(R.id.id_button_red);
+        button_blue = view.findViewById(R.id.id_button_blue);
+        button_black = view.findViewById(R.id.id_button_black);
+        button_green = view.findViewById(R.id.id_button_green);
+        button_gold = view.findViewById(R.id.id_button_gold);
+        button_orange = view.findViewById(R.id.id_button_orange);
+        button_yellow = view.findViewById(R.id.id_button_yellow);
+        button_gray = view.findViewById(R.id.id_button_gray);
+
+        button_red.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_red);
+                                          }
+                                      }
+        );
+
+        button_blue.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_blue);
+                                          }
+                                      }
+        );
+
+        button_black.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_black);
+                                          }
+                                      }
+        );
+
+        button_green.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_green);
+                                          }
+                                      }
+        );
+
+        button_gold.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_gold);
+                                          }
+                                      }
+        );
+
+        button_orange.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_orange);
+                                          }
+                                      }
+        );
+
+        button_yellow.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_yellow);
+                                          }
+                                      }
+        );
+
+        button_gray.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              getButtonEvent(checkbox_gray);
+                                          }
+                                      }
+        );
 
         // Inflate the layout for this fragment
         return view;
     }
+
+    public void getButtonEvent(CheckBox box){
+
+            if (points >= 10 && !box.isEnabled()) {
+                box.setEnabled(true);
+                SharedPreferences.Editor editor = spref.edit();
+                points = points - 10;
+                editor.putInt("points", points);
+                editor.commit();
+
+                TextView points_text;
+                points_text = view.findViewById(R.id.points);
+                points_text.setText(String.valueOf(points));
+            }else{
+                if(points < 10) {
+                    new AlertDialog.Builder(requireContext())
+                            .setTitle("Not enough points")
+                            .setMessage("You dont have enough points to purchase this skin")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            }).show();
+                }
+                if(box.isEnabled()) {
+                    new AlertDialog.Builder(requireContext())
+                            .setTitle("Already bought")
+                            .setMessage("You already bought this skin")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            }).show();
+                }
+            }
+
+    }
 }
+
+

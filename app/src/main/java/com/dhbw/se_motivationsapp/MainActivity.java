@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         points_text = findViewById(R.id.points);
         title = findViewById(R.id.variabel_text);
         bottomNav = findViewById(R.id.bottom_navigation);
@@ -40,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         points_text.setText(String.valueOf(points));
 
         goalnumber = spref.getInt("goalnumber", 0);
+
+
+        //test begin
+        SharedPreferences.Editor editor = spref.edit();
+        editor.putInt("points", 20);
+        editor.commit();
+        //test ende
+
 
 
     }
