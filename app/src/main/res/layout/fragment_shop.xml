@@ -279,51 +279,6 @@
     </com.lucasurbas.listitemview.ListItemView>
 
     <com.lucasurbas.listitemview.ListItemView
-        android:id="@+id/list_item_yellow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:liv_title="Yellow Skin 10P"
-        app:liv_subtitle="Yellow skin for your app"
-        app:liv_multiline="false"
-
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            >
-
-            <Button
-                android:id="@+id/id_button_yellow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
-                android:checkable="false"
-                android:text="@string/purchase"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <CheckBox
-                android:id="@+id/checkBox_yellow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="20dp"
-                android:text="@string/activate"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/id_button_yellow"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:enabled="false" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.lucasurbas.listitemview.ListItemView>
-
-    <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/list_item_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
