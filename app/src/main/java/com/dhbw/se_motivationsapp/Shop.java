@@ -13,13 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +58,7 @@ public class Shop extends Fragment {
         super.onCreate(savedInstanceState);
 
         first_create = true;
-        spref = getContext().getSharedPreferences("SP",0);
+        spref = getContext().getSharedPreferences("SP", 0);
         points = spref.getInt("points", 0);
 
 
@@ -75,173 +70,337 @@ public class Shop extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         view = inflater.inflate(R.layout.fragment_shop, container, false);
 
-        Button button_red;
-        Button button_blue;
-        Button button_black;
-        Button button_green;
-        Button button_gold;
-        Button button_orange;
-        Button button_yellow;
-        Button button_gray;
+        check_Checkbox();
 
-        button_red = view.findViewById(R.id.id_button_red);
-        button_blue = view.findViewById(R.id.id_button_blue);
-        button_black = view.findViewById(R.id.id_button_black);
-        button_green = view.findViewById(R.id.id_button_green);
-        button_gold = view.findViewById(R.id.id_button_gold);
-        button_orange = view.findViewById(R.id.id_button_orange);
-        button_yellow = view.findViewById(R.id.id_button_yellow);
-        button_gray = view.findViewById(R.id.id_button_gray);
+        Button button_red = view.findViewById(R.id.id_button_red);
+        Button button_blue = view.findViewById(R.id.id_button_blue);
+        Button button_black = view.findViewById(R.id.id_button_black);
+        Button button_green  = view.findViewById(R.id.id_button_green);;
+        Button button_cyan = view.findViewById(R.id.id_button_cyan);
+        Button button_darkgray = view.findViewById(R.id.id_button_darkgray);
+        Button button_yellow = view.findViewById(R.id.id_button_yellow);
+        Button button_gray = view.findViewById(R.id.id_button_gray);
 
-        CheckBox checkbox_red;
-        CheckBox checkbox_blue;
-        CheckBox checkbox_black;
-        CheckBox checkbox_green;
-        CheckBox checkbox_gold;
-        CheckBox checkbox_orange;
-        CheckBox checkbox_yellow;
-        CheckBox checkbox_gray;
+        CheckBox checkbox_red = view.findViewById(R.id.checkBox_red);
+        CheckBox checkbox_blue = view.findViewById(R.id.checkBox_blue);
+        CheckBox checkbox_black = view.findViewById(R.id.checkBox_black);
+        CheckBox checkbox_green = view.findViewById(R.id.checkBox_green);
+        CheckBox checkbox_cyan = view.findViewById(R.id.checkBox_cyan);
+        CheckBox checkbox_darkgray = view.findViewById(R.id.checkBox_darkgray);
+        CheckBox checkbox_yellow = view.findViewById(R.id.checkBox_yellow);
+        CheckBox checkbox_gray = view.findViewById(R.id.checkBox_gray);
 
-        checkbox_red = view.findViewById(R.id.checkBox_red);
-        checkbox_blue = view.findViewById(R.id.checkBox_blue);
-        checkbox_black = view.findViewById(R.id.checkBox_black);
-        checkbox_green = view.findViewById(R.id.checkBox_green);
-        checkbox_gold = view.findViewById(R.id.checkBox_gold);
-        checkbox_orange = view.findViewById(R.id.checkBox_orange);
-        checkbox_yellow = view.findViewById(R.id.checkBox_yellow);
-        checkbox_gray = view.findViewById(R.id.checkBox_gray);
+        checkbox_red.setEnabled(spref.getBoolean("purchased_red",false));
+        checkbox_blue.setEnabled(spref.getBoolean("purchased_blue",false));
+        checkbox_black.setEnabled(spref.getBoolean("purchased_black",false));
+        checkbox_green.setEnabled(spref.getBoolean("purchased_green",false));
+        checkbox_cyan.setEnabled(spref.getBoolean("purchased_cyan",false));
+        checkbox_darkgray.setEnabled(spref.getBoolean("purchased_darkgray",false));
+        checkbox_yellow.setEnabled(spref.getBoolean("purchased_yellow",false));
+        checkbox_gray.setEnabled(spref.getBoolean("purchased_gray",false));
 
-        if (first_create) {
-
-            first_create = false;
-            checkbox_red.setEnabled(false);
-            checkbox_blue.setEnabled(false);
-            checkbox_black.setEnabled(false);
-            checkbox_green.setEnabled(false);
-            checkbox_gold.setEnabled(false);
-            checkbox_orange.setEnabled(false);
-            checkbox_yellow.setEnabled(false);
-            checkbox_gray.setEnabled(false);
-
-        }
 
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
-                                              getButtonEvent(checkbox_red);
-                                              button_red.setBackgroundColor(Color.RED);
+                                              getButtonEvent(checkbox_red, "purchased_red");
                                           }
                                       }
         );
 
         button_blue.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              getButtonEvent(checkbox_blue);
-                                          }
-                                      }
+                                           @Override
+                                           public void onClick(View v) {
+                                               getButtonEvent(checkbox_blue, "purchased_blue");
+                                           }
+                                       }
         );
 
         button_black.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              getButtonEvent(checkbox_black);
-                                          }
-                                      }
+                                            @Override
+                                            public void onClick(View v) {
+                                                getButtonEvent(checkbox_black, "purchased_black");
+                                            }
+                                        }
         );
 
         button_green.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              getButtonEvent(checkbox_green);
-                                          }
-                                      }
+                                            @Override
+                                            public void onClick(View v) {
+                                                getButtonEvent(checkbox_green, "purchased_green");
+                                            }
+                                        }
         );
 
-        button_gold.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              getButtonEvent(checkbox_gold);
-                                          }
-                                      }
+        button_cyan.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View v) {
+                                               getButtonEvent(checkbox_cyan, "purchased_cyan");
+                                           }
+                                       }
         );
 
-        button_orange.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              getButtonEvent(checkbox_orange);
-                                          }
-                                      }
+        button_darkgray.setOnClickListener(new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 getButtonEvent(checkbox_darkgray, "purchased_darkgray");
+                                             }
+                                         }
         );
 
         button_yellow.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              getButtonEvent(checkbox_yellow);
-                                          }
-                                      }
+                                             @Override
+                                             public void onClick(View v) {
+                                                 getButtonEvent(checkbox_yellow, "purchased_yellow");
+                                             }
+                                         }
         );
 
         button_gray.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              getButtonEvent(checkbox_gray);
-                                          }
-                                      }
+                                           @Override
+                                           public void onClick(View v) {
+                                               getButtonEvent(checkbox_gray, "purchased_gray");
+                                           }
+                                       }
         );
 
-        if (checkbox_red.isEnabled()){
-            button_red.setBackgroundColor(Color.RED);
-        }
+        checkbox_red.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.RED);
+                    checkbox_blue.setChecked(false);
+                    checkbox_black.setChecked(false);
+                    checkbox_green.setChecked(false);
+                    checkbox_cyan.setChecked(false);
+                    checkbox_darkgray.setChecked(false);
+                    checkbox_yellow.setChecked(false);
+                    checkbox_gray.setChecked(false);
+                }
+            }
+        });
+
+        checkbox_blue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.BLUE);
+                    checkbox_red.setChecked(false);
+                    checkbox_black.setChecked(false);
+                    checkbox_green.setChecked(false);
+                    checkbox_cyan.setChecked(false);
+                    checkbox_darkgray.setChecked(false);
+                    checkbox_yellow.setChecked(false);
+                    checkbox_gray.setChecked(false);
+                }
+            }
+        });
+
+        checkbox_black.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.BLACK);
+                    checkbox_red.setChecked(false);
+                    checkbox_blue.setChecked(false);
+                    checkbox_green.setChecked(false);
+                    checkbox_cyan.setChecked(false);
+                    checkbox_darkgray.setChecked(false);
+                    checkbox_yellow.setChecked(false);
+                    checkbox_gray.setChecked(false);
+                }
+            }
+        });
+
+        checkbox_green.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.GREEN);
+                    checkbox_red.setChecked(false);
+                    checkbox_blue.setChecked(false);
+                    checkbox_black.setChecked(false);
+                    checkbox_cyan.setChecked(false);
+                    checkbox_darkgray.setChecked(false);
+                    checkbox_yellow.setChecked(false);
+                    checkbox_gray.setChecked(false);
+                }
+            }
+        });
+
+        checkbox_cyan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.CYAN);
+                    checkbox_red.setChecked(false);
+                    checkbox_blue.setChecked(false);
+                    checkbox_black.setChecked(false);
+                    checkbox_green.setChecked(false);
+                    checkbox_darkgray.setChecked(false);
+                    checkbox_yellow.setChecked(false);
+                    checkbox_gray.setChecked(false);
+                }
+            }
+        });
+
+        checkbox_darkgray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.DKGRAY);
+                    checkbox_red.setChecked(false);
+                    checkbox_blue.setChecked(false);
+                    checkbox_black.setChecked(false);
+                    checkbox_green.setChecked(false);
+                    checkbox_cyan.setChecked(false);
+                    checkbox_yellow.setChecked(false);
+                    checkbox_gray.setChecked(false);
+                }
+            }
+        });
+
+        checkbox_yellow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.YELLOW);
+                    checkbox_red.setChecked(false);
+                    checkbox_blue.setChecked(false);
+                    checkbox_black.setChecked(false);
+                    checkbox_green.setChecked(false);
+                    checkbox_cyan.setChecked(false);
+                    checkbox_darkgray.setChecked(false);
+                    checkbox_gray.setChecked(false);
+                }
+            }
+        });
+
+        checkbox_gray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    changeColor(Color.GRAY);
+                    checkbox_red.setChecked(false);
+                    checkbox_blue.setChecked(false);
+                    checkbox_black.setChecked(false);
+                    checkbox_green.setChecked(false);
+                    checkbox_cyan.setChecked(false);
+                    checkbox_darkgray.setChecked(false);
+                    checkbox_yellow.setChecked(false);
+                }
+            }
+        });
+
+
+
+
         // Inflate the layout for this fragment
         return view;
     }
 
-    public void getButtonEvent(CheckBox box){
+    public boolean getButtonEvent(CheckBox box, String purchased_skin) {
 
-            if (points >= 10 && !box.isEnabled()) {
-                box.setEnabled(true);
-                SharedPreferences.Editor editor = spref.edit();
-                points = points - 10;
-                editor.putInt("points", points);
-                editor.commit();
+        if (points >= 10 && !box.isEnabled()) {
+            box.setEnabled(true);
+            SharedPreferences.Editor editor = spref.edit();
+            points = points - 10;
+            editor.putInt("points", points);
+            editor.putBoolean(purchased_skin, true);
+            editor.commit();
 
-                TextView points_text;
+            TextView points_text;
 
-                View view_toolbar = getActivity().findViewById(R.id.toolbar);
-                points_text = view_toolbar.findViewById(R.id.points);
-                points_text.setText(String.valueOf(points));
-            }else{
-                if(points < 10) {
-                    new AlertDialog.Builder(requireContext())
-                            .setTitle("Not enough points")
-                            .setMessage("You dont have enough points to purchase this skin")
-                            .setCancelable(false)
-                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            }).show();
-                    return;
-                }
-                if(box.isEnabled()) {
-                    new AlertDialog.Builder(requireContext())
-                            .setTitle("Already bought")
-                            .setMessage("You already bought this skin")
-                            .setCancelable(false)
-                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            }).show();
-                }
+            View view_toolbar = getActivity().findViewById(R.id.toolbar);
+            points_text = view_toolbar.findViewById(R.id.points);
+            points_text.setText(String.valueOf(points));
+            return true;
+        } else {
+            if (points < 10) {
+                new AlertDialog.Builder(requireContext())
+                        .setTitle("Not enough points")
+                        .setMessage("You dont have enough points to purchase this skin")
+                        .setCancelable(false)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).show();
+                return false;
             }
+            if (box.isEnabled()) {
+                new AlertDialog.Builder(requireContext())
+                        .setTitle("Already bought")
+                        .setMessage("You already bought this skin")
+                        .setCancelable(false)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).show();
+                return false;
+            }
+        }
+
+    return false;
+    }
+
+    public void changeColor(int color){
+
+        Button shop_button_red = view.findViewById(R.id.id_button_red);
+        Button shop_button_blue = view.findViewById(R.id.id_button_blue);
+        Button shop_button_black = view.findViewById(R.id.id_button_black);
+        Button shop_button_green  = view.findViewById(R.id.id_button_green);;
+        Button shop_button_cyan = view.findViewById(R.id.id_button_cyan);
+        Button shop_button_darkgray = view.findViewById(R.id.id_button_darkgray);
+        Button shop_button_yellow = view.findViewById(R.id.id_button_yellow);
+        Button shop_button_gray = view.findViewById(R.id.id_button_gray);
+
+        shop_button_red.setBackgroundColor(color);
+        shop_button_blue.setBackgroundColor(color);
+        shop_button_black.setBackgroundColor(color);
+        shop_button_green.setBackgroundColor(color);
+        shop_button_cyan.setBackgroundColor(color);
+        shop_button_darkgray.setBackgroundColor(color);
+        shop_button_yellow.setBackgroundColor(color);
+        shop_button_gray.setBackgroundColor(color);
+
+        View view_toolbar = requireActivity().findViewById(R.id.toolbar);
+        view_toolbar.setBackgroundColor(color);
 
     }
 
+    public void check_Checkbox(){
+
+        if(spref.getBoolean("purchased_red",false)){
+            changeColor(Color.RED);
+        }
+        if(spref.getBoolean("purchased_blue",false)){
+            changeColor(Color.BLUE);
+        }
+        if(spref.getBoolean("purchased_black",false)){
+            changeColor(Color.BLACK);
+        }
+        if(spref.getBoolean("purchased_green",false)){
+            changeColor(Color.GREEN);
+        }
+        if(spref.getBoolean("purchased_cyan",false)){
+            changeColor(Color.CYAN);
+        }
+        if(spref.getBoolean("purchased_darkgray",false)){
+            changeColor(Color.DKGRAY);
+        }
+        if(spref.getBoolean("purchased_yellow",false)){
+            changeColor(Color.YELLOW);
+        }
+        if(spref.getBoolean("purchased_gray",false)){
+            changeColor(Color.GRAY);
+        }
+
+
+    }
 
 
 }

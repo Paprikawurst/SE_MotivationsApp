@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.Objects;
-
 public class Reward extends Fragment implements View.OnClickListener
 {
     View view;
@@ -45,8 +43,8 @@ public class Reward extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_reward, container, false);
 
-        Button btnReward1 = view.findViewById(R.id.button_Reward1);
-        Button btnReward2 = view.findViewById(R.id.button_Reward2);
+        Button btnReward1 = view.findViewById(R.id.button_Reward_1);
+        Button btnReward2 = view.findViewById(R.id.button_Reward_2);
 
         //Set EventListener for Buttons
         btnReward1.setOnClickListener(this);
@@ -61,10 +59,10 @@ public class Reward extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.button_Reward1:
+            case R.id.button_Reward_1:
                 onBtnReward1Click();
                 break;
-            case R.id.button_Reward2:
+            case R.id.button_Reward_2:
                 Toast.makeText(getContext() , "Reward2 Button", Toast.LENGTH_SHORT).show();
                 break;
             default:

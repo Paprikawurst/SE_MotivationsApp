@@ -192,8 +192,8 @@
         android:id="@+id/list_item_gold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liv_title="Gold Skin 10P"
-        app:liv_subtitle="Gold skin for your app"
+        app:liv_title="Cyan Skin 10P"
+        app:liv_subtitle="Cyan skin for your app"
         app:liv_multiline="false"
 
         >
@@ -205,7 +205,7 @@
             >
 
             <Button
-                android:id="@+id/id_button_gold"
+                android:id="@+id/id_button_cyan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -217,14 +217,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
-                android:id="@+id/checkBox_gold"
+                android:id="@+id/checkBox_cyan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/id_button_gold"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_cyan"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
@@ -237,8 +237,8 @@
         android:id="@+id/list_item_orange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liv_title="Orange Skin 10P"
-        app:liv_subtitle="Orange skin for your app"
+        app:liv_title="Darkgray Skin 10P"
+        app:liv_subtitle="Darkgray skin for your app"
         app:liv_multiline="false"
 
         >
@@ -250,7 +250,7 @@
             >
 
             <Button
-                android:id="@+id/id_button_orange"
+                android:id="@+id/id_button_darkgray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -262,14 +262,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
-                android:id="@+id/checkBox_orange"
+                android:id="@+id/checkBox_darkgray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
                 android:text="@string/activate"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/id_button_orange"
+                app:layout_constraintEnd_toStartOf="@+id/id_button_darkgray"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:enabled="false" />
 
