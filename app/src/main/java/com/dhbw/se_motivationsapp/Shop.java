@@ -2,6 +2,7 @@ package com.dhbw.se_motivationsapp;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -29,11 +30,14 @@ public class Shop extends Fragment {
 
     // TODO: Rename and change types of parameters
 
+
     private int points;
     private SharedPreferences spref;
+    boolean first_create = false;
 
     public Shop() {
         // Required empty public constructor
+
     }
 
     /**
@@ -49,18 +53,18 @@ public class Shop extends Fragment {
         Shop fragment = new Shop();
         Bundle args = new Bundle();
         fragment.setArguments(args);
+
         return fragment;
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        first_create = true;
         spref = getContext().getSharedPreferences("SP",0);
         points = spref.getInt("points", 0);
-
-
 
 
     }
@@ -71,33 +75,8 @@ public class Shop extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        CheckBox checkbox_red;
-        CheckBox checkbox_blue;
-        CheckBox checkbox_black;
-        CheckBox checkbox_green;
-        CheckBox checkbox_gold;
-        CheckBox checkbox_orange;
-        CheckBox checkbox_yellow;
-        CheckBox checkbox_gray;
+
         view = inflater.inflate(R.layout.fragment_shop, container, false);
-
-        checkbox_red = view.findViewById(R.id.checkBox_red);
-        checkbox_blue = view.findViewById(R.id.checkBox_blue);
-        checkbox_black = view.findViewById(R.id.checkBox_black);
-        checkbox_green = view.findViewById(R.id.checkBox_green);
-        checkbox_gold = view.findViewById(R.id.checkBox_gold);
-        checkbox_orange = view.findViewById(R.id.checkBox_orange);
-        checkbox_yellow = view.findViewById(R.id.checkBox_yellow);
-        checkbox_gray = view.findViewById(R.id.checkBox_gray);
-
-        checkbox_red.setEnabled(false);
-        checkbox_blue.setEnabled(false);
-        checkbox_black.setEnabled(false);
-        checkbox_green.setEnabled(false);
-        checkbox_gold.setEnabled(false);
-        checkbox_orange.setEnabled(false);
-        checkbox_yellow.setEnabled(false);
-        checkbox_gray.setEnabled(false);
 
         Button button_red;
         Button button_blue;
@@ -117,10 +96,43 @@ public class Shop extends Fragment {
         button_yellow = view.findViewById(R.id.id_button_yellow);
         button_gray = view.findViewById(R.id.id_button_gray);
 
+        CheckBox checkbox_red;
+        CheckBox checkbox_blue;
+        CheckBox checkbox_black;
+        CheckBox checkbox_green;
+        CheckBox checkbox_gold;
+        CheckBox checkbox_orange;
+        CheckBox checkbox_yellow;
+        CheckBox checkbox_gray;
+
+        checkbox_red = view.findViewById(R.id.checkBox_red);
+        checkbox_blue = view.findViewById(R.id.checkBox_blue);
+        checkbox_black = view.findViewById(R.id.checkBox_black);
+        checkbox_green = view.findViewById(R.id.checkBox_green);
+        checkbox_gold = view.findViewById(R.id.checkBox_gold);
+        checkbox_orange = view.findViewById(R.id.checkBox_orange);
+        checkbox_yellow = view.findViewById(R.id.checkBox_yellow);
+        checkbox_gray = view.findViewById(R.id.checkBox_gray);
+
+        if (first_create) {
+
+            first_create = false;
+            checkbox_red.setEnabled(false);
+            checkbox_blue.setEnabled(false);
+            checkbox_black.setEnabled(false);
+            checkbox_green.setEnabled(false);
+            checkbox_gold.setEnabled(false);
+            checkbox_orange.setEnabled(false);
+            checkbox_yellow.setEnabled(false);
+            checkbox_gray.setEnabled(false);
+
+        }
+
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
                                               getButtonEvent(checkbox_red);
+                                              button_red.setBackgroundColor(Color.RED);
                                           }
                                       }
         );
@@ -181,6 +193,9 @@ public class Shop extends Fragment {
                                       }
         );
 
+        if (checkbox_red.isEnabled()){
+            button_red.setBackgroundColor(Color.RED);
+        }
         // Inflate the layout for this fragment
         return view;
     }
@@ -210,6 +225,7 @@ public class Shop extends Fragment {
                                 public void onClick(DialogInterface dialog, int which) {
                                 }
                             }).show();
+                    return;
                 }
                 if(box.isEnabled()) {
                     new AlertDialog.Builder(requireContext())
@@ -225,6 +241,9 @@ public class Shop extends Fragment {
             }
 
     }
+
+
+
 }
 
 

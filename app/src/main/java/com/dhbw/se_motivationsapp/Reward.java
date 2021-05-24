@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class Reward extends Fragment implements View.OnClickListener
 {
     View view;
@@ -33,7 +35,7 @@ public class Reward extends Fragment implements View.OnClickListener
         super.onCreate(savedInstanceState);
 
         //TODO: adi fragen wegen nullpointerexception
-        SharedPreferences spref = getContext().getSharedPreferences("SP", 0);
+        SharedPreferences spref = requireContext().getSharedPreferences("SP", 0);
         int points = spref.getInt("points", 0);
 
     }

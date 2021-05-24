@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = spref.edit();
         editor.putInt("points", 20);
         editor.commit();
-        points_text.setText(String.valueOf(points));
+        points_text.setText(String.valueOf(spref.getInt("points", 0)));
         //test ende
 
 
