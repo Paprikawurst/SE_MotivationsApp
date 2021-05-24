@@ -29,10 +29,9 @@ public class Shop extends Fragment {
     private int points;
     private SharedPreferences spref;
     boolean first_create = false;
-
     public Shop() {
         // Required empty public constructor
-
+        System.out.println("test1");
     }
 
     /**
@@ -48,7 +47,7 @@ public class Shop extends Fragment {
         Shop fragment = new Shop();
         Bundle args = new Bundle();
         fragment.setArguments(args);
-
+        System.out.println("test1");
         return fragment;
 
     }
@@ -60,7 +59,7 @@ public class Shop extends Fragment {
         first_create = true;
         spref = getContext().getSharedPreferences("SP", 0);
         points = spref.getInt("points", 0);
-
+        System.out.println("test2");
 
     }
 
@@ -73,6 +72,7 @@ public class Shop extends Fragment {
         view = inflater.inflate(R.layout.fragment_shop, container, false);
 
         check_Checkbox();
+        System.out.println("test3");
 
         Button button_red = view.findViewById(R.id.id_button_red);
         Button button_blue = view.findViewById(R.id.id_button_blue);

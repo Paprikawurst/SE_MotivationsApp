@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         title = findViewById(R.id.variabel_text);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
+        System.out.println("test4");
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();
@@ -43,12 +43,28 @@ public class MainActivity extends AppCompatActivity {
 
         //test begin
         SharedPreferences.Editor editor = spref.edit();
-        editor.putInt("points", 20);
+        editor.putInt("points", 200);
         editor.commit();
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
         //test ende
 
+        //clear SP
+        editor.putBoolean("purchased_red",false);
+        editor.putBoolean("purchased_blue",false);
+        editor.putBoolean("purchased_black",false);
+        editor.putBoolean("purchased_green",false);
+        editor.putBoolean("purchased_cyan",false);
+        editor.putBoolean("purchased_darkgray",false);
+        editor.putBoolean("purchased_gray",false);
 
+        editor.putBoolean("activated_red",false);
+        editor.putBoolean("activated_blue",false);
+        editor.putBoolean("activated_black",false);
+        editor.putBoolean("activated_green",false);
+        editor.putBoolean("activated_cyan",false);
+        editor.putBoolean("activated_darkgray",false);
+        editor.putBoolean("activated_gray",false);
+        editor.commit();
 
     }
 
