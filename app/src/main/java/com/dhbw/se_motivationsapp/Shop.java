@@ -16,15 +16,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Shop#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Shop extends Fragment {
-
-    // TODO: Rename and change types of parameters
-
 
     private int points;
     private SharedPreferences spref;
@@ -34,15 +27,7 @@ public class Shop extends Fragment {
         System.out.println("test1");
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Shop.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static Shop newInstance(String param1, String param2) {
         Shop fragment = new Shop();
         Bundle args = new Bundle();
