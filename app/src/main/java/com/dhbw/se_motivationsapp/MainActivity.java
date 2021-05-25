@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("activated_cyan",false);
         editor.putBoolean("activated_darkgray",false);
         editor.putBoolean("activated_gray",false);
+
+        editor.putBoolean("Reward1redeemed",false);
+        editor.putBoolean("Reward2redeemed",false);
+
         editor.commit();
 
     }

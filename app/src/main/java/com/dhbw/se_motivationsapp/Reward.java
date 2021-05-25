@@ -10,13 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Reward extends Fragment implements View.OnClickListener
 {
+    //initialisierung
     View view;
     private int points;
     private SharedPreferences spref;
@@ -29,6 +29,7 @@ public class Reward extends Fragment implements View.OnClickListener
     {
         // Required empty public constructor
     }
+
     public static Reward newInstance() {
         Reward fragment = new Reward();
         Bundle args = new Bundle();
@@ -40,16 +41,18 @@ public class Reward extends Fragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //SP auslesen und Punkte auslesen - wenn nicht vorhanden dann Punkte = 0
         spref = getContext().getSharedPreferences("SP", 0);
         points = spref.getInt("points", 0);
 
     }
-    //TODO: visibility bei progress bar weg wenn schon eingelöst
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_reward, container, false);
 
+        //init
         Button btnReward1 = view.findViewById(R.id.button_Reward_1);
         Button btnReward2 = view.findViewById(R.id.button_Reward_2);
 
@@ -67,6 +70,7 @@ public class Reward extends Fragment implements View.OnClickListener
 
     @SuppressLint("NonConstantResourceId")
     @Override
+    //onClick von Button x schaut welcher gedrückt wurde und gibt Namen weiter
     public void onClick(View v) {
         switch (v.getId())
         {
@@ -81,7 +85,7 @@ public class Reward extends Fragment implements View.OnClickListener
         }
     }
 
-
+    //Punkte gutschreiben + Punkte updaten
     public void onRedeemReward(int rewardPoints, String rewardName)
     {
         SharedPreferences.Editor editor = spref.edit();
@@ -95,31 +99,33 @@ public class Reward extends Fragment implements View.OnClickListener
         points_text = view_toolbar.findViewById(R.id.points);
         points_text.setText(String.valueOf(points));
 
+        //Ausblenden von Progressbar
         if(rewardName.equals("Reward1"))
         {
             progressBarReward1.setVisibility(View.GONE);
+            editor.putBoolean("Reward1redeemed",true);
+            editor.commit();
         }
         else if(rewardName.equals("Reward2"))
         {
             progressBarReward2.setVisibility(View.GONE);
+            editor.putBoolean("Reward2redeemed",true);
+            editor.commit();
         }
     }
 
+    //Bei Viewaufruf schauen welche Rewards schon eingelöst wurden - dort dann Progressbar ausblenden
     public void filterRedeemed()
     {
-
-        progressBarReward1.setEnabled(spref.getBoolean("purchased_red",false));
-
-        if(spref.getBoolean("Reward1", false))
+        if(spref.getBoolean("Reward1redeemed", false))
         {
             progressBarReward1.setVisibility(View.GONE);
         }
-        else if(spref.getBoolean("Reward2", false))
+
+        if(spref.getBoolean("Reward2redeemed", false))
         {
             progressBarReward2.setVisibility(View.GONE);
         }
-
-
     }
 
 }
