@@ -10,17 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Reward extends Fragment implements View.OnClickListener
 {
     View view;
+    private int points;
+    private SharedPreferences spref;
+    TextView points_text;
 
     public Reward()
     {
         // Required empty public constructor
     }
-    //TODO: was ist das
     public static Reward newInstance() {
         Reward fragment = new Reward();
         Bundle args = new Bundle();
@@ -32,12 +35,11 @@ public class Reward extends Fragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO: adi fragen wegen nullpointerexception
-        SharedPreferences spref = requireContext().getSharedPreferences("SP", 0);
-        int points = spref.getInt("points", 0);
+        spref = getContext().getSharedPreferences("SP", 0);
+        points = spref.getInt("points", 0);
 
     }
-
+    //TODO: visibility bei progress bar weg wenn schon eingelöst
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,10 +62,10 @@ public class Reward extends Fragment implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.button_Reward_1:
-                onBtnReward1Click();
+                onRedeemReward(10);
                 break;
             case R.id.button_Reward_2:
-                Toast.makeText(getContext() , "Reward2 Button", Toast.LENGTH_SHORT).show();
+                onRedeemReward(20);
                 break;
             default:
                 break;
@@ -71,10 +73,17 @@ public class Reward extends Fragment implements View.OnClickListener
     }
 
 
-
-    public void onBtnReward1Click()
+    public void onRedeemReward(int rewardPoints)
     {
-        Toast.makeText(getContext() , "Reward1 Button", Toast.LENGTH_SHORT).show();
-    }
+        SharedPreferences.Editor editor = spref.edit();
+        points = points + rewardPoints;
+        editor.putInt("points", points);
+        editor.commit();
+        Toast.makeText(getContext() , "You just got " + rewardPoints + " points!", Toast.LENGTH_SHORT).show();
 
+
+        View view_toolbar = getActivity().findViewById(R.id.toolbar);
+        points_text = view_toolbar.findViewById(R.id.points);
+        points_text.setText(String.valueOf(points));
+    }
 }
