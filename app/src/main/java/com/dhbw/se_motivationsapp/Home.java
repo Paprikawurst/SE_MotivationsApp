@@ -83,9 +83,10 @@ public class Home extends Fragment {
             int length = goalarray.length;
             String startdate = goalarray[length - 1];
             String enddate = goalarray[2];
-            Color color = getButtonColor(enddate, startdate);
+            int color = getButtonColor(enddate, startdate);
             Button btn = new Button(view.getContext());
             btn.setText(title);
+            btn.setBackgroundColor(color);
             ConstraintLayout constraintLayout = view.findViewById(R.id.linearLayout);
             constraintLayout.addView(btn);
 
@@ -94,7 +95,7 @@ public class Home extends Fragment {
         return view;
     }
 
-    private Color getButtonColor(String enddate, String startdate) {
+    private int getButtonColor(String enddate, String startdate) {
         int month_end = getMonthInt(enddate);
         char[] start = new char[startdate.length()];
         char[] end = new char[enddate.length()];
@@ -123,18 +124,18 @@ public class Home extends Fragment {
 
         if (y == endy && month_end - m <= 1) {
             if (getDayDif(endd, d, month_end, m) <= 14) {
-                return Color.valueOf(Color.rgb(0, 200, 60));
+                return Color.rgb(0, 200, 60);
             } else if (getDayDif(endd, d, month_end, m) <= 7) {
-                return Color.valueOf(Color.rgb(250, 250, 25));
+                return Color.rgb(250, 250, 25);
             } else if (getDayDif(endd, d, month_end, m) <= 3) {
-                return Color.valueOf(Color.rgb(255, 185, 46));
+                return Color.rgb(255, 185, 46);
             } else if (getDayDif(endd, d, month_end, m) <= 1) {
-                return Color.valueOf(Color.rgb(247, 70, 0));
+                return Color.rgb(247, 70, 0);
             } else {
-                return Color.valueOf(Color.rgb(150, 150, 150));
+                return Color.rgb(150, 150, 150);
             }
         } else {
-            return Color.valueOf(Color.rgb(150, 150, 150));
+            return Color.rgb(150, 150, 150);
         }
     }
 
