@@ -97,10 +97,15 @@ public class Home extends Fragment {
     private Color getButtonColor(String enddate, String startdate) {
         int month_end = getMonthInt(enddate);
         char[] start = new char[startdate.length()];
-
+        char[] end = new char[enddate.length()];
+        //String convert to chararray
         for (int i = 0; i < startdate.length(); i++) {
             start[i] = startdate.charAt(i);
         }
+        for (int i = 0; i < enddate.length(); i++) {
+            end[i] = enddate.charAt(i);
+        }
+        //new Strings of chars (parts of the date)
         String year = String.copyValueOf(start, 0, 4);
         int y = Integer.parseInt(year);
 
@@ -110,7 +115,77 @@ public class Home extends Fragment {
         String day = String.copyValueOf(start, 8, 2);
         int d = Integer.parseInt(day);
 
-        return Color.valueOf(Color.rgb(200, 0, 55));
+        String endyear = String.copyValueOf(end, end.length - 4, 4);
+        int endy = Integer.parseInt(endyear);
+
+        String endday = String.copyValueOf(end, 0, 2);
+        int endd = Integer.parseInt(endday);
+
+        if (y == endy && month_end - m <= 1) {
+            if (getDayDif(endd, d, month_end, m) <= 14) {
+                return Color.valueOf(Color.rgb(0, 200, 60));
+            } else if (getDayDif(endd, d, month_end, m) <= 7) {
+                return Color.valueOf(Color.rgb(250, 250, 25));
+            } else if (getDayDif(endd, d, month_end, m) <= 3) {
+                return Color.valueOf(Color.rgb(255, 185, 46));
+            } else if (getDayDif(endd, d, month_end, m) <= 1) {
+                return Color.valueOf(Color.rgb(247, 70, 0));
+            } else {
+                return Color.valueOf(Color.rgb(150, 150, 150));
+            }
+        } else {
+            return Color.valueOf(Color.rgb(150, 150, 150));
+        }
+    }
+
+    private int getDayDif(int endd, int d, int monthend, int m) {
+        if (monthend == m) {
+            return endd - d;
+        } else {
+            int i;
+            switch (m) {
+                case 1:
+                    i = 31;
+                    break;
+                case 2:
+                    i = 28;
+                    break;
+                case 3:
+                    i = 31;
+                    break;
+                case 4:
+                    i = 30;
+                    break;
+                case 5:
+                    i = 31;
+                    break;
+                case 6:
+                    i = 30;
+                    break;
+                case 7:
+                    i = 31;
+                    break;
+                case 8:
+                    i = 31;
+                    break;
+                case 9:
+                    i = 30;
+                    break;
+                case 10:
+                    i = 31;
+                    break;
+                case 11:
+                    i = 30;
+                    break;
+                case 12:
+                    i = 31;
+                    break;
+                default:
+                    i = 30;
+                    break;
+            }
+            return i - d + endd;
+        }
     }
 
     private int getMonthInt(String month) {
