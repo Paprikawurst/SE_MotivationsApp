@@ -30,7 +30,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     @JsonProperty("subgoals")
     private ArrayList<String> subgoals;
 
+    public Goal() {
+        this.title = "Test";
+        this.description = "";
+        this.end_date = "22.11.1999";
+        this.notification = false;
+        this.difficulty = 0;
 
+        this.subgoals = null;
+    }
 
 
     public Goal(String title, String description, String end_date, boolean notification, int difficulty,
