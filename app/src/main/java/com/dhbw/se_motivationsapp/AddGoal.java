@@ -128,7 +128,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         try {
             //mapper.writeValue(new File(getFilesDir(), "person.json"), person);  // write to file
             String jsonStr = mapper.writeValueAsString(goal);                   // write to string
-            System.out.println("object -> json string\n" + jsonStr);
+            //System.out.println("object -> json string\n" + jsonStr);
             return jsonStr;
         } catch (JsonProcessingException e) {
             e.printStackTrace();

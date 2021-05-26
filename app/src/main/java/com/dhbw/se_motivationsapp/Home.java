@@ -84,11 +84,11 @@ public class Home extends Fragment {
             //
             goalstr = sp.getString(key, null);
 
-            System.out.println(goalstr);
+           // System.out.println(goalstr);
 
             Goal goal = jsonToObject(goalstr);
 
-            System.out.println(goal.getTitle());
+            //   System.out.println(goal.getTitle());
             String title = goal.getTitle();
             String btnid = "button" + c;
             String enddate = goal.getEnd_date();
@@ -123,7 +123,7 @@ public class Home extends Fragment {
     }
 
     private int getButtonColor(String enddate) {
-        System.out.println("Enddatum" + enddate);
+        //  System.out.println("Enddatum" + enddate);
         String startdate;
         LocalDate today = LocalDate.now();
         startdate = String.valueOf(today);
