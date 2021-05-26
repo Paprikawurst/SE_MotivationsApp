@@ -429,6 +429,42 @@ public class Shop extends Fragment {
 
     }
 
+    public void SelectActivated(CheckBox box){
+
+
+        CheckBox checkbox_red = view.findViewById(R.id.checkBox_red);
+        CheckBox checkbox_blue = view.findViewById(R.id.checkBox_blue);
+        CheckBox checkbox_black = view.findViewById(R.id.checkBox_black);
+        CheckBox checkbox_green = view.findViewById(R.id.checkBox_green);
+        CheckBox checkbox_cyan = view.findViewById(R.id.checkBox_cyan);
+        CheckBox checkbox_darkgray = view.findViewById(R.id.checkBox_darkgray);
+        CheckBox checkbox_gray = view.findViewById(R.id.checkBox_gray);
+
+        SharedPreferences.Editor editor = spref.edit();
+
+        if (box == checkbox_red){
+            changeColor(Color.RED);
+
+            editor.putBoolean("activated_red",false);
+            editor.putBoolean("activated_blue",false);
+            editor.putBoolean("activated_black",false);
+            editor.putBoolean("activated_green",false);
+            editor.putBoolean("activated_cyan",false);
+            editor.putBoolean("activated_darkgray",false);
+            editor.putBoolean("activated_gray",false);
+            editor.commit();
+
+            checkbox_red.setChecked(false);
+            checkbox_blue.setChecked(false);
+            checkbox_black.setChecked(false);
+            checkbox_green.setChecked(false);
+            checkbox_cyan.setChecked(false);
+            checkbox_darkgray.setChecked(false);
+            checkbox_gray.setChecked(false);
+        }
+
+
+    }
 
 }
 
