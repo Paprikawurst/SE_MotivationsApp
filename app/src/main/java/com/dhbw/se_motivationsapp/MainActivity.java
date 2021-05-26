@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +44,22 @@ public class MainActivity extends AppCompatActivity {
         points_text.setText(String.valueOf(points));
 
         goalnumber = spref.getInt("goalnumber", 0);
+
+        String result = "[{\"someKey\":\"someValue\"}]";
+
+        JSONObject jObject = new JSONObject();
+
+        try {
+            jObject.put("test", "Luca so geht das");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            System.out.println(jObject.getString("test"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         //test begin
