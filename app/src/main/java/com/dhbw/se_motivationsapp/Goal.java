@@ -20,38 +20,46 @@ import com.fasterxml.jackson.databind.ObjectMapper;
             "end_date",
             "notification",
             "difficulty",
-            "sub_goals",
-            "start_date"
+            "sub_goals"
     })
     public class Goal {
         @JsonProperty("title")
         private String title;
-        @JsonProperty("description")
-        private String description;
-        @JsonProperty("end_date")
-        private String end_date;
-        @JsonProperty("notification")
-        private boolean notification;
-        @JsonProperty("difficulty")
-        private int difficulty;
-        @JsonProperty("subgoals")
-        private ArrayList<String> subgoals;
-        @JsonProperty("start_date")
-        private LocalDate start_date;
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("end_date")
+    private String end_date;
+    @JsonProperty("notification")
+    private boolean notification;
+    @JsonProperty("difficulty")
+    private int difficulty;
+    @JsonProperty("subgoals")
+    private ArrayList<String> subgoals;
 
-        public Goal(String title, String description, String end_date, boolean notification, int difficulty,
-                    ArrayList<String> subgoals, LocalDate start_date) {
-            this.title = title;
-            this.description = description;
-            this.end_date = end_date;
-            this.notification = notification;
-            this.difficulty = difficulty;
-            this.start_date = start_date;
-            this.subgoals = subgoals;
-        }
-        @JsonProperty("title")
-        public String getTitle() {
-            return title;
+
+    public Goal() {
+        this.title = "Test";
+        this.description = "";
+        this.end_date = "22.11.1999";
+        this.notification = false;
+        this.difficulty = 0;
+
+        this.subgoals = null;
+    }
+
+    public Goal(String title, String description, String end_date, boolean notification, int difficulty,
+                ArrayList<String> subgoals) {
+        this.title = title;
+        this.description = description;
+        this.end_date = end_date;
+        this.notification = notification;
+        this.difficulty = difficulty;
+        this.subgoals = subgoals;
+    }
+
+    @JsonProperty("title")
+    public String getTitle() {
+        return title;
         }
 
         @JsonProperty("title")
@@ -99,15 +107,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
             this.difficulty = difficulty;
         }
 
-        @JsonProperty("start_date")
-        public LocalDate getStart_date() {
-            return start_date;
-        }
 
-        @JsonProperty("start_date")
-        public void setStart_date(LocalDate start_date) {
-            this.start_date = start_date;
-        }
 
         @JsonProperty("subgoals")
         public ArrayList<String> getSubgoals() {
@@ -119,31 +119,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
             this.subgoals = subgoals;
         }
 
-    public void jsonToObject() {
-        final ObjectMapper mapper = new ObjectMapper();
-        try {
-            String GoalJsonStr = "{\"title\":\"Test\",\"description\":\"Test1\",\"end_date\":\"Test2\",\"notification\":\"Test4\",\"difficulty\":\"Test5\",\"sub_goals\":\"Test6\",\"start_date\":\"Test7\",}";
-            //Person person = mapper.readValue(new File(getFilesDir(), "person.json"), Person.class);    // read from file
-            Goal Goal = mapper.readValue(GoalJsonStr, Goal.class);// read from json string
-            System.out.println("json string -> object\n" + Goal.getTitle() + " " + Goal.getDescription() + " " + Goal.getEnd_date() + " " + Goal.getDifficulty() + " " + Goal.getStart_date() + " " + Goal.getSubgoals());
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
 
-        }
-    }
-        public void objectToJson(Goal goal) {
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                //mapper.writeValue(new File(getFilesDir(), "person.json"), person);  // write to file
-                String jsonStr = mapper.writeValueAsString(goal);                   // write to string
-                System.out.println("object -> json string\n" + jsonStr);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
 

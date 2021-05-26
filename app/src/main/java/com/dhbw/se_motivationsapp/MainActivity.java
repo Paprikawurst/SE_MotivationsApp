@@ -48,9 +48,7 @@ public class MainActivity extends AppCompatActivity {
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
         //test ende
 
-        Goal test = new Goal("HAllo","das ist ein dreck","jetzt",false,3,null, LocalDate.now());
 
-        test.objectToJson(test);
         //clear SP TODO
         /*editor.putBoolean("purchased_red",false);
         editor.putBoolean("purchased_blue",false);

@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -75,17 +78,19 @@ public class Home extends Fragment {
         int gnum = sp.getInt("goalnumber", 0);
         for (int i = 0; i < gnum; i++) {
             int c = i + 1;
-            Set<String> goalset = new HashSet<>();
+            String goalstr;
             String key = "goal" + String.valueOf(c);
             //
-            goalset = sp.getStringSet(key, null);
-            String[] goalarray = goalset.toArray(new String[goalset.size()]);
-            for (int j = 0; j < goalarray.length; j++) {
-                System.out.println(goalarray[j]);
-            }
-            String title = goalarray[1];
+            goalstr = sp.getString(key, null);
+
+            System.out.println(goalstr);
+
+            Goal goal = jsonToObject(goalstr);
+
+            System.out.println(goal.getTitle());
+            String title = goal.getTitle();
             String btnid = "button" + c;
-            String enddate = goalarray[2];
+            String enddate = goal.getEnd_date();
             int color = getButtonColor(enddate);
             Button btn = new Button(view.getContext());
             btn.setText(title);
@@ -96,6 +101,24 @@ public class Home extends Fragment {
 
         }
         return view;
+    }
+
+    public Goal jsonToObject(String goalJson) {
+        final ObjectMapper mapper = new ObjectMapper();
+        try {
+            String goalJsonStr = goalJson;
+            //Person person = mapper.readValue(new File(getFilesDir(), "person.json"), Person.class);    // read from file
+            Goal goal = mapper.readValue(goalJsonStr, Goal.class);// read from json string
+            //String kein Json
+            return goal;
+            //System.out.println("json string -> object\n" + goal.getTitle() + " " + Goal.getDescription() + " " + Goal.getEnd_date() + " " + Goal.getDifficulty() + " " + Goal.getStart_date() + " " + Goal.getSubgoals());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+
+        }
+        return null;
     }
 
     private int getButtonColor(String enddate) {

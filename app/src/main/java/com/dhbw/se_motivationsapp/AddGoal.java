@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -120,6 +123,19 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         return day + "." + getMonthFormat(month) + "." + year;
     }
 
+    public String objectToJson(Goal goal) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            //mapper.writeValue(new File(getFilesDir(), "person.json"), person);  // write to file
+            String jsonStr = mapper.writeValueAsString(goal);                   // write to string
+            System.out.println("object -> json string\n" + jsonStr);
+            return jsonStr;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
     @Override
     public void onClick(View v) {
@@ -135,13 +151,15 @@ public class AddGoal extends Fragment implements View.OnClickListener {
                 dif = 3;
             }
             ArrayList<String> subgoals = new ArrayList<>();
-            LocalDate start_date = LocalDate.now();
+
             String t = String.valueOf(title.getText());
             String end_date = (String) dateButton.getText();
 
 
             Goal newGoal = new Goal(t, String.valueOf(description.getText()), end_date, notification.isChecked(),
-                    dif, subgoals, start_date);
+                    dif, subgoals);
+
+            String goalstr = objectToJson(newGoal);
 
             SharedPreferences.Editor editor = sp.edit();
             int gnum = sp.getInt("goalnumber", 0);
@@ -150,7 +168,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
 
             String key = "goal" + String.valueOf(gnum);
-            Set<String> goalset = new HashSet<>();
+            /*Set<String> goalset = new HashSet<>();
             goalset.add(String.valueOf(title.getText()));
             goalset.add(newGoal.getDescription());
             goalset.add(String.valueOf(newGoal.getEnd_date()));
@@ -169,7 +187,9 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
             goalset.add(String.valueOf(newGoal.getStart_date()));
 
-            editor.putStringSet(key, goalset);
+             */
+
+            editor.putString(key, goalstr);
             editor.commit();
             Toast.makeText(getContext(), "Sucessfully added", Toast.LENGTH_SHORT).show();
             dateButton.setText(getTodaysDate());
