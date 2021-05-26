@@ -140,6 +140,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.equals(addbtn)) {
 
+
             String endstring = (String) dateButton.getText();
 
             int dif = 0;

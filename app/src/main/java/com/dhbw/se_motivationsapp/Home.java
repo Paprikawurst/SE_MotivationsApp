@@ -26,7 +26,7 @@ import java.time.LocalDate;
 
 
 
-public class Home extends Fragment {
+public class Home extends Fragment implements View.OnClickListener {
 
 
     private SharedPreferences sp;
@@ -96,7 +96,7 @@ public class Home extends Fragment {
 
             Button btn = new Button(view.getContext());
             btn.setText(title);
-
+            btn.setId(c);
 
             // set margins
             LinearLayout linearLayout = view.findViewById(R.id.linearLayout);
@@ -111,7 +111,8 @@ public class Home extends Fragment {
 
             btn.setBackground(gd);
 
-            linearLayout.addView(btn,layout_params);
+            linearLayout.addView(btn, layout_params);
+            btn.setOnClickListener(this);
 
         }
         return view;
@@ -273,5 +274,12 @@ public class Home extends Fragment {
 
 
         return i;
+    }
+
+    @Override
+    public void onClick(View view) {
+        System.out.println(view.getId());
+
+
     }
 }
