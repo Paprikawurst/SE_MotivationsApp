@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -95,8 +96,8 @@ public class Home extends Fragment {
             Button btn = new Button(view.getContext());
             btn.setText(title);
             btn.setBackgroundColor(color);
-            ConstraintLayout constraintLayout = view.findViewById(R.id.linearLayout);
-            constraintLayout.addView(btn);
+            LinearLayout linearLayout = view.findViewById(R.id.linearLayout);
+            linearLayout.addView(btn);
 
 
         }
