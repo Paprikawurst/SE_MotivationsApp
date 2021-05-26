@@ -115,7 +115,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
             linearLayout.addView(btn, layout_params);
             btn.setOnClickListener(this);
-
+            int test = 234;
         }
         return view;
     }
