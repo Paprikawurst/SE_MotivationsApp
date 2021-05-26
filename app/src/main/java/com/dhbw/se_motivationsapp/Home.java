@@ -77,6 +77,7 @@ public class Home extends Fragment {
             int c = i + 1;
             Set<String> goalset = new HashSet<>();
             String key = "goal" + String.valueOf(c);
+            //
             goalset = sp.getStringSet(key, null);
             String[] goalarray = goalset.toArray(new String[goalset.size()]);
             for (int j = 0; j < goalarray.length; j++) {
@@ -98,6 +99,7 @@ public class Home extends Fragment {
     }
 
     private int getButtonColor(String enddate) {
+        System.out.println("Enddatum" + enddate);
         String startdate;
         LocalDate today = LocalDate.now();
         startdate = String.valueOf(today);
