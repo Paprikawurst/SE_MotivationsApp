@@ -2,12 +2,6 @@ package com.dhbw.se_motivationsapp;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -93,25 +87,13 @@ public class Home extends Fragment {
             String title = goal.getTitle();
             String btnid = "button" + c;
             String enddate = goal.getEnd_date();
-
+            int color = getButtonColor(enddate);
             Button btn = new Button(view.getContext());
             btn.setText(title);
-
-
-            // set margins
+            btn.setBackgroundColor(color);
             LinearLayout linearLayout = view.findViewById(R.id.linearLayout);
-            LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layout_params.setMargins(20,10,20,10);
-            // round corners and color
-            GradientDrawable gd = new GradientDrawable();
-            gd.setColor(getButtonColor(enddate));
-            gd.setCornerRadius(50);
-            gd.setStroke(2, Color.WHITE);
+            linearLayout.addView(btn);
 
-            btn.setBackground(gd);
-
-            linearLayout.addView(btn,layout_params);
 
         }
         return view;
