@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView points_text;
     private TextView title;
     private SharedPreferences spref;
-
     private int points;
     private int goalnumber;
     @Override
@@ -45,29 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         goalnumber = spref.getInt("goalnumber", 0);
 
-        String result = "[{\"someKey\":\"someValue\"}]";
-
-        JSONObject jObject = new JSONObject();
-
-        try {
-            jObject.put("test", "Luca so geht das");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            System.out.println(jObject.getString("test"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
         //test begin
         SharedPreferences.Editor editor = spref.edit();
         editor.putInt("points", 200);
         editor.commit();
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
         //test ende
+
 
         //clear SP TODO
         /*editor.putBoolean("purchased_red",false);

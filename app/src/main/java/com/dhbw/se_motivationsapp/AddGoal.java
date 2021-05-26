@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -141,10 +144,8 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             String end_date = (String) dateButton.getText();
 
 
-
             Goal newGoal = new Goal(t, String.valueOf(description.getText()), end_date, notification.isChecked(),
                     dif, subgoals, start_date);
-
 
             SharedPreferences.Editor editor = sp.edit();
             int gnum = sp.getInt("goalnumber", 0);
