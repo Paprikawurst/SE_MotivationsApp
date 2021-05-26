@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
         //test ende
 
-        //clear SP
-        editor.putBoolean("purchased_red",false);
+        //clear SP TODO
+        /*editor.putBoolean("purchased_red",false);
         editor.putBoolean("purchased_blue",false);
-        editor.putBoolean("purchased_black",false);
+        editor.putBoolea"purchased_black",false);
         editor.putBoolean("purchased_green",false);
         editor.putBoolean("purchased_cyan",false);
         editor.putBoolean("purchased_darkgray",false);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("Reward1redeemed",false);
         editor.putBoolean("Reward2redeemed",false);
 
-        editor.commit();
+        editor.commit();*/
 
     }
 
