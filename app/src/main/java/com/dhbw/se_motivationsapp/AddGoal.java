@@ -60,8 +60,8 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_goal, container, false);
         title = view.findViewById(R.id.InputTitelId);
-        LocalDate start_date = LocalDate.now();
-        title.setText(String.valueOf(start_date));
+
+        title.setText("Goal1");
         description = view.findViewById(R.id.DescriptionInputId);
         //end_date = view.findViewById(R.id.endDateInputId);
         notification = view.findViewById(R.id.NotifcationId);
@@ -141,6 +141,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             String end_date = (String) dateButton.getText();
 
 
+
             Goal newGoal = new Goal(t, String.valueOf(description.getText()), end_date, notification.isChecked(),
                     dif, subgoals, start_date);
 
@@ -153,7 +154,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
             String key = "goal" + String.valueOf(gnum);
             Set<String> goalset = new HashSet<>();
-            goalset.add(newGoal.getTitle());
+            goalset.add(String.valueOf(title.getText()));
             goalset.add(newGoal.getDescription());
             goalset.add(String.valueOf(newGoal.getEnd_date()));
             goalset.add(String.valueOf(newGoal.isNotification()));
@@ -161,7 +162,8 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             int i = 0;
             try {
                 while (newGoal.getSubgoals().get(i) != null) {
-                    goalset.add(String.valueOf(goalset.add(String.valueOf(i))));
+                    goalset.add(newGoal.getSubgoals().get(i));
+                    i++;
                 }
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(e.getMessage());
