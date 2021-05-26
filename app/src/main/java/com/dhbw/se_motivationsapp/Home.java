@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,14 +17,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+
 
 
 public class Home extends Fragment {
 
 
-    private SharedPreferences sp;
+    SharedPreferences sp;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,7 +75,7 @@ public class Home extends Fragment {
         for (int i = 0; i < gnum; i++) {
             int c = i + 1;
             String goalstr;
-            String key = "goal" + String.valueOf(c);
+            String key = "goal" + c;
             //
             goalstr = sp.getString(key, null);
 
@@ -92,6 +91,7 @@ public class Home extends Fragment {
             Button btn = new Button(view.getContext());
             btn.setText(title);
             btn.setBackgroundColor(color);
+
             LinearLayout linearLayout = view.findViewById(R.id.linearLayout);
             linearLayout.addView(btn);
 
@@ -103,9 +103,9 @@ public class Home extends Fragment {
     public Goal jsonToObject(String goalJson) {
         final ObjectMapper mapper = new ObjectMapper();
         try {
-            String goalJsonStr = goalJson;
+
             //Person person = mapper.readValue(new File(getFilesDir(), "person.json"), Person.class);    // read from file
-            Goal goal = mapper.readValue(goalJsonStr, Goal.class);// read from json string
+            Goal goal = mapper.readValue(goalJson, Goal.class);// read from json string
             //String kein Json
             return goal;
             //System.out.println("json string -> object\n" + goal.getTitle() + " " + Goal.getDescription() + " " + Goal.getEnd_date() + " " + Goal.getDifficulty() + " " + Goal.getStart_date() + " " + Goal.getSubgoals());

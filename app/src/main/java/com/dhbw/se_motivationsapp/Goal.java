@@ -1,17 +1,11 @@
 package com.dhbw.se_motivationsapp;
-import java.io.IOException;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonPropertyOrder({
@@ -37,15 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
     private ArrayList<String> subgoals;
 
 
-    public Goal() {
-        this.title = "Test";
-        this.description = "";
-        this.end_date = "22.11.1999";
-        this.notification = false;
-        this.difficulty = 0;
 
-        this.subgoals = null;
-    }
 
     public Goal(String title, String description, String end_date, boolean notification, int difficulty,
                 ArrayList<String> subgoals) {

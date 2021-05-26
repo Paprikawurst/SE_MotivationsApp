@@ -22,11 +22,10 @@ import androidx.fragment.app.Fragment;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+
 
 public class AddGoal extends Fragment implements View.OnClickListener {
     private EditText title;

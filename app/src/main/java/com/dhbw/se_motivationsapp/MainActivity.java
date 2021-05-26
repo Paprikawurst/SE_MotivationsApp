@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences spref;
     private int points;
     private int goalnumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
