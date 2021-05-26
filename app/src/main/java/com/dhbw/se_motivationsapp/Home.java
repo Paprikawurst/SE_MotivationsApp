@@ -1,5 +1,6 @@
 package com.dhbw.se_motivationsapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -30,6 +31,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
 
     private SharedPreferences sp;
+    private static int id;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -278,8 +280,15 @@ public class Home extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        System.out.println(view.getId());
+        id = view.getId();
+        Intent intent = new Intent(getActivity(), DetailsGoal.class);
+        startActivity(intent);
+        getActivity().finish();
 
 
+    }
+
+    public static int getIds() {
+        return id;
     }
 }
