@@ -150,9 +150,16 @@ public class Home extends Fragment {
 
         String endyear = String.copyValueOf(end, end.length - 4, 4);
         int endy = Integer.parseInt(endyear);
+        String endday;
+        int endd;
+        if (Character.isDigit(end[1])) {
+            endday = String.copyValueOf(end, 0, 2);
+            endd = Integer.parseInt(endday);
+        } else {
+            endday = String.copyValueOf(end, 0, 1);
+            endd = Integer.parseInt(endday);
+        }
 
-        String endday = String.copyValueOf(end, 0, 2);
-        int endd = Integer.parseInt(endday);
 
         if (y == endy && month_end - m <= 1) {
             if (getDayDif(endd, d, month_end, m) <= 1) {
