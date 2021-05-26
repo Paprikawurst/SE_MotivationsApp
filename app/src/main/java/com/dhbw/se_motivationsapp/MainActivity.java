@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.time.LocalDate;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         title = findViewById(R.id.variabel_text);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-        System.out.println("test4");
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();

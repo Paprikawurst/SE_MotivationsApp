@@ -60,6 +60,8 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_goal, container, false);
         title = view.findViewById(R.id.InputTitelId);
+        LocalDate start_date = LocalDate.now();
+        title.setText(String.valueOf(start_date));
         description = view.findViewById(R.id.DescriptionInputId);
         //end_date = view.findViewById(R.id.endDateInputId);
         notification = view.findViewById(R.id.NotifcationId);
@@ -68,6 +70,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         hard = view.findViewById(R.id.radioButtonhard);
         addbtn = view.findViewById(R.id.addbtn);
 
+
         initDatePicker();
         dateButton = view.findViewById(R.id.datePickerBtn);
         dateButton.setText(getTodaysDate());
@@ -75,6 +78,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         dateButton.setOnClickListener(this);
         addbtn.setOnClickListener(this);
         sp = view.getContext().getSharedPreferences("SP", 0);
+
 
         return view;
     }
@@ -99,6 +103,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
                 month++;
                 String date = makeDateString(year, month, day);
                 dateButton.setText(date);
+
             }
         };
         Calendar calendar = Calendar.getInstance();
@@ -133,9 +138,10 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             ArrayList<String> subgoals = new ArrayList<>();
             LocalDate start_date = LocalDate.now();
             String t = String.valueOf(title.getText());
+            String end_date = (String) dateButton.getText();
 
 
-            Goal newGoal = new Goal(t, String.valueOf(description.getText()), "22.11.99", notification.isChecked(),
+            Goal newGoal = new Goal(t, String.valueOf(description.getText()), end_date, notification.isChecked(),
                     dif, subgoals, start_date);
 
 
@@ -183,6 +189,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
         } else if (v.equals(dateButton)) {
             datePickerDialog.show();
+
         }
     }
 
