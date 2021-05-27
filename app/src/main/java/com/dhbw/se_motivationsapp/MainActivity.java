@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new Home()).commit();
+
         show_Notification();
 
         //SharedPreferences auslesen
