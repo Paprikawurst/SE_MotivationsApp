@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -80,6 +81,11 @@ public class Home extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         sp = view.getContext().getSharedPreferences("SP", 0);
         int gnum = sp.getInt("goalnumber", 0);
+        // set margins
+        LinearLayout linearLayout_wrapper = view.findViewById(R.id.linearLayout);
+        LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout_params.setMargins(20,10,20,10);
         for (int i = 0; i < gnum; i++) {
             int c = i + 1;
             String goalstr;
@@ -100,20 +106,18 @@ public class Home extends Fragment implements View.OnClickListener {
             btn.setText(title);
             btn.setId(c);
 
-            // set margins
-            LinearLayout linearLayout = view.findViewById(R.id.linearLayout);
-            LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layout_params.setMargins(20,10,20,10);
+            ImageButton more = new ImageButton(getContext());
+            int more_id = 1;
+            more.setId(more_id);
+
             // round corners and color
             GradientDrawable gd = new GradientDrawable();
             gd.setColor(getButtonColor(enddate));
             gd.setCornerRadius(50);
             gd.setStroke(2, Color.WHITE);
-
             btn.setBackground(gd);
 
-            linearLayout.addView(btn, layout_params);
+            linearLayout_wrapper.addView(btn, layout_params);
             btn.setOnClickListener(this);
 
         }
