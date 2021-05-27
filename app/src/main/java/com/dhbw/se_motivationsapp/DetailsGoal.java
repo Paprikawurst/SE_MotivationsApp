@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,17 +28,18 @@ import java.util.Calendar;
 public class DetailsGoal extends AppCompatActivity implements View.OnClickListener {
     TextView textView;
     private SharedPreferences sp;
-    private EditText title, description;
+    private EditText title, description, sub;
     private CheckBox notification;
     private RadioButton easy;
     private RadioButton medium;
     private RadioButton hard;
-    private ImageButton delete, save, done, back;
+    private ImageButton delete, save, done, back, addSub;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private String key;
     private Goal goal;
     private ArrayList<String> subgoals = new ArrayList<>();
+    private LinearLayout subLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
         goal = Home.jsonToObject(goalstr);
 
-
+        sub = findViewById(R.id.subInput);
         title = findViewById(R.id.InputTitelId);
         description = findViewById(R.id.DescriptionInputId);
         notification = findViewById(R.id.NotifcationId);
@@ -63,7 +65,8 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         save = findViewById(R.id.savebtn);
         done = findViewById(R.id.doneBtn);
         back = findViewById(R.id.backBtn);
-
+        addSub = findViewById(R.id.addSubBtn);
+        subLayout = findViewById(R.id.subLayout);
 
         initDatePicker();
         dateButton = findViewById(R.id.datePickerBtn);
@@ -74,6 +77,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         back.setOnClickListener(this);
         save.setOnClickListener(this);
         done.setOnClickListener(this);
+        addSub.setOnClickListener(this);
 
 
         title.setText(goal.getTitle());
@@ -101,6 +105,34 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
                 medium.setChecked(false);
                 hard.setChecked(false);
                 break;
+        }
+
+        createSubgoals();
+
+
+    }
+
+    private void createSubgoals() {
+        subgoals = goal.getSubgoals();
+        int sub_number = subgoals.size();
+
+        for (int i = 0; i <= sub_number; i++) {
+            try {
+                int c = i + 1;
+                String sk = "sub" + c;
+                boolean done = sp.getBoolean(sk, false);
+
+                CheckBox checkBox = new CheckBox(this);
+                checkBox.setText(subgoals.get(i));
+                checkBox.setId(c);
+                checkBox.setChecked(done);
+                subLayout.addView(checkBox);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
 
@@ -250,6 +282,20 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
         } else if (view.equals((dateButton))) {
             datePickerDialog.show();
+        } else if (view.equals((addSub))) {
+            int sub_number = goal.getSubgoals().size();//sp.getInt("subNumber", 0);
+            //sub_number++;
+            String s = String.valueOf(sub.getText());
+            CheckBox checkBox = new CheckBox(this);
+            checkBox.setText(s);
+            checkBox.setId(sub_number);
+            /*SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("subNumber", sub_number);
+            editor.commit();
+             */
+            subgoals.add(s);
+            subLayout.addView(checkBox);
+
         }
 
     }
@@ -280,6 +326,25 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         editor.putString(key, goalstr);
         editor.commit();
 
+        //Save checked subgoals
+        saveCheckedSubGoals();
+    }
+
+    private void saveCheckedSubGoals() {
+        int sub_number = subgoals.size();//sp.getInt("subNumber", 1);
+        SharedPreferences.Editor editor = sp.edit();
+        for (int i = 1; i <= sub_number; i++) {
+            try {
+                String sk = "sub" + i;
+                CheckBox cb;
+                cb = this.findViewById(i);
+                editor.putBoolean(sk, cb.isChecked());
+                editor.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     //Aim is to delete the goal object from the SP file and moveup every further goal object & decrement goalnumber
