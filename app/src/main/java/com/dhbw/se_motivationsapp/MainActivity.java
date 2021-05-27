@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.time.LocalDate;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -113,8 +115,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void show_Notification() {
         SharedPreferences sp;
-
-
+        StringBuilder goalappendstr = new StringBuilder();
+        String daysleft = null;
+        LocalDate today = LocalDate.now();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         String CHANNEL_ID = "MYCHANNEL";
         NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "name", NotificationManager.IMPORTANCE_LOW);
@@ -131,13 +134,20 @@ public class MainActivity extends AppCompatActivity {
 
             Goal goal = Home.jsonToObject(goalstr);
 
+            assert goal != null;
+            if(goal.isNotification()) {
+                goalappendstr.append("\n").append(goal.getTitle());
+            }
+
+            System.out.println(goalappendstr);
+        }
+
             Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
-                    .setContentText("Offene Ziele")
-                    .setContentTitle("subheading")
+                    .setContentTitle("Deine offenen Ziele:")
                     .setContentIntent(pendingIntent)
-                    .addAction(android.R.drawable.sym_action_chat, "Title", pendingIntent)
                     .setChannelId(CHANNEL_ID)
-                    .setSmallIcon(android.R.drawable.sym_action_chat)
+                    .setSmallIcon(R.drawable.baseline_task_alt_24)
+                    .setStyle(new Notification.BigTextStyle().bigText(goalappendstr.toString()))
                     .build();
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -145,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.notify(1, notification);
 
 
-        }
+
     }
 
 
