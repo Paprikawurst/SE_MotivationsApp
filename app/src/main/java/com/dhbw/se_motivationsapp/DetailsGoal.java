@@ -83,7 +83,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         title.setText(goal.getTitle());
         description.setText(goal.getDescription());
         dateButton.setText(goal.getEnd_date());
-        notification.setActivated(goal.isNotification());
+        notification.setChecked(goal.isNotification());
         switch (goal.getDifficulty()) {
             case 1:
                 easy.setChecked(true);
