@@ -32,7 +32,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
 
     private SharedPreferences sp;
-    private static int id;
+    public static int id;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -104,19 +104,18 @@ public class Home extends Fragment implements View.OnClickListener {
             btn.setId(c);
 
             ImageButton img_button = new ImageButton(getContext());
-            int img_button_id = c + 1;
-            img_button.setId(img_button_id);
+            img_button.setId(c);
             img_button.setImageResource(R.drawable.baseline_more_vert_24);
 
             ConstraintLayout btn_layout = new ConstraintLayout(requireContext());
-            ConstraintLayout.LayoutParams params_btn_layout_wrapper = new ConstraintLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
-            params_btn_layout_wrapper.setMargins(10,0,10,0);
+            ConstraintLayout.LayoutParams params_btn_layout_wrapper = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            params_btn_layout_wrapper.setMargins(10, 0, 10, 0);
             btn_layout.setLayoutParams(params_btn_layout_wrapper);
 
 
             ConstraintLayout.LayoutParams params_btn_layout = new ConstraintLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
             params_btn_layout.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-            params_btn_layout.endToStart = img_button_id;
+            params_btn_layout.endToStart = img_button.getId();
             params_btn_layout.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
             params_btn_layout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
             params_btn_layout.setMargins(0 , 0 , 0 , 0);
