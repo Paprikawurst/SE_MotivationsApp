@@ -32,7 +32,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
 
     private SharedPreferences sp;
-    private static int id;
+    public static int id;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,6 +45,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
     public Home() {
         // Required empty public constructor
+        id = 0;
     }
 
     /**
@@ -99,25 +100,25 @@ public class Home extends Fragment implements View.OnClickListener {
 
             //   System.out.println(goal.getTitle());
             String title = goal.getTitle();
-            String btnid = "button" + c;
+            //String btnid = "button" + c;
             String enddate = goal.getEnd_date();
 
             Button btn = new Button(view.getContext());
             btn.setText(title);
-            btn.setId(c);
+            //btn.setId(c);
 
             ImageButton more = new ImageButton(getContext());
-            int more_id = c + 1;
-            more.setId(more_id);
+
+            more.setId(c);
             more.setImageResource(R.drawable.baseline_more_vert_24);
 
             ConstraintLayout btn_layout = new ConstraintLayout(requireContext());
             ConstraintLayout.LayoutParams params_btn_layout = new ConstraintLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
             params_btn_layout.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-            params_btn_layout.endToStart = more_id;
+            params_btn_layout.endToStart = more.getId();
             params_btn_layout.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
             params_btn_layout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-            params_btn_layout.setMargins(0 , 0 , 0 , 0);
+            params_btn_layout.setMargins(0, 0, 0, 0);
             btn.setLayoutParams(params_btn_layout);
 
             ConstraintLayout.LayoutParams params_imgbtn_layout = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -312,7 +313,5 @@ public class Home extends Fragment implements View.OnClickListener {
 
     }
 
-    public static int getIds() {
-        return id;
-    }
+
 }
