@@ -146,7 +146,7 @@ public class Home extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    public Goal jsonToObject(String goalJson) {
+    public static Goal jsonToObject(String goalJson) {
         final ObjectMapper mapper = new ObjectMapper();
         try {
 
