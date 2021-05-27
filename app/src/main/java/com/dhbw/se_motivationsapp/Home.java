@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
+import java.util.Objects;
 
 
 public class Home extends Fragment implements View.OnClickListener {
@@ -109,7 +109,24 @@ public class Home extends Fragment implements View.OnClickListener {
             ImageButton more = new ImageButton(getContext());
             int more_id = 1;
             more.setId(more_id);
+            more.setImageResource(R.drawable.baseline_more_vert_24);
 
+            ConstraintLayout btn_layout = new ConstraintLayout(requireContext());
+            ConstraintLayout.LayoutParams params_btn_layout = new ConstraintLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params_btn_layout.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+            params_btn_layout.endToStart = more_id;
+            params_btn_layout.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+            params_btn_layout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            params_btn_layout.setMargins(0 , 0 , 0 , 0);
+            btn.setLayoutParams(params_btn_layout);
+
+            ConstraintLayout.LayoutParams params_imgbtn_layout = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params_imgbtn_layout.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+            params_imgbtn_layout.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+            params_imgbtn_layout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            params_imgbtn_layout.setMargins(0 , 0 , 0 , 0);
+
+            more.setLayoutParams(params_imgbtn_layout);
             // round corners and color
             GradientDrawable gd = new GradientDrawable();
             gd.setColor(getButtonColor(enddate));
@@ -117,8 +134,11 @@ public class Home extends Fragment implements View.OnClickListener {
             gd.setStroke(2, Color.WHITE);
             btn.setBackground(gd);
 
-            linearLayout_wrapper.addView(btn, layout_params);
-            btn.setOnClickListener(this);
+            btn_layout.addView(btn);
+            btn_layout.addView(more);
+
+            linearLayout_wrapper.addView(btn_layout,layout_params);
+            more.setOnClickListener(this);
 
         }
         return view;
