@@ -85,19 +85,16 @@ public class Home extends Fragment implements View.OnClickListener {
         LinearLayout linearLayout_wrapper = view.findViewById(R.id.linearLayout);
         LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layout_params.setMargins(20,10,20,10);
+
         for (int i = 0; i < gnum; i++) {
             int c = i + 1;
             String goalstr;
             String key = "goal" + c;
-            //
-            goalstr = sp.getString(key, null);
 
-           // System.out.println(goalstr);
+            goalstr = sp.getString(key, null);
 
             Goal goal = jsonToObject(goalstr);
 
-            //   System.out.println(goal.getTitle());
             String title = goal.getTitle();
             String btnid = "button" + c;
             String enddate = goal.getEnd_date();
@@ -106,39 +103,45 @@ public class Home extends Fragment implements View.OnClickListener {
             btn.setText(title);
             btn.setId(c);
 
-            ImageButton more = new ImageButton(getContext());
-            int more_id = c + 1;
-            more.setId(more_id);
-            more.setImageResource(R.drawable.baseline_more_vert_24);
+            ImageButton img_button = new ImageButton(getContext());
+            int img_button_id = c + 1;
+            img_button.setId(img_button_id);
+            img_button.setImageResource(R.drawable.baseline_more_vert_24);
 
             ConstraintLayout btn_layout = new ConstraintLayout(requireContext());
+            ConstraintLayout.LayoutParams params_btn_layout_wrapper = new ConstraintLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
+            params_btn_layout_wrapper.setMargins(10,0,10,0);
+            btn_layout.setLayoutParams(params_btn_layout_wrapper);
+
+
             ConstraintLayout.LayoutParams params_btn_layout = new ConstraintLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
             params_btn_layout.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-            params_btn_layout.endToStart = more_id;
+            params_btn_layout.endToStart = img_button_id;
             params_btn_layout.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
             params_btn_layout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
             params_btn_layout.setMargins(0 , 0 , 0 , 0);
             btn.setLayoutParams(params_btn_layout);
 
-            ConstraintLayout.LayoutParams params_imgbtn_layout = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            ConstraintLayout.LayoutParams params_imgbtn_layout = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 205);
             params_imgbtn_layout.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
             params_imgbtn_layout.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
             params_imgbtn_layout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
             params_imgbtn_layout.setMargins(0 , 0 , 0 , 0);
 
-            more.setLayoutParams(params_imgbtn_layout);
+            img_button.setLayoutParams(params_imgbtn_layout);
+
             // round corners and color
             GradientDrawable gd = new GradientDrawable();
             gd.setColor(getButtonColor(enddate));
-            gd.setCornerRadius(50);
+            gd.setCornerRadius(15);
             gd.setStroke(2, Color.WHITE);
             btn.setBackground(gd);
 
             btn_layout.addView(btn);
-            btn_layout.addView(more);
+            btn_layout.addView(img_button);
 
-            linearLayout_wrapper.addView(btn_layout,layout_params);
-            more.setOnClickListener(this);
+            linearLayout_wrapper.addView(btn_layout,params_btn_layout_wrapper);
+            img_button.setOnClickListener(this);
 
         }
         return view;
