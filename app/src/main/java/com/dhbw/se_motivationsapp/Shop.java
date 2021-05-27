@@ -91,7 +91,6 @@ public class Shop extends Fragment {
         checkbox_darkgray.setChecked(spref.getBoolean("activated_darkgray",false));
         checkbox_gray.setChecked(spref.getBoolean("activated_gray",false));
 
-
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
@@ -198,6 +197,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     SelectActivated(checkbox_darkgray);
+
                 }
             }
         });
