@@ -317,7 +317,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
             dif = 3;
         }
         goal.setDifficulty(dif);
-        goal.setNotification(notification.isChecked());
+        goal.setNotification(notification.isChecked());  // ischecked not isactivated
         goal.setSubgoals(subgoals);
 
         //Save in existing SP-key
