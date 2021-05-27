@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DetailsGoal extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +35,9 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     private ImageButton delete, save, done, back;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+    private String key;
+    private Goal goal;
+    private ArrayList<String> subgoals = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +46,11 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
         sp = this.getSharedPreferences("SP", 0);
         String goalstr;
-        String key = "goal" + Home.id;
+        key = "goal" + Home.id;
 
         goalstr = sp.getString(key, null);
 
-        Goal goal = Home.jsonToObject(goalstr);
+        goal = Home.jsonToObject(goalstr);
 
 
         title = findViewById(R.id.InputTitelId);
@@ -192,18 +197,54 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
             startActivity(intent);
             this.finish();
         } else if (view.equals(delete)) {
-            deleteGoalFromSp();
-            Toast.makeText(this, "Goal deleted", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            this.finish();
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Sure?")
+                    .setMessage("Do you really want to delete this goal?")
+                    .setCancelable(true)
+                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteGoalFromSp();
+                            Toast.makeText(getBaseContext(), "Goal deleted", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getParent(), MainActivity.class);
+                            startActivity(intent);
+                            getParent().finish();
+                        }
+
+                    }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            }).show();
+
         } else if (view.equals(save)) {
             saveGoalChanges();
             Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show();
+
+
         } else if (view.equals(done)) {
-            Toast.makeText(this, "Congrats! Goal achieved!", Toast.LENGTH_LONG).show();
-            getReward();
-            deleteGoalFromSp();
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Done?")
+                    .setMessage("Did you achieve the goal?")
+                    .setCancelable(true)
+                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(getBaseContext(), "Congrats! Goal achieved!", Toast.LENGTH_LONG).show();
+                            getReward();
+                            deleteGoalFromSp();
+                        }
+
+                    }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            }).show();
+
+        } else if (view.equals((dateButton))) {
+            datePickerDialog.show();
         }
 
     }
@@ -212,8 +253,46 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     }
 
     private void saveGoalChanges() {
+        //Goal Object changes
+        goal.setTitle(String.valueOf(title.getText()));
+        goal.setDescription(String.valueOf(description.getText()));
+        goal.setEnd_date(String.valueOf(dateButton.getText()));
+        int dif = 0;
+        if (easy.isChecked()) {
+            dif = 1;
+        } else if (medium.isChecked()) {
+            dif = 2;
+        } else if (hard.isChecked()) {
+            dif = 3;
+        }
+        goal.setDifficulty(dif);
+        goal.setNotification(notification.isChecked());
+        goal.setSubgoals(subgoals);
+
+        //Save in existing SP-key
+        String goalstr = objectToJson(goal);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(key, goalstr);
+        editor.commit();
+
     }
 
+
     private void deleteGoalFromSp() {
+
+    }
+
+    public String objectToJson(Goal goal) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            //mapper.writeValue(new File(getFilesDir(), "person.json"), person);  // write to file
+            String jsonStr = mapper.writeValueAsString(goal);                   // write to string
+            //System.out.println("object -> json string\n" + jsonStr);
+            return jsonStr;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }
