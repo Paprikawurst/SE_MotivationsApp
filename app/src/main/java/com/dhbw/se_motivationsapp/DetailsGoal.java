@@ -206,9 +206,8 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
                         public void onClick(DialogInterface dialog, int which) {
                             deleteGoalFromSp();
                             Toast.makeText(getBaseContext(), "Goal deleted", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getParent(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
-                            getParent().finish();
                         }
 
                     }).setNegativeButton("no", new DialogInterface.OnClickListener() {
@@ -217,6 +216,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
                 }
             }).show();
+
 
         } else if (view.equals(save)) {
             saveGoalChanges();
@@ -234,6 +234,10 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
                             Toast.makeText(getBaseContext(), "Congrats! Goal achieved!", Toast.LENGTH_LONG).show();
                             getReward();
                             deleteGoalFromSp();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            //this.finish();
+
                         }
 
                     }).setNegativeButton("no", new DialogInterface.OnClickListener() {
@@ -242,6 +246,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
                 }
             }).show();
+
 
         } else if (view.equals((dateButton))) {
             datePickerDialog.show();
@@ -277,8 +282,23 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     }
 
-
+    //Aim is to delete the goal object from the SP file and moveup every further goal object & decrement goalnumber
     private void deleteGoalFromSp() {
+        int gnum = sp.getInt("goalnumber", 0);
+        SharedPreferences.Editor editor = sp.edit();
+        int i = Home.id;
+        while (i <= gnum) {
+            String k = "goal" + String.valueOf(i + 1);
+            String nk = "goal" + String.valueOf(i);
+            String s = sp.getString(k, null);
+            editor.putString(nk, s);
+            i++;
+            editor.commit();
+
+        }
+        gnum--;
+        editor.putInt("goalnumber", gnum);
+        editor.commit();
 
     }
 
