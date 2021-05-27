@@ -104,13 +104,12 @@ public class Home extends Fragment implements View.OnClickListener {
             btn.setId(c);
 
             ImageButton img_button = new ImageButton(getContext());
-
-            more.setId(c);
-            more.setImageResource(R.drawable.baseline_more_vert_24);
+            img_button.setId(c);
+            img_button.setImageResource(R.drawable.baseline_more_vert_24);
 
             ConstraintLayout btn_layout = new ConstraintLayout(requireContext());
-            ConstraintLayout.LayoutParams params_btn_layout_wrapper = new ConstraintLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
-            params_btn_layout_wrapper.setMargins(10,0,10,0);
+            ConstraintLayout.LayoutParams params_btn_layout_wrapper = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            params_btn_layout_wrapper.setMargins(10, 0, 10, 0);
             btn_layout.setLayoutParams(params_btn_layout_wrapper);
 
 
