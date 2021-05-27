@@ -107,7 +107,7 @@ public class Home extends Fragment implements View.OnClickListener {
             btn.setId(c);
 
             ImageButton more = new ImageButton(getContext());
-            int more_id = 1;
+            int more_id = c + 1;
             more.setId(more_id);
             more.setImageResource(R.drawable.baseline_more_vert_24);
 
