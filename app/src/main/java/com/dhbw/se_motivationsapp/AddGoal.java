@@ -3,7 +3,10 @@ package com.dhbw.se_motivationsapp;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -139,6 +143,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.equals(addbtn)) {
+
 
 
             String endstring = (String) dateButton.getText();

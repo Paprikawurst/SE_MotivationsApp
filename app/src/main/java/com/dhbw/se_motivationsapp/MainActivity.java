@@ -1,15 +1,25 @@
 package com.dhbw.se_motivationsapp;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.time.LocalDate;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();
+
+        show_Notification();
 
         //SharedPreferences auslesen
         spref = getSharedPreferences("SP", 0);
@@ -73,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -100,6 +112,51 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    public void show_Notification() {
+        SharedPreferences sp;
+        StringBuilder goalappendstr = new StringBuilder();
+        String daysleft = null;
+        LocalDate today = LocalDate.now();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        String CHANNEL_ID = "MYCHANNEL";
+        NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "name", NotificationManager.IMPORTANCE_LOW);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
+        sp = this.getSharedPreferences("SP", 0);
+        int gnum = sp.getInt("goalnumber", 0);
+
+        for (int i = 0; i < gnum; i++) {
+            int c = i + 1;
+            String goalstr;
+            String key = "goal" + c;
+
+            goalstr = sp.getString(key, null);
+
+            Goal goal = Home.jsonToObject(goalstr);
+
+            assert goal != null;
+            if(goal.isNotification()) {
+                goalappendstr.append("\n").append(goal.getTitle());
+            }
+
+            System.out.println(goalappendstr);
+        }
+
+            Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
+                    .setContentTitle("Deine offenen Ziele:")
+                    .setContentIntent(pendingIntent)
+                    .setChannelId(CHANNEL_ID)
+                    .setSmallIcon(R.drawable.baseline_task_alt_24)
+                    .setStyle(new Notification.BigTextStyle().bigText(goalappendstr.toString()))
+                    .build();
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(notificationChannel);
+            notificationManager.notify(1, notification);
+
+
+
+    }
 
 
 }
