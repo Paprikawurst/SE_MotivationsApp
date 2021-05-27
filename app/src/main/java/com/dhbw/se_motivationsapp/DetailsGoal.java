@@ -14,7 +14,7 @@ public class DetailsGoal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_goal);
-        textView = findViewById(R.id.test);
+        //textView = findViewById(R.id.test);
         sp = this.getSharedPreferences("SP", 0);
         String goalstr;
         String key = "goal" + Home.id;
@@ -23,7 +23,7 @@ public class DetailsGoal extends AppCompatActivity {
 
         Goal goal = Home.jsonToObject(goalstr);
 
-        textView.setText(goal.getTitle());
+        //textView.setText(goal.getTitle());
 
     }
 
