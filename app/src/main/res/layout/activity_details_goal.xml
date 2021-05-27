@@ -25,11 +25,19 @@
                 android:layout_height="match_parent"
                 tools:context=".AddGoal">
 
+                <ImageButton
+                    android:id="@+id/imageButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/outline_arrow_back_ios_24" />
+
                 <TextView
                     android:id="@+id/TitleId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="48dp"
                     android:text="Title:"
                     app:layout_constraintEnd_toStartOf="@+id/InputTitelId"
                     app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +47,7 @@
                     android:id="@+id/InputTitelId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:ems="10"
                     android:inputType="textPersonName"
                     app:layout_constraintEnd_toEndOf="parent"
