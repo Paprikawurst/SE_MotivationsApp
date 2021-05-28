@@ -9,6 +9,7 @@
     tools:context=".Reward" >
 
     <!-- 1st Reward -->
+
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/list_item_Reward1"
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:checkable="false"
-                android:text="@string/purchase"
+                android:text="Redeem"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.946"
@@ -39,7 +40,7 @@
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="57dp"
                 android:layout_height="21dp"
-                android:progress="25"
+                android:progress="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.593"
@@ -51,6 +52,7 @@
     </com.lucasurbas.listitemview.ListItemView>
 
     <!-- 2nd Reward -->
+
     <com.lucasurbas.listitemview.ListItemView
         android:id="@+id/list_item_Reward2"
         android:layout_width="match_parent"
@@ -69,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:checkable="false"
-                android:text="@string/purchase"
+                android:text="Redeem"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.946"
@@ -81,7 +83,7 @@
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="57dp"
                 android:layout_height="21dp"
-                android:progress="25"
+                android:progress="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.593"
@@ -89,6 +91,180 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.509" />
 
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <!-- 3rd Reward -->
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_Reward3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liv_multiline="false"
+        app:liv_subtitle="reward3"
+        app:liv_title="reward3title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_Reward_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:checkable="false"
+                android:text="Redeem"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_Reward3"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="57dp"
+                android:layout_height="21dp"
+                android:progress="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.593"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.509" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <!-- 4th Reward -->
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_Reward4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:liv_multiline="false"
+        app:liv_subtitle="reward4"
+        app:liv_title="reward4title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_Reward_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:checkable="false"
+                android:text="Redeem"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_Reward4"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="57dp"
+                android:layout_height="21dp"
+                android:progress="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.593"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.509" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <!-- 5th Reward -->
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_Reward5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:liv_multiline="false"
+        app:liv_subtitle="reward5"
+        app:liv_title="reward5title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_Reward_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:checkable="false"
+                android:text="Redeem"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_Reward5"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="57dp"
+                android:layout_height="21dp"
+                android:progress="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.593"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.509" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.lucasurbas.listitemview.ListItemView>
+
+    <!-- 6th Reward -->
+
+    <com.lucasurbas.listitemview.ListItemView
+        android:id="@+id/list_item_Reward6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:liv_multiline="false"
+        app:liv_subtitle="reward6"
+        app:liv_title="reward6title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_Reward_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:checkable="false"
+                android:text="Redeem"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_Reward6"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="57dp"
+                android:layout_height="21dp"
+                android:progress="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.593"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.509" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.lucasurbas.listitemview.ListItemView>
