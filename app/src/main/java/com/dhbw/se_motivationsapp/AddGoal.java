@@ -218,7 +218,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         }
     }
 
-    private String getMonthFormat(int month) {
+    public String getMonthFormat(int month) {
         String s;
         switch (month) {
             case 1:
