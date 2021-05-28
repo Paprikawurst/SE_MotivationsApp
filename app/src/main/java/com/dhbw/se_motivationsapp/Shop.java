@@ -2,6 +2,7 @@ package com.dhbw.se_motivationsapp;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -376,7 +377,7 @@ public class Shop extends Fragment {
             checkbox_gray.setChecked(true);
         }
 
-
+        editor.commit();
 
     }
 

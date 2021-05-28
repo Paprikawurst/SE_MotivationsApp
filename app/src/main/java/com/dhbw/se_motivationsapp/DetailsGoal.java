@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -66,7 +67,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         done = findViewById(R.id.doneBtn);
         back = findViewById(R.id.backBtn);
         addSub = findViewById(R.id.addSubBtn);
-        subLayout = findViewById(R.id.subLayout);
+        subLayout = findViewById(R.id.subsublayout);
 
         initDatePicker();
         dateButton = findViewById(R.id.datePickerBtn);
@@ -115,6 +116,9 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     private void createSubgoals() {
         subgoals = goal.getSubgoals();
         int sub_number = subgoals.size();
+        LinearLayout.LayoutParams layout_params_wrapper = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        subLayout.setLayoutParams(layout_params_wrapper);
 
         for (int i = 0; i <= sub_number; i++) {
             try {
@@ -124,6 +128,10 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
                 CheckBox checkBox = new CheckBox(this);
                 checkBox.setText(subgoals.get(i));
+                LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                layout_params.gravity = Gravity.CENTER_HORIZONTAL;
+                checkBox.setLayoutParams(layout_params);
                 checkBox.setId(c);
                 checkBox.setChecked(done);
                 subLayout.addView(checkBox);
@@ -285,6 +293,10 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         } else if (view.equals((addSub))) {
             int sub_number = goal.getSubgoals().size();//sp.getInt("subNumber", 0);
             //sub_number++;
+            LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layout_params.gravity = Gravity.CENTER_HORIZONTAL;
+
             String s = String.valueOf(sub.getText());
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(s);
@@ -293,11 +305,11 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
             editor.putInt("subNumber", sub_number);
             editor.commit();
              */
+            checkBox.setLayoutParams(layout_params);
             subgoals.add(s);
             subLayout.addView(checkBox);
 
         }
-
     }
 
     private void getReward() {
