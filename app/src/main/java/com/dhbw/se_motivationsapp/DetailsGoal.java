@@ -142,10 +142,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         subLayout.setLayoutParams(layout_params_wrapper);
 
         View view_toolbar = findViewById(R.id.toolbar);
-        SharedPreferences spref = getSharedPreferences("SP", 0);
-        SharedPreferences.Editor editor = spref.edit();
-        view_toolbar.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        editor.commit();
+        view_toolbar.setBackgroundColor(sp.getInt("color", Color.DKGRAY));
 
         for (int i = 0; i <= sub_number; i++) {
             try {
