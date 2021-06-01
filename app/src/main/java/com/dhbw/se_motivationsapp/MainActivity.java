@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new AddGoal();
                     break;
                 case R.id.reward:
-                    title.setText("Achievements");
+                    title.setText("Rewards");
                     selectedFragment = new Reward();
                     break;
                 case R.id.shop2:
