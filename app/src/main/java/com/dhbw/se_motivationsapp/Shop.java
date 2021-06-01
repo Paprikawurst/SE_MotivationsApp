@@ -21,7 +21,6 @@ public class Shop extends Fragment {
 
     private int points;
     private SharedPreferences spref;
-    boolean first_create = false;
 
     public Shop() {
         System.out.println("test1");
@@ -40,7 +39,6 @@ public class Shop extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        first_create = true;
         spref = getContext().getSharedPreferences("SP", 0);
         points = spref.getInt("points", 0);
         System.out.println("test2");
@@ -52,9 +50,11 @@ public class Shop extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view_toolbar = requireActivity().findViewById(R.id.toolbar);
+        view_toolbar.setBackgroundColor(Color.DKGRAY);
 
         view = inflater.inflate(R.layout.fragment_shop, container, false);
-
+        changeColor(Color.DKGRAY);
         check_Checkbox();
 
         Button button_red = view.findViewById(R.id.id_button_red);
@@ -63,7 +63,6 @@ public class Shop extends Fragment {
         Button button_green = view.findViewById(R.id.id_button_green);
         ;
         Button button_cyan = view.findViewById(R.id.id_button_cyan);
-        Button button_darkgray = view.findViewById(R.id.id_button_darkgray);
         Button button_gray = view.findViewById(R.id.id_button_gray2);
 
         CheckBox checkbox_default = view.findViewById(R.id.checkBox_defalut);
@@ -72,7 +71,6 @@ public class Shop extends Fragment {
         CheckBox checkbox_black = view.findViewById(R.id.checkBox_black);
         CheckBox checkbox_green = view.findViewById(R.id.checkBox_green);
         CheckBox checkbox_cyan = view.findViewById(R.id.checkBox_cyan);
-        CheckBox checkbox_darkgray = view.findViewById(R.id.checkBox_darkgray);
         CheckBox checkbox_gray = view.findViewById(R.id.checkBox_gray);
 
         checkbox_red.setEnabled(spref.getBoolean("purchased_red", false));
@@ -80,7 +78,6 @@ public class Shop extends Fragment {
         checkbox_black.setEnabled(spref.getBoolean("purchased_black", false));
         checkbox_green.setEnabled(spref.getBoolean("purchased_green", false));
         checkbox_cyan.setEnabled(spref.getBoolean("purchased_cyan", false));
-        checkbox_darkgray.setEnabled(spref.getBoolean("purchased_darkgray", false));
         checkbox_gray.setEnabled(spref.getBoolean("purchased_gray", false));
 
         checkbox_default.setChecked(spref.getBoolean("activated_default", false));
@@ -89,8 +86,8 @@ public class Shop extends Fragment {
         checkbox_black.setChecked(spref.getBoolean("activated_black", false));
         checkbox_green.setChecked(spref.getBoolean("activated_green", false));
         checkbox_cyan.setChecked(spref.getBoolean("activated_cyan", false));
-        checkbox_darkgray.setChecked(spref.getBoolean("activated_darkgray", false));
         checkbox_gray.setChecked(spref.getBoolean("activated_gray", false));
+
 
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
@@ -132,13 +129,6 @@ public class Shop extends Fragment {
                                        }
         );
 
-        button_darkgray.setOnClickListener(new View.OnClickListener() {
-                                               @Override
-                                               public void onClick(View v) {
-                                                   getButtonEvent(checkbox_darkgray, "purchased_darkgray");
-                                               }
-                                           }
-        );
 
         button_gray.setOnClickListener(new View.OnClickListener() {
                                            @Override
@@ -198,16 +188,6 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_cyan);
-                }
-            }
-        });
-
-        checkbox_darkgray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    SelectActivated(checkbox_darkgray);
-
                 }
             }
         });
@@ -279,7 +259,6 @@ public class Shop extends Fragment {
         Button shop_button_black = view.findViewById(R.id.id_button_black);
         Button shop_button_green = view.findViewById(R.id.id_button_green);
         Button shop_button_cyan = view.findViewById(R.id.id_button_cyan);
-        Button shop_button_darkgray = view.findViewById(R.id.id_button_darkgray);
         Button shop_button_gray = view.findViewById(R.id.id_button_gray2);
 
         shop_button_red.setBackgroundColor(color);
@@ -287,7 +266,6 @@ public class Shop extends Fragment {
         shop_button_black.setBackgroundColor(color);
         shop_button_green.setBackgroundColor(color);
         shop_button_cyan.setBackgroundColor(color);
-        shop_button_darkgray.setBackgroundColor(color);
         shop_button_gray.setBackgroundColor(color);
 
         View view_toolbar = requireActivity().findViewById(R.id.toolbar);
@@ -298,7 +276,7 @@ public class Shop extends Fragment {
     public void check_Checkbox() {
 
         if (spref.getBoolean("activated_default", false)) {
-            changeColor(Color.MAGENTA);
+            changeColor(Color.DKGRAY);
         }
         if (spref.getBoolean("activated_red", false)) {
             changeColor(Color.RED);
@@ -314,9 +292,6 @@ public class Shop extends Fragment {
         }
         if (spref.getBoolean("activated_cyan", false)) {
             changeColor(Color.CYAN);
-        }
-        if (spref.getBoolean("activated_darkgray", false)) {
-            changeColor(Color.DKGRAY);
         }
         if (spref.getBoolean("activated_gray", false)) {
             changeColor(Color.GRAY);
@@ -334,7 +309,6 @@ public class Shop extends Fragment {
         CheckBox checkbox_black = view.findViewById(R.id.checkBox_black);
         CheckBox checkbox_green = view.findViewById(R.id.checkBox_green);
         CheckBox checkbox_cyan = view.findViewById(R.id.checkBox_cyan);
-        CheckBox checkbox_darkgray = view.findViewById(R.id.checkBox_darkgray);
         CheckBox checkbox_gray = view.findViewById(R.id.checkBox_gray);
 
         editor.putBoolean("activated_default", false);
@@ -343,7 +317,6 @@ public class Shop extends Fragment {
         editor.putBoolean("activated_black", false);
         editor.putBoolean("activated_green", false);
         editor.putBoolean("activated_cyan", false);
-        editor.putBoolean("activated_darkgray", false);
         editor.putBoolean("activated_gray", false);
 
         checkbox_default.setChecked(false);
@@ -352,49 +325,50 @@ public class Shop extends Fragment {
         checkbox_black.setChecked(false);
         checkbox_green.setChecked(false);
         checkbox_cyan.setChecked(false);
-        checkbox_darkgray.setChecked(false);
         checkbox_gray.setChecked(false);
 
 
         if (box == checkbox_default) {
-            changeColor(Color.MAGENTA);
+            changeColor(Color.DKGRAY);
             editor.putBoolean("activated_default", true);
             checkbox_default.setChecked(true);
+            editor.putInt("color", Color.DKGRAY);
         }
         if (box == checkbox_red) {
             changeColor(Color.RED);
             editor.putBoolean("activated_red", true);
             checkbox_red.setChecked(true);
+            editor.putInt("color", Color.RED);
         }
         if (box == checkbox_blue) {
             changeColor(Color.BLUE);
             editor.putBoolean("activated_blue", true);
             checkbox_blue.setChecked(true);
+            editor.putInt("color", Color.BLUE);
         }
         if (box == checkbox_black) {
             changeColor(Color.BLACK);
             editor.putBoolean("activated_black", true);
             checkbox_black.setChecked(true);
+            editor.putInt("color", Color.BLACK);
         }
         if (box == checkbox_green) {
             changeColor(Color.GREEN);
             editor.putBoolean("activated_green", true);
             checkbox_green.setChecked(true);
+            editor.putInt("color", Color.GREEN);
         }
         if (box == checkbox_cyan) {
             changeColor(Color.CYAN);
             editor.putBoolean("activated_cyan", true);
             checkbox_cyan.setChecked(true);
-        }
-        if (box == checkbox_darkgray) {
-            changeColor(Color.DKGRAY);
-            editor.putBoolean("activated_darkgray", true);
-            checkbox_darkgray.setChecked(true);
+            editor.putInt("color", Color.CYAN);
         }
         if (box == checkbox_gray) {
             changeColor(Color.GRAY);
             editor.putBoolean("activated_gray", true);
             checkbox_gray.setChecked(true);
+            editor.putInt("color", Color.GRAY);
         }
 
         editor.commit();
