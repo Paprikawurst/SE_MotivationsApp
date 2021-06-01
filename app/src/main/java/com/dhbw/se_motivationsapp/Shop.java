@@ -19,13 +19,14 @@ import android.widget.TextView;
 
 public class Shop extends Fragment {
 
+    View view;
     private int points;
     private SharedPreferences spref;
+
 
     public Shop() {
         System.out.println("test1");
     }
-
 
     public static Shop newInstance(String param1, String param2) {
         Shop fragment = new Shop();
@@ -44,8 +45,6 @@ public class Shop extends Fragment {
 
     }
 
-    View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class Shop extends Fragment {
         Button button_blue = view.findViewById(R.id.id_button_blue);
         Button button_black = view.findViewById(R.id.id_button_black);
         Button button_green = view.findViewById(R.id.id_button_green);
-        ;
+
         Button button_cyan = view.findViewById(R.id.id_button_cyan);
         Button button_gray = view.findViewById(R.id.id_button_gray2);
 
@@ -91,7 +90,7 @@ public class Shop extends Fragment {
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
-                                              getButtonEvent(checkbox_red, "purchased_red",500);
+                                              getButtonEvent(checkbox_red, "purchased_red", 500);
                                           }
                                       }
         );
@@ -99,7 +98,7 @@ public class Shop extends Fragment {
         button_blue.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               getButtonEvent(checkbox_blue, "purchased_blue",200);
+                                               getButtonEvent(checkbox_blue, "purchased_blue", 200);
                                            }
                                        }
         );
@@ -107,7 +106,7 @@ public class Shop extends Fragment {
         button_black.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                getButtonEvent(checkbox_black, "purchased_black",100);
+                                                getButtonEvent(checkbox_black, "purchased_black", 100);
                                             }
                                         }
         );
@@ -115,7 +114,7 @@ public class Shop extends Fragment {
         button_green.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                getButtonEvent(checkbox_green, "purchased_green",50);
+                                                getButtonEvent(checkbox_green, "purchased_green", 50);
                                             }
                                         }
         );
@@ -123,7 +122,7 @@ public class Shop extends Fragment {
         button_cyan.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               getButtonEvent(checkbox_cyan, "purchased_cyan",20);
+                                               getButtonEvent(checkbox_cyan, "purchased_cyan", 20);
                                            }
                                        }
         );
@@ -132,7 +131,7 @@ public class Shop extends Fragment {
         button_gray.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               getButtonEvent(checkbox_gray, "purchased_gray",10);
+                                               getButtonEvent(checkbox_gray, "purchased_gray", 10);
                                            }
                                        }
         );
@@ -142,7 +141,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_default);
-                }else System.out.println(false);
+                } else System.out.println(false);
             }
         });
 
@@ -152,7 +151,7 @@ public class Shop extends Fragment {
                 if (isChecked) {
                     SelectActivated(checkbox_red);
                     checkbox_default.setChecked(false);
-                }else checkbox_default.setChecked(true);
+                } else checkbox_default.setChecked(true);
             }
         });
 
@@ -162,7 +161,7 @@ public class Shop extends Fragment {
                 if (isChecked) {
                     SelectActivated(checkbox_blue);
                     checkbox_default.setChecked(false);
-                }else checkbox_default.setChecked(true);
+                } else checkbox_default.setChecked(true);
             }
         });
 
@@ -172,7 +171,7 @@ public class Shop extends Fragment {
                 if (isChecked) {
                     SelectActivated(checkbox_black);
                     checkbox_default.setChecked(false);
-                }else checkbox_default.setChecked(true);
+                } else checkbox_default.setChecked(true);
             }
         });
 
@@ -182,7 +181,7 @@ public class Shop extends Fragment {
                 if (isChecked) {
                     SelectActivated(checkbox_green);
                     checkbox_default.setChecked(false);
-                }else checkbox_default.setChecked(true);
+                } else checkbox_default.setChecked(true);
             }
         });
 
@@ -192,7 +191,7 @@ public class Shop extends Fragment {
                 if (isChecked) {
                     SelectActivated(checkbox_cyan);
                     checkbox_default.setChecked(false);
-                }else checkbox_default.setChecked(true);
+                } else checkbox_default.setChecked(true);
             }
         });
 
@@ -203,11 +202,10 @@ public class Shop extends Fragment {
                 if (isChecked) {
                     SelectActivated(checkbox_gray);
                     checkbox_default.setChecked(false);
-                }else checkbox_default.setChecked(true);
+                } else checkbox_default.setChecked(true);
             }
         });
 
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -228,7 +226,7 @@ public class Shop extends Fragment {
             points_text.setText(String.valueOf(points));
             return true;
         } else {
-            if (points < cost && !spref.getBoolean(purchased_skin,false)) {
+            if (points < cost && !spref.getBoolean(purchased_skin, false)) {
                 new AlertDialog.Builder(requireContext())
                         .setTitle("Not enough points")
                         .setMessage("You dont have enough points to purchase this skin")
@@ -383,16 +381,6 @@ public class Shop extends Fragment {
             editor.commit();
         }
 
-    }
-
-    public boolean CheckAllCheckboxes(){
-        if (!spref.getBoolean("activated_gray", false) && !spref.getBoolean("activated_red", false) &&
-                !spref.getBoolean("activated_blue", false) && !spref.getBoolean("activated_black", false) &&
-                !spref.getBoolean("activated_green", false) && !spref.getBoolean("activated_cyan", false) &&
-                !spref.getBoolean("activated_gray", false)) {
-            return true;
-        }
-        return false;
     }
 
 }

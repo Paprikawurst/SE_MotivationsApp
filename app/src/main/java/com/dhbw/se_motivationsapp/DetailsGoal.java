@@ -131,7 +131,6 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
-        //super.onBackPressed();
     }
 
     private void createSubgoals() {
@@ -433,7 +432,6 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     private boolean isFuture(String enddate) {
 
-        //  System.out.println("Enddatum" + enddate);
         String startdate;
         LocalDate today = LocalDate.now();
         startdate = String.valueOf(today);
@@ -441,14 +439,14 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         int month_end = getMonthInt(enddate);
         char[] start = new char[startdate.length()];
         char[] end = new char[enddate.length()];
-        //String convert to chararray
+
         for (int i = 0; i < startdate.length(); i++) {
             start[i] = startdate.charAt(i);
         }
         for (int i = 0; i < enddate.length(); i++) {
             end[i] = enddate.charAt(i);
         }
-        //new Strings of chars (parts of the date)
+
         String year = String.copyValueOf(start, 0, 4);
         int y = Integer.parseInt(year);
 
@@ -513,7 +511,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     }
 
     private void saveCheckedSubGoals() {
-        int sub_number = subgoals.size();//sp.getInt("subNumber", 1);
+        int sub_number = subgoals.size();
         SharedPreferences.Editor editor = sp.edit();
         for (int i = 1; i <= sub_number; i++) {
             try {
@@ -529,7 +527,6 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    //Aim is to delete the goal object from the SP file and moveup every further goal object & decrement goalnumber
     private void deleteGoalFromSp() {
         int gnum = sp.getInt("goalnumber", 0);
         SharedPreferences.Editor editor = sp.edit();
@@ -552,9 +549,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     public String objectToJson(Goal goal) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            //mapper.writeValue(new File(getFilesDir(), "person.json"), person);  // write to file
-            String jsonStr = mapper.writeValueAsString(goal);                   // write to string
-            //System.out.println("object -> json string\n" + jsonStr);
+            String jsonStr = mapper.writeValueAsString(goal);
             return jsonStr;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
