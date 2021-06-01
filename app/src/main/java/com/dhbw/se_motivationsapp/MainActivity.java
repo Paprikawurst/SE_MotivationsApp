@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 new Home()).commit();
 
         //SharedPreferences auslesen
-        System.out.println("Test123");
+
         spref = getSharedPreferences("SP", 0);
         points = spref.getInt("points", 200);
         points_text.setText(String.valueOf(points));

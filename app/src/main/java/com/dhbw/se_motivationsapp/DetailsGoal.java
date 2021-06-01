@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -267,7 +268,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
         } else if (view.equals(save)) {
             saveGoalChanges();
-            Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show();
+
 
 
         } else if (view.equals(done)) {
@@ -356,29 +357,142 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     private void saveGoalChanges() {
         //Goal Object changes
-        goal.setTitle(String.valueOf(title.getText()));
-        goal.setDescription(String.valueOf(description.getText()));
-        goal.setEnd_date(String.valueOf(dateButton.getText()));
-        int dif = 0;
-        if (easy.isChecked()) {
-            dif = 1;
-        } else if (medium.isChecked()) {
-            dif = 2;
-        } else if (hard.isChecked()) {
-            dif = 3;
+        String t = String.valueOf(title.getText());
+        String end_date = String.valueOf(dateButton.getText());
+        if (t.length() > 0) {
+            if (isFuture(end_date)) {
+                goal.setTitle(t);
+                goal.setDescription(String.valueOf(description.getText()));
+                goal.setEnd_date(end_date);
+                int dif = 0;
+                if (easy.isChecked()) {
+                    dif = 1;
+                } else if (medium.isChecked()) {
+                    dif = 2;
+                } else if (hard.isChecked()) {
+                    dif = 3;
+                }
+                goal.setDifficulty(dif);
+                goal.setNotification(notification.isChecked());  // ischecked not isactivated
+                goal.setSubgoals(subgoals);
+
+                //Save in existing SP-key
+                String goalstr = objectToJson(goal);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString(key, goalstr);
+                editor.commit();
+
+                //Save checked subgoals
+                saveCheckedSubGoals();
+                Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show();
+            } else {
+                new androidx.appcompat.app.AlertDialog.Builder(this)
+                        .setTitle("Past Date!")
+                        .setMessage("Deadline date is in the past.")
+                        .setCancelable(true)
+                        .setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+
+                        }).show();
+            }
+        } else {
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Missing title!")
+                    .setMessage("title field can't be empty")
+                    .setCancelable(true)
+                    .setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+
+                    }).show();
         }
-        goal.setDifficulty(dif);
-        goal.setNotification(notification.isChecked());  // ischecked not isactivated
-        goal.setSubgoals(subgoals);
 
-        //Save in existing SP-key
-        String goalstr = objectToJson(goal);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(key, goalstr);
-        editor.commit();
+    }
 
-        //Save checked subgoals
-        saveCheckedSubGoals();
+    private boolean isFuture(String enddate) {
+
+        //  System.out.println("Enddatum" + enddate);
+        String startdate;
+        LocalDate today = LocalDate.now();
+        startdate = String.valueOf(today);
+
+        int month_end = getMonthInt(enddate);
+        char[] start = new char[startdate.length()];
+        char[] end = new char[enddate.length()];
+        //String convert to chararray
+        for (int i = 0; i < startdate.length(); i++) {
+            start[i] = startdate.charAt(i);
+        }
+        for (int i = 0; i < enddate.length(); i++) {
+            end[i] = enddate.charAt(i);
+        }
+        //new Strings of chars (parts of the date)
+        String year = String.copyValueOf(start, 0, 4);
+        int y = Integer.parseInt(year);
+
+        String month = String.copyValueOf(start, 5, 2);
+        int m = Integer.parseInt(month);
+
+        String day = String.copyValueOf(start, 8, 2);
+        int d = Integer.parseInt(day);
+
+        String endyear = String.copyValueOf(end, end.length - 4, 4);
+        int endy = Integer.parseInt(endyear);
+        String endday;
+        int endd;
+        if (Character.isDigit(end[1])) {
+            endday = String.copyValueOf(end, 0, 2);
+            endd = Integer.parseInt(endday);
+        } else {
+            endday = String.copyValueOf(end, 0, 1);
+            endd = Integer.parseInt(endday);
+        }
+
+
+        if (y < endy || month_end > m && y == endy || endd >= d && month_end == m && y == endy) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private int getMonthInt(String month) {
+        int i;
+        if (month.contains("Jan")) {
+            i = 1;
+        } else if (month.contains("Feb")) {
+            i = 2;
+        } else if (month.contains("Mar")) {
+            i = 3;
+        } else if (month.contains("Apr")) {
+            i = 4;
+        } else if (month.contains("May")) {
+            i = 5;
+        } else if (month.contains("Jun")) {
+            i = 6;
+        } else if (month.contains("Jul")) {
+            i = 7;
+        } else if (month.contains("Aug")) {
+            i = 8;
+        } else if (month.contains("Sep")) {
+            i = 9;
+        } else if (month.contains("Oct")) {
+            i = 10;
+        } else if (month.contains("Nov")) {
+            i = 11;
+        } else if (month.contains("Dec")) {
+            i = 12;
+        } else {
+            return 100;
+        }
+
+
+        return i;
     }
 
     private void saveCheckedSubGoals() {
