@@ -10,17 +10,13 @@ import android.content.SharedPreferences;
 import android.os.Handler ;
 import android.os.IBinder ;
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.util.Log ;
-
-import androidx.core.app.NotificationCompat;
-
+import android.util.Log;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.Timer ;
 import java.util.TimerTask ;
+
 public class NotificationService extends Service {
     Timer timer ;
     TimerTask timerTask ;
@@ -47,7 +43,7 @@ public class NotificationService extends Service {
         stopTimerTask() ;
         super .onDestroy() ;
     }
-    //we are going to use a handler to be able to run in our TimerTask
+
     final Handler handler = new Handler() ;
     public void startTimer () {
         OffsetDateTime currentTime = OffsetDateTime.now(ZoneId.of("Europe/Berlin"));
@@ -69,10 +65,6 @@ public class NotificationService extends Service {
 
         int seconds_untill_next_notification = hour_diff * 3600 + min_diff * 60;
 
-
-        System.out.println(seconds_untill_next_notification);
-        System.out.println(hour_diff );
-        System.out.println(min_diff);
         timer = new Timer() ;
         initializeTimerTask() ;
         timer .schedule( timerTask,seconds_untill_next_notification * 1000 , seconds_untill_next_notification * 1000 ) ; //
@@ -117,9 +109,7 @@ public class NotificationService extends Service {
             if(goal.isNotification()) {
                 goalappendstr.append("\n").append(goal.getTitle()).append(" days left: ").append(getDayDiff(enddate));
             }
-
             getDayDiff(enddate);
-
         }
 
         Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
@@ -138,7 +128,6 @@ public class NotificationService extends Service {
 
 
     private int getDayDiff(String enddate) {
-        //  System.out.println("Enddatum" + enddate);
         String startdate;
         LocalDate today = LocalDate.now();
         startdate = String.valueOf(today);
@@ -146,14 +135,12 @@ public class NotificationService extends Service {
         int month_end = getMonthInt(enddate);
         char[] start = new char[startdate.length()];
         char[] end = new char[enddate.length()];
-        //String convert to chararray
         for (int i = 0; i < startdate.length(); i++) {
             start[i] = startdate.charAt(i);
         }
         for (int i = 0; i < enddate.length(); i++) {
             end[i] = enddate.charAt(i);
         }
-        //new Strings of chars (parts of the date)
         String year = String.copyValueOf(start, 0, 4);
         int y = Integer.parseInt(year);
 

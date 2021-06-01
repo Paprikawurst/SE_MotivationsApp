@@ -104,7 +104,7 @@ public class Home extends Fragment implements View.OnClickListener {
             params_btn_layout.setMargins(0, 0, 0, 0);
             btn.setLayoutParams(params_btn_layout);
 
-            ConstraintLayout.LayoutParams params_imgbtn_layout = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 205);
+            ConstraintLayout.LayoutParams params_imgbtn_layout = new ConstraintLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 180);
             params_imgbtn_layout.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
             params_imgbtn_layout.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
             params_imgbtn_layout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
