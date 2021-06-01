@@ -20,20 +20,13 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.TimeZone;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences spref;
     private int points;
     private int goalnumber;
+
+    Date currentTime = Calendar.getInstance().getTime();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,23 +49,24 @@ public class MainActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();
 
         //SharedPreferences auslesen
+        System.out.println("Test123");
         spref = getSharedPreferences("SP", 0);
-        points = spref.getInt("points", 0);
+        points = spref.getInt("points", 200);
         points_text.setText(String.valueOf(points));
 
         goalnumber = spref.getInt("goalnumber", 0);
 
         //test begin
-        SharedPreferences.Editor editor = spref.edit();
+        /*SharedPreferences.Editor editor = spref.edit();
         editor.putInt("points", 200);
         editor.commit();
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
+
+         */
         //test ende
 
 
@@ -96,12 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
         editor.commit();*/
 
-    }
-
-    @Override
-    protected void onStop () {
-        super .onStop() ;
-        startService( new Intent( this, NotificationService. class )) ;
     }
 
 

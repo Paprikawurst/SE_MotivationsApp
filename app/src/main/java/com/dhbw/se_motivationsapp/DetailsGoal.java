@@ -42,6 +42,8 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     private ArrayList<String> subgoals = new ArrayList<>();
     private LinearLayout subLayout;
 
+    TextView points_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +111,11 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         }
 
         createSubgoals();
+
+        int points = sp.getInt("points", 200);
+        View view_toolbar = this.findViewById(R.id.toolbar);
+        points_text = view_toolbar.findViewById(R.id.points);
+        points_text.setText(String.valueOf(points));
 
 
     }
@@ -313,6 +320,38 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     }
 
     private void getReward() {
+        int dif = goal.getDifficulty();
+        int points = sp.getInt("points", 200);
+        SharedPreferences.Editor editor = sp.edit();
+
+        if (dif == 2) {
+            int goal_medium = sp.getInt("mediumGoals", 0);
+            goal_medium++;
+            editor.putInt("mediumGoals", goal_medium);
+            points += 20;
+        } else if (dif == 3) {
+            points += 30;
+            int goal_hard = sp.getInt("hardGoals", 0);
+            goal_hard++;
+            editor.putInt("hardGoals", goal_hard);
+        } else {
+            points += 10;
+            int goal_easy = sp.getInt("easyGoals", 0);
+            goal_easy++;
+            editor.putInt("easyGoals", goal_easy);
+
+        }
+
+        int goals = sp.getInt("goals", 0);
+        goals++;
+        editor.putInt("goals", goals);
+        editor.putInt("points", points);
+        editor.commit();
+
+        View view_toolbar = this.findViewById(R.id.toolbar);
+        points_text = view_toolbar.findViewById(R.id.points);
+        points_text.setText(String.valueOf(points));
+
     }
 
     private void saveGoalChanges() {
