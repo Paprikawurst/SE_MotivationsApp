@@ -111,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Cyan Skin 10P"
+                app:liv_title="Cyan Skin 20P"
 
                 >
 
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Green Skin 10P"
+                app:liv_title="Green Skin 50P"
 
                 >
 
@@ -199,7 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Black Skin 10P"
+                app:liv_title="Black Skin 100P"
 
                 >
 
@@ -243,7 +243,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Blue Skin 10P"
+                app:liv_title="Blue Skin 200P"
 
                 >
 
@@ -287,7 +287,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Red Skin 10P"
+                app:liv_title="Red Skin 500P"
 
                 >
 
