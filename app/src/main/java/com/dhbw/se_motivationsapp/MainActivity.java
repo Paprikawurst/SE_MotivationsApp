@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private int points;
     private int goalnumber;
 
-    Date currentTime = Calendar.getInstance().getTime();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         title = findViewById(R.id.variabel_text);
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+        View view_toolbar = findViewById(R.id.toolbar);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();
@@ -64,15 +63,15 @@ public class MainActivity extends AppCompatActivity {
         goalnumber = spref.getInt("goalnumber", 0);
 
         //test begin
-        /*SharedPreferences.Editor editor = spref.edit();
+        SharedPreferences.Editor editor = spref.edit();
         editor.putInt("points", 200);
-        editor.commit();
+
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
 
-         */
+
         //test ende
-
-
+        view_toolbar.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        editor.commit();
         //clear SP TODO
         /*editor.putBoolean("purchased_red",false);
         editor.putBoolean("purchased_blue",false);
