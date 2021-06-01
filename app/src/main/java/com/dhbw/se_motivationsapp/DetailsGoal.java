@@ -122,6 +122,14 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
+        //super.onBackPressed();
+    }
+
     private void createSubgoals() {
         subgoals = goal.getSubgoals();
         int sub_number = subgoals.size();
