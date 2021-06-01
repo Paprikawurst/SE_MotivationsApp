@@ -22,8 +22,6 @@ import java.time.ZoneId;
 import java.util.Timer ;
 import java.util.TimerTask ;
 public class NotificationService extends Service {
-    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
-    private final static String default_notification_channel_id = "default" ;
     Timer timer ;
     TimerTask timerTask ;
     String TAG = "Timers" ;
@@ -122,7 +120,6 @@ public class NotificationService extends Service {
 
             getDayDiff(enddate);
 
-            System.out.println(enddate);
         }
 
         Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
