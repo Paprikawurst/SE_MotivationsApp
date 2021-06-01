@@ -144,10 +144,10 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         View view_toolbar = findViewById(R.id.toolbar);
         view_toolbar.setBackgroundColor(sp.getInt("color", Color.DKGRAY));
 
-        for (int i = 0; i <= sub_number; i++) {
+        for (int i = 0; i < sub_number; i++) {
             try {
                 int c = i + 1;
-                String sk = "sub" + c;
+                String sk = "sub" + String.valueOf(c);
                 boolean done = sp.getBoolean(sk, false);
 
                 CheckBox checkBox = new CheckBox(this);
@@ -315,7 +315,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         } else if (view.equals((dateButton))) {
             datePickerDialog.show();
         } else if (view.equals((addSub))) {
-            int sub_number = goal.getSubgoals().size();//sp.getInt("subNumber", 0);
+            int sub_number = goal.getSubgoals().size() + 1;//sp.getInt("subNumber", 0);
             //sub_number++;
             LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -325,6 +325,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(s);
             checkBox.setId(sub_number);
+            System.out.println("addmethode:" + sub_number);
             /*SharedPreferences.Editor editor = sp.edit();
             editor.putInt("subNumber", sub_number);
             editor.commit();
