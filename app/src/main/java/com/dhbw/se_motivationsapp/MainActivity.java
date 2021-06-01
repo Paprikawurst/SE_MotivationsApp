@@ -52,21 +52,24 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Home()).commit();
         currentTime.getHours();
-        System.out.println(currentTime);
+        //System.out.println(currentTime);
         show_Notification();
 
         //SharedPreferences auslesen
+        System.out.println("Test123");
         spref = getSharedPreferences("SP", 0);
-        points = spref.getInt("points", 0);
+        points = spref.getInt("points", 200);
         points_text.setText(String.valueOf(points));
 
         goalnumber = spref.getInt("goalnumber", 0);
 
         //test begin
-        SharedPreferences.Editor editor = spref.edit();
+        /*SharedPreferences.Editor editor = spref.edit();
         editor.putInt("points", 200);
         editor.commit();
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
+
+         */
         //test ende
 
 
