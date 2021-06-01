@@ -41,7 +41,6 @@ public class Shop extends Fragment {
 
         spref = getContext().getSharedPreferences("SP", 0);
         points = spref.getInt("points", 0);
-        System.out.println("test2");
 
     }
 
@@ -143,7 +142,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_default);
-                }
+                }else System.out.println(false);
             }
         });
 
@@ -152,7 +151,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_red);
-                }
+                }else checkbox_default.setChecked(true);
             }
         });
 
@@ -161,7 +160,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_blue);
-                }
+                }else checkbox_default.setChecked(true);
             }
         });
 
@@ -170,7 +169,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_black);
-                }
+                }else checkbox_default.setChecked(true);
             }
         });
 
@@ -179,7 +178,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_green);
-                }
+                }else checkbox_default.setChecked(true);
             }
         });
 
@@ -188,7 +187,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_cyan);
-                }
+                }else checkbox_default.setChecked(true);
             }
         });
 
@@ -198,7 +197,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_gray);
-                }
+                }else checkbox_default.setChecked(true);
             }
         });
 
@@ -333,46 +332,61 @@ public class Shop extends Fragment {
             editor.putBoolean("activated_default", true);
             checkbox_default.setChecked(true);
             editor.putInt("color", Color.DKGRAY);
+            editor.commit();
         }
         if (box == checkbox_red) {
             changeColor(Color.RED);
             editor.putBoolean("activated_red", true);
             checkbox_red.setChecked(true);
             editor.putInt("color", Color.RED);
+            editor.commit();
         }
         if (box == checkbox_blue) {
             changeColor(Color.BLUE);
             editor.putBoolean("activated_blue", true);
             checkbox_blue.setChecked(true);
             editor.putInt("color", Color.BLUE);
+            editor.commit();
         }
         if (box == checkbox_black) {
             changeColor(Color.BLACK);
             editor.putBoolean("activated_black", true);
             checkbox_black.setChecked(true);
             editor.putInt("color", Color.BLACK);
+            editor.commit();
         }
         if (box == checkbox_green) {
             changeColor(Color.GREEN);
             editor.putBoolean("activated_green", true);
             checkbox_green.setChecked(true);
             editor.putInt("color", Color.GREEN);
+            editor.commit();
         }
         if (box == checkbox_cyan) {
             changeColor(Color.CYAN);
             editor.putBoolean("activated_cyan", true);
             checkbox_cyan.setChecked(true);
             editor.putInt("color", Color.CYAN);
+            editor.commit();
         }
         if (box == checkbox_gray) {
             changeColor(Color.GRAY);
             editor.putBoolean("activated_gray", true);
             checkbox_gray.setChecked(true);
             editor.putInt("color", Color.GRAY);
+            editor.commit();
         }
 
-        editor.commit();
+    }
 
+    public boolean CheckAllCheckboxes(){
+        if (!spref.getBoolean("activated_gray", false) && !spref.getBoolean("activated_red", false) &&
+                !spref.getBoolean("activated_blue", false) && !spref.getBoolean("activated_black", false) &&
+                !spref.getBoolean("activated_green", false) && !spref.getBoolean("activated_cyan", false) &&
+                !spref.getBoolean("activated_gray", false)) {
+            return true;
+        }
+        return false;
     }
 
 }
