@@ -231,7 +231,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             } else {
                 new androidx.appcompat.app.AlertDialog.Builder(requireContext())
                         .setTitle("Missing title!")
-                        .setMessage("title field can't be empty")
+                        .setMessage("Title field can't be empty")
                         .setCancelable(true)
                         .setPositiveButton("Change", new DialogInterface.OnClickListener() {
                             @Override

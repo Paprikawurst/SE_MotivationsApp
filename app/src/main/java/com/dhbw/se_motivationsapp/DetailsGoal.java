@@ -417,7 +417,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         } else {
             new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("Missing title!")
-                    .setMessage("title field can't be empty")
+                    .setMessage("Title field can't be empty")
                     .setCancelable(true)
                     .setPositiveButton("Change", new DialogInterface.OnClickListener() {
                         @Override
