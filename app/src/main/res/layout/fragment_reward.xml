@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Reward" >
+    tools:context=".Reward">
 
     <!-- 1st Reward -->
 
@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
-        app:liv_subtitle="complete for 10 points"
-        app:liv_title="Have one goal!">
+        app:liv_subtitle="worth 10pts"
+        app:liv_title="Redeem your first reward!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,19 +47,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/progressBar_Reward1"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="57dp"
-                android:layout_height="21dp"
-                android:progress="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.593"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.509" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.lucasurbas.listitemview.ListItemView>
 
@@ -70,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
-        app:liv_subtitle="complete for 20 points"
+        app:liv_subtitle="worth 20pts"
         app:liv_title="Complete your first goal!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,19 +89,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/progressBar_Reward2"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="57dp"
-                android:layout_height="21dp"
-                android:progress="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.593"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.509" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.lucasurbas.listitemview.ListItemView>
@@ -125,8 +99,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liv_multiline="false"
-        app:liv_subtitle="reward3"
-        app:liv_title="reward3title">
+        app:liv_subtitle="worth 30pts"
+        app:liv_title="Complete 5 easy goals!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -157,19 +131,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/progressBar_Reward3"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="57dp"
-                android:layout_height="21dp"
-                android:progress="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.593"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.509" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.lucasurbas.listitemview.ListItemView>
@@ -181,8 +142,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:liv_multiline="false"
-        app:liv_subtitle="reward4"
-        app:liv_title="reward4title">
+        app:liv_subtitle="worth 40pts"
+        app:liv_title="Complete 3 medium goals!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -213,19 +174,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/progressBar_Reward4"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="57dp"
-                android:layout_height="21dp"
-                android:progress="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.593"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.509" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.lucasurbas.listitemview.ListItemView>
@@ -237,8 +185,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:liv_multiline="false"
-        app:liv_subtitle="reward5"
-        app:liv_title="reward5title">
+        app:liv_subtitle="worth 50pts"
+        app:liv_title="Complete 1 hard goal!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -269,19 +217,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/progressBar_Reward5"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="57dp"
-                android:layout_height="21dp"
-                android:progress="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.593"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.509" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.lucasurbas.listitemview.ListItemView>
@@ -293,8 +228,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:liv_multiline="false"
-        app:liv_subtitle="reward6"
-        app:liv_title="reward6title">
+        app:liv_subtitle="worth 60 points"
+        app:liv_title="Complete 10 goals in total!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -312,19 +247,6 @@
                 app:layout_constraintHorizontal_bias="0.946"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <ProgressBar
-                android:id="@+id/progressBar_Reward6"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="57dp"
-                android:layout_height="21dp"
-                android:progress="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.593"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.509" />
 
             <ImageView
                 android:id="@+id/check_Reward6"
