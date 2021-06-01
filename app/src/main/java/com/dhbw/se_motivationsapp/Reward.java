@@ -2,6 +2,7 @@ package com.dhbw.se_motivationsapp;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -83,6 +84,13 @@ public class Reward extends Fragment implements View.OnClickListener
         progressBarReward4 = view.findViewById(R.id.progressBar_Reward4);
         progressBarReward5 = view.findViewById(R.id.progressBar_Reward5);
         progressBarReward6 = view.findViewById(R.id.progressBar_Reward6);
+
+        btnReward1.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btnReward2.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btnReward3.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btnReward4.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btnReward5.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btnReward6.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
 
         checkReward1 = view.findViewById(R.id.check_Reward1);
         checkReward1.setVisibility(View.GONE);

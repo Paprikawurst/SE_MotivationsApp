@@ -92,7 +92,7 @@ public class Shop extends Fragment {
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
-                                              getButtonEvent(checkbox_red, "purchased_red");
+                                              getButtonEvent(checkbox_red, "purchased_red",500);
                                           }
                                       }
         );
@@ -100,7 +100,7 @@ public class Shop extends Fragment {
         button_blue.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               getButtonEvent(checkbox_blue, "purchased_blue");
+                                               getButtonEvent(checkbox_blue, "purchased_blue",200);
                                            }
                                        }
         );
@@ -108,7 +108,7 @@ public class Shop extends Fragment {
         button_black.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                getButtonEvent(checkbox_black, "purchased_black");
+                                                getButtonEvent(checkbox_black, "purchased_black",100);
                                             }
                                         }
         );
@@ -116,7 +116,7 @@ public class Shop extends Fragment {
         button_green.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                getButtonEvent(checkbox_green, "purchased_green");
+                                                getButtonEvent(checkbox_green, "purchased_green",50);
                                             }
                                         }
         );
@@ -124,7 +124,7 @@ public class Shop extends Fragment {
         button_cyan.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               getButtonEvent(checkbox_cyan, "purchased_cyan");
+                                               getButtonEvent(checkbox_cyan, "purchased_cyan",20);
                                            }
                                        }
         );
@@ -133,7 +133,7 @@ public class Shop extends Fragment {
         button_gray.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               getButtonEvent(checkbox_gray, "purchased_gray");
+                                               getButtonEvent(checkbox_gray, "purchased_gray",10);
                                            }
                                        }
         );
@@ -206,12 +206,12 @@ public class Shop extends Fragment {
         return view;
     }
 
-    public boolean getButtonEvent(CheckBox box, String purchased_skin) {
+    public boolean getButtonEvent(CheckBox box, String purchased_skin, int cost) {
 
-        if (points >= 10 && !box.isEnabled()) {
+        if (points >= cost && !box.isEnabled()) {
             box.setEnabled(true);
             SharedPreferences.Editor editor = spref.edit();
-            points = points - 10;
+            points = points - cost;
             editor.putInt("points", points);
             editor.putBoolean(purchased_skin, true);
             editor.commit();
@@ -223,7 +223,7 @@ public class Shop extends Fragment {
             points_text.setText(String.valueOf(points));
             return true;
         } else {
-            if (points < 10) {
+            if (points < cost && !spref.getBoolean(purchased_skin,false)) {
                 new AlertDialog.Builder(requireContext())
                         .setTitle("Not enough points")
                         .setMessage("You dont have enough points to purchase this skin")
