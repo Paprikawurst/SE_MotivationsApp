@@ -16,12 +16,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class Reward extends Fragment implements View.OnClickListener
 {
-    //initialisierung
+
+    //init
     View view;
     private int points;
-    private SharedPreferences spref;
+    private SharedPreferences sPref;
     TextView points_text;
 
     Button btnReward1;
@@ -48,7 +50,8 @@ public class Reward extends Fragment implements View.OnClickListener
         // Required empty public constructor
     }
 
-    public static Reward newInstance() {
+    public static Reward newInstance()
+    {
         Reward fragment = new Reward();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -56,18 +59,19 @@ public class Reward extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
-        //SP auslesen und Punkte auslesen - wenn nicht vorhanden dann Punkte = 0
-        spref = getContext().getSharedPreferences("SP", 0);
-        points = spref.getInt("points", 0);
-
+        //read points from sPref
+        sPref = getContext().getSharedPreferences("SP", 0);
+        points = sPref.getInt("points", 0);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         view = inflater.inflate(R.layout.fragment_reward, container, false);
 
         //init
@@ -85,13 +89,15 @@ public class Reward extends Fragment implements View.OnClickListener
         progressBarReward5 = view.findViewById(R.id.progressBar_Reward5);
         progressBarReward6 = view.findViewById(R.id.progressBar_Reward6);
 
-        btnReward1.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        btnReward2.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        btnReward3.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        btnReward4.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        btnReward5.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        btnReward6.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        //button color as set in shop, default dkgray
+        btnReward1.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
+        btnReward2.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
+        btnReward3.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
+        btnReward4.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
+        btnReward5.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
+        btnReward6.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
 
+        //check gone on first starts
         checkReward1 = view.findViewById(R.id.check_Reward1);
         checkReward1.setVisibility(View.GONE);
         checkReward2 = view.findViewById(R.id.check_Reward2);
@@ -117,11 +123,11 @@ public class Reward extends Fragment implements View.OnClickListener
         return view;
     }
 
-
     @SuppressLint("NonConstantResourceId")
     @Override
-    //onClick von Button x schaut welcher gedrückt wurde und gibt Namen weiter
-    public void onClick(View v) {
+    //get id of clicked button as string and set points for successful reward completion
+    public void onClick(View v)
+    {
         switch (v.getId())
         {
             case R.id.button_Reward_1:
@@ -147,85 +153,107 @@ public class Reward extends Fragment implements View.OnClickListener
         }
     }
 
-    //Punkte gutschreiben + Punkte updaten
+    //redeem and update points after check if reward can be redeemed
     public void onRedeemReward(int rewardPoints, String rewardName)
     {
-        SharedPreferences.Editor editor = spref.edit();
-        points = points + rewardPoints;
-        editor.putInt("points", points);
-        editor.commit();
-        Toast.makeText(getContext() , "You just got " + rewardPoints + " points!", Toast.LENGTH_SHORT).show();
-        editor.putBoolean(rewardName ,true);
+        SharedPreferences.Editor editor = sPref.edit();
+        boolean canBeRedeemed = false;
 
-        View view_toolbar = getActivity().findViewById(R.id.toolbar);
-        points_text = view_toolbar.findViewById(R.id.points);
-        points_text.setText(String.valueOf(points));
-
-        // schreiben in die SP und dann reloaden TODO: das geht auch generisch mit "Reward1" + "redeemed" direkt in die funktion eingeben oder vorher als string konkat.
-        switch (rewardName) {
-            case "Reward1":
-                editor.putBoolean("Reward1redeemed", true);
-                break;
-            case "Reward2":
-                editor.putBoolean("Reward2redeemed", true);
-                break;
-            case "Reward3":
-                editor.putBoolean("Reward3redeemed", true);
-                break;
-            case "Reward4":
-                editor.putBoolean("Reward4redeemed", true);
-                break;
-            case "Reward5":
-                editor.putBoolean("Reward5redeemed", true);
-                break;
-            case "Reward6":
-                editor.putBoolean("Reward6redeemed", true);
-                break;
-
+        //Reward1 Logic
+        if(rewardName.equals("Reward1"))
+        {
+            //TODO: Logik für reward 1
         }
-        editor.commit();
-        filterRedeemed();
+
+        //Reward2 Logic
+        else if(rewardName.equals("Reward2"))
+        {
+            //TODO: Logik für reward 2
+        }
+
+        //Reward3 Logic
+        else if(rewardName.equals("Reward3"))
+        {
+            //TODO: Logik für reward 3
+        }
+
+        //Reward4 Logic
+        else if(rewardName.equals("Reward4"))
+        {
+            //TODO: Logik für reward 4
+        }
+
+        //Reward5 Logic
+        else if(rewardName.equals("Reward5"))
+        {
+            //TODO: Logik für reward 5
+        }
+
+        //Reward6 Logic
+        else if(rewardName.equals("Reward6"))
+        {
+            //TODO: Logik für reward 6
+        }
+
+
+        if(canBeRedeemed)
+        {
+            points = points + rewardPoints;
+            rewardName = rewardName + "redeemed";
+            editor.putInt("points", points);
+            editor.putBoolean(rewardName, true);
+            Toast.makeText(getContext(), "You just got " + rewardPoints + " points!", Toast.LENGTH_SHORT).show();
+            editor.commit();
+            View view_toolbar = getActivity().findViewById(R.id.toolbar);
+            points_text = view_toolbar.findViewById(R.id.points);
+            points_text.setText(String.valueOf(points));
+            filterRedeemed();
+        }
+        else if (!canBeRedeemed)
+        {
+            Toast.makeText(getContext(), "You can not redeem this reward yet!", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    //Bei Viewaufruf schauen welche Rewards schon eingelöst wurden - dort dann Progressbar ausblenden
-    public void filterRedeemed()
-    {
-        if(spref.getBoolean("Reward1redeemed", false))
+
+    //check which reward has been redeemed and show progressbar, button and check accordingly
+    public void filterRedeemed() {
+        if (sPref.getBoolean("Reward1redeemed", false))
         {
             btnReward1.setVisibility(View.GONE);
             progressBarReward1.setVisibility(View.GONE);
             checkReward1.setVisibility(View.VISIBLE);
         }
 
-        if(spref.getBoolean("Reward2redeemed", false))
+        if (sPref.getBoolean("Reward2redeemed", false))
         {
             btnReward2.setVisibility(View.GONE);
             progressBarReward2.setVisibility(View.GONE);
             checkReward2.setVisibility(View.VISIBLE);
         }
 
-        if(spref.getBoolean("Reward3redeemed", false))
+        if (sPref.getBoolean("Reward3redeemed", false))
         {
             btnReward3.setVisibility(View.GONE);
             progressBarReward3.setVisibility(View.GONE);
             checkReward3.setVisibility(View.VISIBLE);
         }
 
-        if(spref.getBoolean("Reward4redeemed", false))
+        if (sPref.getBoolean("Reward4redeemed", false))
         {
             btnReward4.setVisibility(View.GONE);
             progressBarReward4.setVisibility(View.GONE);
             checkReward4.setVisibility(View.VISIBLE);
         }
 
-        if(spref.getBoolean("Reward5redeemed", false))
+        if (sPref.getBoolean("Reward5redeemed", false))
         {
             btnReward5.setVisibility(View.GONE);
             progressBarReward5.setVisibility(View.GONE);
             checkReward5.setVisibility(View.VISIBLE);
         }
 
-        if(spref.getBoolean("Reward6redeemed", false))
+        if (sPref.getBoolean("Reward6redeemed", false))
         {
             btnReward6.setVisibility(View.GONE);
             progressBarReward6.setVisibility(View.GONE);

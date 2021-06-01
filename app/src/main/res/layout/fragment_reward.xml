@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         app:liv_multiline="false"
         app:liv_subtitle="complete for 10 points"
-        app:liv_title="Create your first goal!">
+        app:liv_title="Have one goal!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         app:liv_multiline="false"
         app:liv_subtitle="complete for 20 points"
-        app:liv_title="Log in on 3 different days!">
+        app:liv_title="Complete your first goal!">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

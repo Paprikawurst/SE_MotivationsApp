@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         goalnumber = spref.getInt("goalnumber", 0);
 
-        //test begin
+        //test begin TODO test weg wenn er nicht gebraucht wird
         SharedPreferences.Editor editor = spref.edit();
         editor.putInt("points", 200);
 
