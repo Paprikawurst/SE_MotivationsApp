@@ -63,15 +63,15 @@ public class MainActivity extends AppCompatActivity {
         goalnumber = spref.getInt("goalnumber", 0);
 
         //test begin TODO test weg wenn er nicht gebraucht wird
-        SharedPreferences.Editor editor = spref.edit();
+        /*SharedPreferences.Editor editor = spref.edit();
         editor.putInt("points", 200);
 
         points_text.setText(String.valueOf(spref.getInt("points", 0)));
 
-
+*/
         //test ende
         view_toolbar.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        editor.commit();
+        //editor.commit();
         //clear SP TODO
         /*editor.putBoolean("purchased_red",false);
         editor.putBoolean("purchased_blue",false);
