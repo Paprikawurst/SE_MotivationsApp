@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //SharedPreferences auslesen
 
         spref = getSharedPreferences("SP", 0);
-        points = spref.getInt("points", 200);
+        points = spref.getInt("points", 0);
         points_text.setText(String.valueOf(points));
 
         goalnumber = spref.getInt("goalnumber", 0);
