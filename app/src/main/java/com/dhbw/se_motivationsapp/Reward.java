@@ -222,7 +222,7 @@ public class Reward extends Fragment implements View.OnClickListener
 
         }
 
-
+        //check if reward can be redeemed and if yes do logic behind
         if(canBeRedeemed)
         {
             points = points + rewardPoints;
@@ -236,12 +236,7 @@ public class Reward extends Fragment implements View.OnClickListener
             points_text.setText(String.valueOf(points));
             filterRedeemed();
         }
-        else if (!canBeRedeemed)
-        {
-
-        }
     }
-
 
     //check which reward has been redeemed and show button and check accordingly
     public void filterRedeemed() {
