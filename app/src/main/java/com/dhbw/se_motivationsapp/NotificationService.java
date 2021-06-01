@@ -77,7 +77,7 @@ public class NotificationService extends Service {
         System.out.println(min_diff);
         timer = new Timer() ;
         initializeTimerTask() ;
-        timer .schedule( timerTask , 5000 , seconds_untill_next_notification * 1000 ) ; //
+        timer .schedule( timerTask,seconds_untill_next_notification * 1000 , seconds_untill_next_notification * 1000 ) ; //
     }
     public void stopTimerTask () {
         if ( timer != null ) {
