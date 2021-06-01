@@ -151,6 +151,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_red);
+                    checkbox_default.setChecked(false);
                 }else checkbox_default.setChecked(true);
             }
         });
@@ -160,6 +161,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_blue);
+                    checkbox_default.setChecked(false);
                 }else checkbox_default.setChecked(true);
             }
         });
@@ -169,6 +171,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_black);
+                    checkbox_default.setChecked(false);
                 }else checkbox_default.setChecked(true);
             }
         });
@@ -178,6 +181,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_green);
+                    checkbox_default.setChecked(false);
                 }else checkbox_default.setChecked(true);
             }
         });
@@ -187,6 +191,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_cyan);
+                    checkbox_default.setChecked(false);
                 }else checkbox_default.setChecked(true);
             }
         });
@@ -197,6 +202,7 @@ public class Shop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_gray);
+                    checkbox_default.setChecked(false);
                 }else checkbox_default.setChecked(true);
             }
         });
