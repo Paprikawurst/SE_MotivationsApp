@@ -133,11 +133,9 @@ public class Home extends Fragment implements View.OnClickListener {
         final ObjectMapper mapper = new ObjectMapper();
         try {
 
-            //Person person = mapper.readValue(new File(getFilesDir(), "person.json"), Person.class);    // read from file
             Goal goal = mapper.readValue(goalJson, Goal.class);// read from json string
             //String kein Json
             return goal;
-            //System.out.println("json string -> object\n" + goal.getTitle() + " " + Goal.getDescription() + " " + Goal.getEnd_date() + " " + Goal.getDifficulty() + " " + Goal.getStart_date() + " " + Goal.getSubgoals());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -148,7 +146,6 @@ public class Home extends Fragment implements View.OnClickListener {
     }
 
     private int getButtonColor(String enddate) {
-        //  System.out.println("Enddatum" + enddate);
         String startdate;
         LocalDate today = LocalDate.now();
         startdate = String.valueOf(today);
@@ -177,6 +174,7 @@ public class Home extends Fragment implements View.OnClickListener {
         int endy = Integer.parseInt(endyear);
         String endday;
         int endd;
+
         if (Character.isDigit(end[1])) {
             endday = String.copyValueOf(end, 0, 2);
             endd = Integer.parseInt(endday);

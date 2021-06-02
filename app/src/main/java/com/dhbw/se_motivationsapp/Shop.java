@@ -48,18 +48,20 @@ public class Shop extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // set default color
         View view_toolbar = requireActivity().findViewById(R.id.toolbar);
         view_toolbar.setBackgroundColor(Color.DKGRAY);
-
         view = inflater.inflate(R.layout.fragment_shop, container, false);
         changeColor(Color.DKGRAY);
+
+        //check the state of the checkboxes
         check_Checkbox();
 
+        // init buttons and checkboxes
         Button button_red = view.findViewById(R.id.id_button_red);
         Button button_blue = view.findViewById(R.id.id_button_blue);
         Button button_black = view.findViewById(R.id.id_button_black);
         Button button_green = view.findViewById(R.id.id_button_green);
-
         Button button_cyan = view.findViewById(R.id.id_button_cyan);
         Button button_gray = view.findViewById(R.id.id_button_gray2);
 
@@ -71,6 +73,7 @@ public class Shop extends Fragment {
         CheckBox checkbox_cyan = view.findViewById(R.id.checkBox_cyan);
         CheckBox checkbox_gray = view.findViewById(R.id.checkBox_gray);
 
+        //enabels and activate the checkboxes if purchased or activated
         checkbox_red.setEnabled(spref.getBoolean("purchased_red", false));
         checkbox_blue.setEnabled(spref.getBoolean("purchased_blue", false));
         checkbox_black.setEnabled(spref.getBoolean("purchased_black", false));
@@ -86,6 +89,8 @@ public class Shop extends Fragment {
         checkbox_cyan.setChecked(spref.getBoolean("activated_cyan", false));
         checkbox_gray.setChecked(spref.getBoolean("activated_gray", false));
 
+
+        //set Onclicklisteners to the buttons
 
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
@@ -136,12 +141,14 @@ public class Shop extends Fragment {
                                        }
         );
 
+        //set CheckedChangeListener to the checkbox
+
         checkbox_default.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     SelectActivated(checkbox_default);
-                } else System.out.println(false);
+                }
             }
         });
 
@@ -209,6 +216,7 @@ public class Shop extends Fragment {
         return view;
     }
 
+    // if a button is clicked this funktion checks if the skin is already bought and if enough points are achieved
     public boolean getButtonEvent(CheckBox box, String purchased_skin, int cost) {
 
         if (points >= cost && !box.isEnabled()) {
@@ -255,6 +263,7 @@ public class Shop extends Fragment {
         return false;
     }
 
+    //this funktion changes the color of the buttons and the toolbar
     public void changeColor(int color) {
 
         Button shop_button_red = view.findViewById(R.id.id_button_red);
@@ -276,6 +285,7 @@ public class Shop extends Fragment {
 
     }
 
+    // this function checks which box is enabled and sets the color
     public void check_Checkbox() {
 
         if (spref.getBoolean("activated_default", false)) {
@@ -302,6 +312,7 @@ public class Shop extends Fragment {
 
     }
 
+    //this function checks which checkbox is set and sets the color
     public void SelectActivated(CheckBox box) {
 
         SharedPreferences.Editor editor = spref.edit();
