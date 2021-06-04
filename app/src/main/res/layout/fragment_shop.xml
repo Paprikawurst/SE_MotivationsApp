@@ -23,6 +23,7 @@
                 android:layout_height="match_parent"
                 app:liv_multiline="false"
                 app:liv_title="Default Skin"
+                app:liv_subtitle=""
 
                 >
 
@@ -67,7 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Gray Skin 10P"
+                app:liv_title="Gray Skin"
+                app:liv_subtitle="Cost: 10p"
 
                 >
 
@@ -111,7 +113,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Cyan Skin 20P"
+                app:liv_title="Cyan Skin"
+                app:liv_subtitle="Cost: 20p"
 
                 >
 
@@ -155,7 +158,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Green Skin 50P"
+                app:liv_title="Green Skin"
+                app:liv_subtitle="Cost: 50p"
 
                 >
 
@@ -199,7 +203,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Black Skin 100P"
+                app:liv_title="Black Skin"
+                app:liv_subtitle="Cost: 100p"
 
                 >
 
@@ -243,8 +248,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Blue Skin 200P"
-
+                app:liv_title="Blue Skin"
+                app:liv_subtitle="Cost: 200p"
                 >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -287,7 +292,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:liv_multiline="false"
-                app:liv_title="Red Skin 500P"
+                app:liv_title="Red Skin"
+                app:liv_subtitle="Cost: 500p"
 
                 >
 

@@ -5,10 +5,8 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +20,6 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,6 +32,8 @@ import java.util.Calendar;
 
 
 public class AddGoal extends Fragment implements View.OnClickListener {
+
+    //init
     private EditText title;
     private EditText description;
     private CheckBox notification;
@@ -42,10 +41,8 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     private RadioButton medium;
     private RadioButton hard;
     private ImageButton addbtn;
-
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
-
     private SharedPreferences sp;
 
 
@@ -69,7 +66,8 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_goal, container, false);
         title = view.findViewById(R.id.InputTitelId);
 
-        title.setText("Goal1");
+
+        title.setText("Sample goal name");
         description = view.findViewById(R.id.DescriptionInputId);
         //end_date = view.findViewById(R.id.endDateInputId);
         notification = view.findViewById(R.id.NotifcationId);

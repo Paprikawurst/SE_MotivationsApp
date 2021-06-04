@@ -1,51 +1,56 @@
 package com.dhbw.se_motivationsapp;
 
-import android.app.NotificationChannel ;
-import android.app.NotificationManager ;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service ;
+import android.app.Service;
 import android.content.Context;
-import android.content.Intent ;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler ;
-import android.os.IBinder ;
+import android.os.Handler;
+import android.os.IBinder;
 import android.app.Notification;
 import android.util.Log;
+
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.util.Timer ;
-import java.util.TimerTask ;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class NotificationService extends Service {
-    Timer timer ;
-    TimerTask timerTask ;
-    String TAG = "Timers" ;
+    Timer timer;
+    TimerTask timerTask;
+    String TAG = "Timers";
 
     @Override
-    public IBinder onBind (Intent arg0) {
+    public IBinder onBind(Intent arg0) {
         return null;
     }
+
     @Override
-    public int onStartCommand (Intent intent , int flags , int startId) {
-        Log. e ( TAG , "onStartCommand" ) ;
-        super .onStartCommand(intent , flags , startId) ;
-        startTimer() ;
-        return START_STICKY ;
-    }
-    @Override
-    public void onCreate () {
-        Log. e ( TAG , "onCreate" ) ;
-    }
-    @Override
-    public void onDestroy () {
-        Log. e ( TAG , "onDestroy" ) ;
-        stopTimerTask() ;
-        super .onDestroy() ;
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.e(TAG, "onStartCommand");
+        super.onStartCommand(intent, flags, startId);
+        startTimer();
+        return START_STICKY;
     }
 
-    final Handler handler = new Handler() ;
-    public void startTimer () {
+    @Override
+    public void onCreate() {
+        Log.e(TAG, "onCreate");
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.e(TAG, "onDestroy");
+        stopTimerTask();
+        super.onDestroy();
+    }
+
+    final Handler handler = new Handler();
+
+    public void startTimer() {
         OffsetDateTime currentTime = OffsetDateTime.now(ZoneId.of("Europe/Berlin"));
         int current_hour = currentTime.getHour();
         int current_min = currentTime.getMinute();
@@ -53,40 +58,43 @@ public class NotificationService extends Service {
         hour_diff = hour_diff - 24;
         int min_diff = current_min - 60;
 
-        if (hour_diff < 0){
+        if (hour_diff < 0) {
             hour_diff = hour_diff * (-1);
         }
-        if (min_diff < 0){
+        if (min_diff < 0) {
             min_diff = min_diff * (-1);
         }
-        if (min_diff == 60){
+        if (min_diff == 60) {
             min_diff = 0;
         }
 
         int seconds_untill_next_notification = hour_diff * 3600 + min_diff * 60;
 
-        timer = new Timer() ;
-        initializeTimerTask() ;
-        timer .schedule( timerTask,seconds_untill_next_notification * 1000 , seconds_untill_next_notification * 1000 ) ; //
+        timer = new Timer();
+        initializeTimerTask();
+        timer.schedule(timerTask, seconds_untill_next_notification * 1000, seconds_untill_next_notification * 1000); //
     }
-    public void stopTimerTask () {
-        if ( timer != null ) {
-            timer .cancel() ;
+
+    public void stopTimerTask() {
+        if (timer != null) {
+            timer.cancel();
             timer = null;
         }
     }
-    public void initializeTimerTask () {
+
+    public void initializeTimerTask() {
         timerTask = new TimerTask() {
-            public void run () {
-                handler .post( new Runnable() {
-                    public void run () {
-                        createNotification() ;
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        createNotification();
                     }
-                }) ;
+                });
             }
-        } ;
+        };
     }
-    private void createNotification () {
+
+    private void createNotification() {
         SharedPreferences sp;
         StringBuilder goalappendstr = new StringBuilder();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -106,7 +114,7 @@ public class NotificationService extends Service {
             Goal goal = Home.jsonToObject(goalstr);
             assert goal != null;
             String enddate = goal.getEnd_date();
-            if(goal.isNotification()) {
+            if (goal.isNotification()) {
                 goalappendstr.append("\n").append(goal.getTitle()).append(" days left: ").append(getDayDiff(enddate));
             }
             getDayDiff(enddate);
@@ -161,7 +169,7 @@ public class NotificationService extends Service {
             endday = String.copyValueOf(end, 0, 1);
             endd = Integer.parseInt(endday);
         }
-        return getDayDif(endd,d,month_end,m);
+        return getDayDif(endd, d, month_end, m);
     }
 
     private int getDayDif(int endd, int d, int monthend, int m) {

@@ -8,17 +8,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonPropertyOrder({
-            "title",
-            "description",
-            "end_date",
-            "notification",
-            "difficulty",
-            "sub_goals"
-    })
-    public class Goal {
-        @JsonProperty("title")
-        private String title;
+@JsonPropertyOrder({
+        "title",
+        "description",
+        "end_date",
+        "notification",
+        "difficulty",
+        "sub_goals"
+})
+public class Goal
+{
+
+    //init
+    @JsonProperty("title")
+    private String title;
     @JsonProperty("description")
     private String description;
     @JsonProperty("end_date")
@@ -30,6 +33,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     @JsonProperty("subgoals")
     private ArrayList<String> subgoals;
 
+
+
     public Goal() {
         this.title = "Test";
         this.description = "";
@@ -39,7 +44,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
         this.subgoals = null;
     }
-
 
     public Goal(String title, String description, String end_date, boolean notification, int difficulty,
                 ArrayList<String> subgoals) {
@@ -51,70 +55,70 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         this.subgoals = subgoals;
     }
 
+
+    //getter setter
     @JsonProperty("title")
     public String getTitle() {
         return title;
-        }
-
-        @JsonProperty("title")
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        @JsonProperty("description")
-        public String getDescription() {
-            return description;
-        }
-
-        @JsonProperty("description")
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        @JsonProperty("end_date")
-        public String getEnd_date() {
-            return end_date;
-        }
-
-        @JsonProperty("end_date")
-        public void setEnd_date(String end_date) {
-            this.end_date = end_date;
-        }
-
-        @JsonProperty("notification")
-        public boolean isNotification() {
-            return notification;
-        }
-
-        @JsonProperty("notification")
-        public void setNotification(boolean notification) {
-            this.notification = notification;
-        }
-
-        @JsonProperty("difficulty")
-        public int getDifficulty() {
-            return difficulty;
-        }
-
-        @JsonProperty("difficulty")
-        public void setDifficulty(int difficulty) {
-            this.difficulty = difficulty;
-        }
-
-
-
-        @JsonProperty("subgoals")
-        public ArrayList<String> getSubgoals() {
-            return subgoals;
-        }
-
-        @JsonProperty("subgoals")
-        public void setSubgoals(ArrayList<String> subgoals) {
-            this.subgoals = subgoals;
-        }
-
-
-
     }
+
+    @JsonProperty("title")
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @JsonProperty("description")
+    public String getDescription() {
+        return description;
+    }
+
+    @JsonProperty("description")
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @JsonProperty("end_date")
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    @JsonProperty("end_date")
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    @JsonProperty("notification")
+    public boolean isNotification() {
+        return notification;
+    }
+
+    @JsonProperty("notification")
+    public void setNotification(boolean notification) {
+        this.notification = notification;
+    }
+
+    @JsonProperty("difficulty")
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    @JsonProperty("difficulty")
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+
+    @JsonProperty("subgoals")
+    public ArrayList<String> getSubgoals() {
+        return subgoals;
+    }
+
+    @JsonProperty("subgoals")
+    public void setSubgoals(ArrayList<String> subgoals) {
+        this.subgoals = subgoals;
+    }
+
+
+}
 
 

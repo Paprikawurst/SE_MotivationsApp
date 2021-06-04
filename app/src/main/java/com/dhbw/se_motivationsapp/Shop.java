@@ -73,7 +73,7 @@ public class Shop extends Fragment {
         CheckBox checkbox_cyan = view.findViewById(R.id.checkBox_cyan);
         CheckBox checkbox_gray = view.findViewById(R.id.checkBox_gray);
 
-        //enabels and activate the checkboxes if purchased or activated
+        //enables and activates the checkboxes if purchased or activated
         checkbox_red.setEnabled(spref.getBoolean("purchased_red", false));
         checkbox_blue.setEnabled(spref.getBoolean("purchased_blue", false));
         checkbox_black.setEnabled(spref.getBoolean("purchased_black", false));
@@ -90,7 +90,7 @@ public class Shop extends Fragment {
         checkbox_gray.setChecked(spref.getBoolean("activated_gray", false));
 
 
-        //set Onclicklisteners to the buttons
+        //set Onclicklisteners for the buttons
 
         button_red.setOnClickListener(new View.OnClickListener() {
                                           @Override
@@ -216,7 +216,7 @@ public class Shop extends Fragment {
         return view;
     }
 
-    // if a button is clicked this funktion checks if the skin is already bought and if enough points are achieved
+    // if a button is clicked this function checks if the skin is already bought and if enough points are achieved
     public boolean getButtonEvent(CheckBox box, String purchased_skin, int cost) {
 
         if (points >= cost && !box.isEnabled()) {
@@ -263,7 +263,7 @@ public class Shop extends Fragment {
         return false;
     }
 
-    //this funktion changes the color of the buttons and the toolbar
+    //this function changes the color of the buttons and the toolbar
     public void changeColor(int color) {
 
         Button shop_button_red = view.findViewById(R.id.id_button_red);
@@ -391,9 +391,7 @@ public class Shop extends Fragment {
             editor.putInt("color", Color.GRAY);
             editor.commit();
         }
-
     }
-
 }
 
 

@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DetailsGoal extends AppCompatActivity implements View.OnClickListener {
+
+    //init
     TextView textView;
     private SharedPreferences sp;
     private EditText title, description, sub;

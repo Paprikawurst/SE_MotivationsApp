@@ -16,6 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    //init
     private BottomNavigationView bottomNav;
     private TextView points_text;
     private TextView title;
