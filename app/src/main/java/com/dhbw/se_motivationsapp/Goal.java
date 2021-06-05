@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Goal
 {
 
-    //init
+    //declaration
     @JsonProperty("title")
     private String title;
     @JsonProperty("description")
@@ -41,7 +41,6 @@ public class Goal
         this.end_date = "22.11.1999";
         this.notification = false;
         this.difficulty = 0;
-
         this.subgoals = null;
     }
 
