@@ -20,10 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,7 +29,6 @@ import java.util.Calendar;
 public class DetailsGoal extends AppCompatActivity implements View.OnClickListener {
 
     //declaration
-    TextView textView;
     private SharedPreferences sp;
     private EditText title, description, sub;
     private CheckBox notification;
@@ -39,12 +36,12 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     private RadioButton medium;
     private RadioButton hard;
     private ImageButton delete, save, done, back, addSub;
-    private DatePickerDialog datePickerDialog;
-    private Button dateButton;
+    private DatePickerDialog date_picker_dialog;
+    private Button date_button;
     private String key;
     private Goal goal;
-    private ArrayList<String> subgoals = new ArrayList<>();
-    private LinearLayout subLayout;
+    private ArrayList<String> sub_goals = new ArrayList<>();
+    private LinearLayout sub_layout;
 
     TextView points_text;
 
@@ -80,13 +77,13 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         done = findViewById(R.id.doneBtn);
         back = findViewById(R.id.backBtn);
         addSub = findViewById(R.id.addSubBtn);
-        subLayout = findViewById(R.id.subsublayout);
+        sub_layout = findViewById(R.id.subsublayout);
 
         initDatePicker();
-        dateButton = findViewById(R.id.datePickerBtn);
+        date_button = findViewById(R.id.datePickerBtn);
 
-//add Listeners to Buttons
-        dateButton.setOnClickListener(this);
+        //add Listeners to Buttons
+        date_button.setOnClickListener(this);
         delete.setOnClickListener(this);
         back.setOnClickListener(this);
         save.setOnClickListener(this);
@@ -97,7 +94,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         //fill fragment with goal data
         title.setText(goal.getTitle());
         description.setText(goal.getDescription());
-        dateButton.setText(goal.getEnd_date());
+        date_button.setText(goal.getEnd_date());
         notification.setChecked(goal.isNotification());
         switch (goal.getDifficulty()) {
             case 1:
@@ -130,7 +127,6 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         points_text = view_toolbar.findViewById(R.id.points);
         points_text.setText(String.valueOf(points));
 
-
     }
 
     //if back key is pressed then stop activity and get back to MainActivity
@@ -143,11 +139,11 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     //create subgoals as checkboxes in fragment
     private void createSubgoals() {
-        subgoals = goal.getSubgoals();
-        int sub_number = subgoals.size();
+        sub_goals = goal.getSubgoals();
+        int sub_number = sub_goals.size();
         LinearLayout.LayoutParams layout_params_wrapper = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        subLayout.setLayoutParams(layout_params_wrapper);
+        sub_layout.setLayoutParams(layout_params_wrapper);
 
         View view_toolbar = findViewById(R.id.toolbar);
         view_toolbar.setBackgroundColor(sp.getInt("color", Color.DKGRAY));
@@ -159,16 +155,15 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
                 String sk = "sub" + String.valueOf(c);
                 boolean done = sp.getBoolean(sk, false);
 
-                CheckBox checkBox = new CheckBox(this);
-                checkBox.setText(subgoals.get(i));
+                CheckBox check_box = new CheckBox(this);
+                check_box.setText(sub_goals.get(i));
                 LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layout_params.gravity = Gravity.CENTER_HORIZONTAL;
-                checkBox.setLayoutParams(layout_params);
-                checkBox.setId(c);
-                checkBox.setChecked(done);
-                subLayout.addView(checkBox);
-
+                check_box.setLayoutParams(layout_params);
+                check_box.setId(c);
+                check_box.setChecked(done);
+                sub_layout.addView(check_box);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -177,20 +172,6 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         }
 
 
-    }
-
-    //get todays date
-    private String getTodaysDate() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        month++;
-        String date = makeDateString(year, month, day);
-
-
-        return date;
     }
 
     //returns european date format
@@ -249,10 +230,10 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            public void onDateSet(DatePicker date_picker, int year, int month, int day) {
                 month++;
                 String date = makeDateString(year, month, day);
-                dateButton.setText(date);
+                date_button.setText(date);
 
             }
         };
@@ -263,7 +244,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        date_picker_dialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
 
 
@@ -302,7 +283,6 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
             //method is called
             saveGoalChanges();
 
-
         } else if (view.equals(done)) {
             //if Confirmation is checked goal is getting deleted, user gets reward and Mainactivity starts
             new androidx.appcompat.app.AlertDialog.Builder(this)
@@ -329,8 +309,8 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
             }).show();
 
 
-        } else if (view.equals((dateButton))) {
-            datePickerDialog.show();
+        } else if (view.equals((date_button))) {
+            date_picker_dialog.show();
         } else if (view.equals((addSub))) {
             //if add btn is clicked subgoal is added to arraylist. goal adds updated arraylist
             int sub_number = goal.getSubgoals().size() + 1;//sp.getInt("subNumber", 0);
@@ -340,13 +320,12 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
             //creates checkbox
             String s = String.valueOf(sub.getText());
-            CheckBox checkBox = new CheckBox(this);
-            checkBox.setText(s);
-            checkBox.setId(sub_number);
-            System.out.println("addmethode:" + sub_number);
-            checkBox.setLayoutParams(layout_params);
-            subgoals.add(s);
-            subLayout.addView(checkBox);
+            CheckBox check_box = new CheckBox(this);
+            check_box.setText(s);
+            check_box.setId(sub_number);
+            check_box.setLayoutParams(layout_params);
+            sub_goals.add(s);
+            sub_layout.addView(check_box);
 
         }
     }
@@ -391,7 +370,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     private void saveGoalChanges() {
         //Goal Object changes
         String t = String.valueOf(title.getText());
-        String end_date = String.valueOf(dateButton.getText());
+        String end_date = String.valueOf(date_button.getText());
         if (t.length() > 0) {
             if (isFuture(end_date)) {
                 goal.setTitle(t);
@@ -407,7 +386,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
                 }
                 goal.setDifficulty(dif);
                 goal.setNotification(notification.isChecked());  // ischecked not isactivated
-                goal.setSubgoals(subgoals);
+                goal.setSubgoals(sub_goals);
 
                 //Save in existing SP-key
                 String goalstr = objectToJson(goal);
@@ -450,16 +429,16 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     //check if picked date is in future or today
     private boolean isFuture(String enddate) {
 
-        String startdate;
+        String start_date;
         LocalDate today = LocalDate.now();
-        startdate = String.valueOf(today);
+        start_date = String.valueOf(today);
 
         int month_end = getMonthInt(enddate);
-        char[] start = new char[startdate.length()];
+        char[] start = new char[start_date.length()];
         char[] end = new char[enddate.length()];
 
-        for (int i = 0; i < startdate.length(); i++) {
-            start[i] = startdate.charAt(i);
+        for (int i = 0; i < start_date.length(); i++) {
+            start[i] = start_date.charAt(i);
         }
         for (int i = 0; i < enddate.length(); i++) {
             end[i] = enddate.charAt(i);
@@ -474,20 +453,20 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         String day = String.copyValueOf(start, 8, 2);
         int d = Integer.parseInt(day);
 
-        String endyear = String.copyValueOf(end, end.length - 4, 4);
-        int endy = Integer.parseInt(endyear);
-        String endday;
-        int endd;
+        String end_year = String.copyValueOf(end, end.length - 4, 4);
+        int end_y = Integer.parseInt(end_year);
+        String end_day;
+        int end_d;
         if (Character.isDigit(end[1])) {
-            endday = String.copyValueOf(end, 0, 2);
-            endd = Integer.parseInt(endday);
+            end_day = String.copyValueOf(end, 0, 2);
+            end_d = Integer.parseInt(end_day);
         } else {
-            endday = String.copyValueOf(end, 0, 1);
-            endd = Integer.parseInt(endday);
+            end_day = String.copyValueOf(end, 0, 1);
+            end_d = Integer.parseInt(end_day);
         }
 
 
-        if (y < endy || month_end > m && y == endy || endd >= d && month_end == m && y == endy) {
+        if (y < end_y || month_end > m && y == end_y || end_d >= d && month_end == m && y == end_y) {
             return true;
         } else {
             return false;
@@ -531,7 +510,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     //saves checked subgoals in SP
     private void saveCheckedSubGoals() {
-        int sub_number = subgoals.size();
+        int sub_number = sub_goals.size();
         SharedPreferences.Editor editor = sp.edit();
         for (int i = 1; i <= sub_number; i++) {
             try {
@@ -549,10 +528,10 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     //deletes Goal from SP and set every goal behind one key in front
     private void deleteGoalFromSp() {
-        int gnum = sp.getInt("goalnumber", 0);
+        int goal_number = sp.getInt("goalnumber", 0);
         SharedPreferences.Editor editor = sp.edit();
         int i = Home.id;
-        while (i <= gnum) {
+        while (i <= goal_number) {
             String k = "goal" + String.valueOf(i + 1);
             String nk = "goal" + String.valueOf(i);
             String s = sp.getString(k, null);
@@ -561,8 +540,8 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
             editor.commit();
 
         }
-        gnum--;
-        editor.putInt("goalnumber", gnum);
+        goal_number--;
+        editor.putInt("goalnumber", goal_number);
         editor.commit();
 
     }
@@ -571,8 +550,8 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     public String objectToJson(Goal goal) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            String jsonStr = mapper.writeValueAsString(goal);
-            return jsonStr;
+            String json_Str = mapper.writeValueAsString(goal);
+            return json_Str;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

@@ -15,40 +15,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 
 public class Reward extends Fragment implements View.OnClickListener
 {
-
     //init
     View view;
     private int points;
-    private SharedPreferences sPref;
+    private SharedPreferences spref;
     TextView points_text;
 
-    Button btnReward1;
-    Button btnReward2;
-    Button btnReward3;
-    Button btnReward4;
-    Button btnReward5;
-    Button btnReward6;
-    ImageView checkReward1;
-    ImageView checkReward2;
-    ImageView checkReward3;
-    ImageView checkReward4;
-    ImageView checkReward5;
-    ImageView checkReward6;
+    Button btn_reward1;
+    Button btn_reward2;
+    Button btn_reward3;
+    Button btn_reward4;
+    Button btn_reward5;
+    Button btn_reward6;
+    ImageView check_reward1;
+    ImageView check_reward2;
+    ImageView check_reward3;
+    ImageView check_reward4;
+    ImageView check_reward5;
+    ImageView check_reward6;
 
     public Reward()
     {
         // Required empty public constructor
-    }
-
-    public static Reward newInstance()
-    {
-        Reward fragment = new Reward();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -57,8 +50,8 @@ public class Reward extends Fragment implements View.OnClickListener
         super.onCreate(savedInstanceState);
 
         //read points from sPref
-        sPref = getContext().getSharedPreferences("SP", 0);
-        points = sPref.getInt("points", 0);
+        spref = requireContext().getSharedPreferences("SP", 0);
+        points = spref.getInt("points", 0);
     }
 
     @Override
@@ -68,42 +61,42 @@ public class Reward extends Fragment implements View.OnClickListener
         view = inflater.inflate(R.layout.fragment_reward, container, false);
 
         //init
-        btnReward1 = view.findViewById(R.id.button_Reward_1);
-        btnReward2 = view.findViewById(R.id.button_Reward_2);
-        btnReward3 = view.findViewById(R.id.button_Reward_3);
-        btnReward4 = view.findViewById(R.id.button_Reward_4);
-        btnReward5 = view.findViewById(R.id.button_Reward_5);
-        btnReward6 = view.findViewById(R.id.button_Reward_6);
+        btn_reward1 = view.findViewById(R.id.button_Reward_1);
+        btn_reward2 = view.findViewById(R.id.button_Reward_2);
+        btn_reward3 = view.findViewById(R.id.button_Reward_3);
+        btn_reward4 = view.findViewById(R.id.button_Reward_4);
+        btn_reward5 = view.findViewById(R.id.button_Reward_5);
+        btn_reward6 = view.findViewById(R.id.button_Reward_6);
 
         //button color as set in shop, default dkgray
-        btnReward1.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
-        btnReward2.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
-        btnReward3.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
-        btnReward4.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
-        btnReward5.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
-        btnReward6.setBackgroundColor(sPref.getInt("color", Color.DKGRAY));
+        btn_reward1.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btn_reward2.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btn_reward3.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btn_reward4.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btn_reward5.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
+        btn_reward6.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
 
         //check gone on first starts
-        checkReward1 = view.findViewById(R.id.check_Reward1);
-        checkReward1.setVisibility(View.GONE);
-        checkReward2 = view.findViewById(R.id.check_Reward2);
-        checkReward2.setVisibility(View.GONE);
-        checkReward3 = view.findViewById(R.id.check_Reward3);
-        checkReward3.setVisibility(View.GONE);
-        checkReward4 = view.findViewById(R.id.check_Reward4);
-        checkReward4.setVisibility(View.GONE);
-        checkReward5 = view.findViewById(R.id.check_Reward5);
-        checkReward5.setVisibility(View.GONE);
-        checkReward6 = view.findViewById(R.id.check_Reward6);
-        checkReward6.setVisibility(View.GONE);
+        check_reward1 = view.findViewById(R.id.check_Reward1);
+        check_reward1.setVisibility(View.GONE);
+        check_reward2 = view.findViewById(R.id.check_Reward2);
+        check_reward2.setVisibility(View.GONE);
+        check_reward3 = view.findViewById(R.id.check_Reward3);
+        check_reward3.setVisibility(View.GONE);
+        check_reward4 = view.findViewById(R.id.check_Reward4);
+        check_reward4.setVisibility(View.GONE);
+        check_reward5 = view.findViewById(R.id.check_Reward5);
+        check_reward5.setVisibility(View.GONE);
+        check_reward6 = view.findViewById(R.id.check_Reward6);
+        check_reward6.setVisibility(View.GONE);
 
         //Set EventListener for Buttons
-        btnReward1.setOnClickListener(this);
-        btnReward2.setOnClickListener(this);
-        btnReward3.setOnClickListener(this);
-        btnReward4.setOnClickListener(this);
-        btnReward5.setOnClickListener(this);
-        btnReward6.setOnClickListener(this);
+        btn_reward1.setOnClickListener(this);
+        btn_reward2.setOnClickListener(this);
+        btn_reward3.setOnClickListener(this);
+        btn_reward4.setOnClickListener(this);
+        btn_reward5.setOnClickListener(this);
+        btn_reward6.setOnClickListener(this);
         filterRedeemed();
 
         return view;
@@ -140,26 +133,25 @@ public class Reward extends Fragment implements View.OnClickListener
     }
 
     //redeem and update points after check if reward can be redeemed
-    public void onRedeemReward(int rewardPoints, String rewardName)
+    public void onRedeemReward(int reward_points, String reward_name)
     {
-        SharedPreferences.Editor editor = sPref.edit();
-        boolean canBeRedeemed = false;
-        String toastText = "blubb";
-        int totalGoals;
+        SharedPreferences.Editor editor = spref.edit();
+        boolean can_be_redeemed = false;
+        int total_goals;
 
         //Reward1 Logic
-        if(rewardName.equals("Reward1"))
+        if(reward_name.equals("Reward1"))
         {
-            canBeRedeemed = true;
+            can_be_redeemed = true;
         }
 
         //Reward2 Logic
-        else if(rewardName.equals("Reward2"))
+        else if(reward_name.equals("Reward2"))
         {
-            totalGoals = sPref.getInt("easyGoals", 0) + sPref.getInt("mediumGoals", 0) + sPref.getInt("hardGoals", 0);
-            if (totalGoals >= 1)
+            total_goals = spref.getInt("easyGoals", 0) + spref.getInt("mediumGoals", 0) + spref.getInt("hardGoals", 0);
+            if (total_goals >= 1)
             {
-                canBeRedeemed = true;
+                can_be_redeemed = true;
             }
             else {
                 Toast.makeText(getContext(), "You need to complete one goal to redeem this reward!", Toast.LENGTH_SHORT).show();
@@ -167,40 +159,40 @@ public class Reward extends Fragment implements View.OnClickListener
         }
 
         //Reward3 Logic
-        else if(rewardName.equals("Reward3"))
+        else if(reward_name.equals("Reward3"))
         {
-            totalGoals = sPref.getInt("easyGoals", 0);
-            if(totalGoals >= 5)
+            total_goals = spref.getInt("easyGoals", 0);
+            if(total_goals >= 5)
             {
-                canBeRedeemed = true;
+                can_be_redeemed = true;
 
             }
             else {
-                Toast.makeText(getContext(), "You need to complete " + (5 - totalGoals) +  " more easy goals to redeem this reward!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You need to complete " + (5 - total_goals) +  " more easy goals to redeem this reward!", Toast.LENGTH_SHORT).show();
             }
         }
 
         //Reward4 Logic
-        else if(rewardName.equals("Reward4"))
+        else if(reward_name.equals("Reward4"))
         {
-            totalGoals = sPref.getInt("mediumGoals", 0);
-            if(totalGoals >= 3)
+            total_goals = spref.getInt("mediumGoals", 0);
+            if(total_goals >= 3)
             {
-                canBeRedeemed = true;
+                can_be_redeemed = true;
 
             }
             else {
-                Toast.makeText(getContext(), "You need to complete " + (3 - totalGoals) +  " more medium goals to redeem this reward!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You need to complete " + (3 - total_goals) +  " more medium goals to redeem this reward!", Toast.LENGTH_SHORT).show();
             }
         }
 
         //Reward5 Logic
-        else if(rewardName.equals("Reward5"))
+        else if(reward_name.equals("Reward5"))
         {
-            totalGoals = sPref.getInt("hardGoals", 0);
-            if(totalGoals >= 1)
+            total_goals = spref.getInt("hardGoals", 0);
+            if(total_goals >= 1)
             {
-                canBeRedeemed = true;
+                can_be_redeemed = true;
 
             }
             else {
@@ -209,27 +201,27 @@ public class Reward extends Fragment implements View.OnClickListener
         }
 
         //Reward6 Logic
-        else if(rewardName.equals("Reward6"))
+        else if(reward_name.equals("Reward6"))
         {
-             totalGoals = sPref.getInt("easyGoals", 0) + sPref.getInt("mediumGoals", 0) + sPref.getInt("hardGoals", 0);
-            if (totalGoals >= 10)
+             total_goals = spref.getInt("easyGoals", 0) + spref.getInt("mediumGoals", 0) + spref.getInt("hardGoals", 0);
+            if (total_goals >= 10)
             {
-                canBeRedeemed = true;
+                can_be_redeemed = true;
             }
             else {
-                    Toast.makeText(getContext(), "You need to complete " + (10 - totalGoals) + " more goals to redeem this reward!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "You need to complete " + (10 - total_goals) + " more goals to redeem this reward!", Toast.LENGTH_SHORT).show();
             }
 
         }
 
         //check if reward can be redeemed and if yes do logic behind
-        if(canBeRedeemed)
+        if(can_be_redeemed)
         {
-            points = points + rewardPoints;
-            rewardName = rewardName + "redeemed";
+            points = points + reward_points;
+            reward_name = reward_name + "redeemed";
             editor.putInt("points", points);
-            editor.putBoolean(rewardName, true);
-            Toast.makeText(getContext(), "You just got " + rewardPoints + " points!", Toast.LENGTH_SHORT).show();
+            editor.putBoolean(reward_name, true);
+            Toast.makeText(getContext(), "You just got " + reward_points + " points!", Toast.LENGTH_SHORT).show();
             editor.commit();
             View view_toolbar = getActivity().findViewById(R.id.toolbar);
             points_text = view_toolbar.findViewById(R.id.points);
@@ -240,40 +232,40 @@ public class Reward extends Fragment implements View.OnClickListener
 
     //check which reward has been redeemed and show button and check accordingly
     public void filterRedeemed() {
-        if (sPref.getBoolean("Reward1redeemed", false))
+        if (spref.getBoolean("Reward1redeemed", false))
         {
-            btnReward1.setVisibility(View.GONE);
-            checkReward1.setVisibility(View.VISIBLE);
+            btn_reward1.setVisibility(View.GONE);
+            check_reward1.setVisibility(View.VISIBLE);
         }
 
-        if (sPref.getBoolean("Reward2redeemed", false))
+        if (spref.getBoolean("Reward2redeemed", false))
         {
-            btnReward2.setVisibility(View.GONE);
-            checkReward2.setVisibility(View.VISIBLE);
+            btn_reward2.setVisibility(View.GONE);
+            check_reward2.setVisibility(View.VISIBLE);
         }
 
-        if (sPref.getBoolean("Reward3redeemed", false))
+        if (spref.getBoolean("Reward3redeemed", false))
         {
-            btnReward3.setVisibility(View.GONE);
-            checkReward3.setVisibility(View.VISIBLE);
+            btn_reward3.setVisibility(View.GONE);
+            check_reward3.setVisibility(View.VISIBLE);
         }
 
-        if (sPref.getBoolean("Reward4redeemed", false))
+        if (spref.getBoolean("Reward4redeemed", false))
         {
-            btnReward4.setVisibility(View.GONE);
-            checkReward4.setVisibility(View.VISIBLE);
+            btn_reward4.setVisibility(View.GONE);
+            check_reward4.setVisibility(View.VISIBLE);
         }
 
-        if (sPref.getBoolean("Reward5redeemed", false))
+        if (spref.getBoolean("Reward5redeemed", false))
         {
-            btnReward5.setVisibility(View.GONE);
-            checkReward5.setVisibility(View.VISIBLE);
+            btn_reward5.setVisibility(View.GONE);
+            check_reward5.setVisibility(View.VISIBLE);
         }
 
-        if (sPref.getBoolean("Reward6redeemed", false))
+        if (spref.getBoolean("Reward6redeemed", false))
         {
-            btnReward6.setVisibility(View.GONE);
-            checkReward6.setVisibility(View.VISIBLE);
+            btn_reward6.setVisibility(View.GONE);
+            check_reward6.setVisibility(View.VISIBLE);
         }
     }
 }

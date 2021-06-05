@@ -40,9 +40,9 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     private RadioButton easy;
     private RadioButton medium;
     private RadioButton hard;
-    private ImageButton addbtn;
-    private DatePickerDialog datePickerDialog;
-    private Button dateButton;
+    private ImageButton add_btn;
+    private DatePickerDialog date_picker_dialog;
+    private Button date_button;
     private SharedPreferences sp;
     View view;
 
@@ -56,7 +56,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     }
 
 
-    //fragement wird gestartet
+    //fragement start
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,18 +72,17 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         easy = view.findViewById(R.id.radioButtoneasy);
         medium = view.findViewById(R.id.radioButtonmedium);
         hard = view.findViewById(R.id.radioButtonhard);
-        addbtn = view.findViewById(R.id.addbtn);
+        add_btn = view.findViewById(R.id.addbtn);
 
         initDatePicker();
-        dateButton = view.findViewById(R.id.datePickerBtn);
-        dateButton.setText(getTodaysDate());
+        date_button = view.findViewById(R.id.datePickerBtn);
+        date_button.setText(getTodaysDate());
 
         //set Listeners
-        dateButton.setOnClickListener(this);
-        addbtn.setOnClickListener(this);
+        date_button.setOnClickListener(this);
+        add_btn.setOnClickListener(this);
 
         sp = view.getContext().getSharedPreferences("SP", 0);
-
 
         return view;
     }
@@ -107,8 +106,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month++;
                 String date = makeDateString(year, month, day);
-                dateButton.setText(date);
-
+                date_button.setText(date);
             }
         };
         Calendar calendar = Calendar.getInstance();
@@ -118,7 +116,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
-        datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
+        date_picker_dialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
 
     }
 
@@ -131,9 +129,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     public String objectToJson(Goal goal) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            //mapper.writeValue(new File(getFilesDir(), "person.json"), person);  // write to file
-            String jsonStr = mapper.writeValueAsString(goal);                   // write to string
-            //System.out.println("object -> json string\n" + jsonStr);
+            String jsonStr = mapper.writeValueAsString(goal);
             return jsonStr;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -146,10 +142,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //goal gets added to Shared Preference
-        if (v.equals(addbtn)) {
-
-
-            String endstring = (String) dateButton.getText();
+        if (v.equals(add_btn)) {
 
             int dif = 0;
             if (easy.isChecked()) {
@@ -163,13 +156,13 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
             String t = String.valueOf(title.getText());
             if (t.length() > 0) {
-                String end_date = (String) dateButton.getText();
+                String end_date = (String) date_button.getText();
                 if (isFuture(end_date)) {
                     //goal object is created
                     Goal newGoal = new Goal(t, String.valueOf(description.getText()), end_date, notification.isChecked(),
                             dif, subgoals);
 
-                    String goalstr = objectToJson(newGoal);
+                    String goal_str = objectToJson(newGoal);
 
                     SharedPreferences.Editor editor = sp.edit();
                     int gnum = sp.getInt("goalnumber", 0);
@@ -178,12 +171,12 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
 
                     String key = "goal" + String.valueOf(gnum);
-                    editor.putString(key, goalstr);
+                    editor.putString(key, goal_str);
                     editor.commit();
                     Toast.makeText(getContext(), "Sucessfully added", Toast.LENGTH_SHORT).show();
 
                     //fragment reset
-                    dateButton.setText(getTodaysDate());
+                    date_button.setText(getTodaysDate());
                     if (easy.isChecked()) {
                         easy.setChecked(false);
                     } else if (medium.isChecked()) {
@@ -226,30 +219,29 @@ public class AddGoal extends Fragment implements View.OnClickListener {
                         }).show();
             }
 
-//datepickerdialog opens
-        } else if (v.equals(dateButton)) {
-            datePickerDialog.show();
+        //datepickerdialog opens
+        } else if (v.equals(date_button)) {
+            date_picker_dialog.show();
 
         }
     }
 
     //check if picked date is in future or today
-    private boolean isFuture(String enddate) {
+    private boolean isFuture(String end_date) {
 
-        //  System.out.println("Enddatum" + enddate);
-        String startdate;
+        String start_date;
         LocalDate today = LocalDate.now();
-        startdate = String.valueOf(today);
+        start_date = String.valueOf(today);
 
-        int month_end = getMonthInt(enddate);
-        char[] start = new char[startdate.length()];
-        char[] end = new char[enddate.length()];
+        int month_end = getMonthInt(end_date);
+        char[] start = new char[start_date.length()];
+        char[] end = new char[end_date.length()];
         //String convert to chararray
-        for (int i = 0; i < startdate.length(); i++) {
-            start[i] = startdate.charAt(i);
+        for (int i = 0; i < start_date.length(); i++) {
+            start[i] = start_date.charAt(i);
         }
-        for (int i = 0; i < enddate.length(); i++) {
-            end[i] = enddate.charAt(i);
+        for (int i = 0; i < end_date.length(); i++) {
+            end[i] = end_date.charAt(i);
         }
         //new Strings of chars (parts of the date)
         String year = String.copyValueOf(start, 0, 4);
@@ -261,20 +253,19 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         String day = String.copyValueOf(start, 8, 2);
         int d = Integer.parseInt(day);
 
-        String endyear = String.copyValueOf(end, end.length - 4, 4);
-        int endy = Integer.parseInt(endyear);
-        String endday;
-        int endd;
+        String end_year = String.copyValueOf(end, end.length - 4, 4);
+        int end_y = Integer.parseInt(end_year);
+        String end_day;
+        int end_d;
         if (Character.isDigit(end[1])) {
-            endday = String.copyValueOf(end, 0, 2);
-            endd = Integer.parseInt(endday);
+            end_day = String.copyValueOf(end, 0, 2);
+            end_d = Integer.parseInt(end_day);
         } else {
-            endday = String.copyValueOf(end, 0, 1);
-            endd = Integer.parseInt(endday);
+            end_day = String.copyValueOf(end, 0, 1);
+            end_d = Integer.parseInt(end_day);
         }
 
-
-        if (y < endy || month_end > m && y == endy || endd >= d && month_end == m && y == endy) {
+        if (y < end_y || month_end > m && y == end_y || end_d >= d && month_end == m && y == end_y) {
             return true;
         } else {
             return false;

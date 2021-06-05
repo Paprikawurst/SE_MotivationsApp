@@ -19,7 +19,7 @@ import java.util.TimerTask;
 
 public class NotificationService extends Service {
     Timer timer;
-    TimerTask timerTask;
+    TimerTask timer_task;
     String TAG = "Timers";
 
     @Override
@@ -73,12 +73,12 @@ public class NotificationService extends Service {
         System.out.println(seconds_untill_next_notification);
         timer = new Timer();
         initializeTimerTask();
-        timer.schedule(timerTask, seconds_untill_next_notification * 1000, 86400 * 1000); //
+        timer.schedule(timer_task, seconds_untill_next_notification * 1000, 86400 * 1000); //
     }
 
     //init new timer task
     public void initializeTimerTask() {
-        timerTask = new TimerTask() {
+        timer_task = new TimerTask() {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
@@ -89,7 +89,7 @@ public class NotificationService extends Service {
         };
     }
 
-    // creates the message for the notification
+    //creates the message for the notification
     private void createNotification() {
         SharedPreferences sp;
         StringBuilder goalappendstr = new StringBuilder();
@@ -130,20 +130,20 @@ public class NotificationService extends Service {
 
     }
 
-    // returns the date difference between now and the enddate
-    private int getDayDiff(String enddate) {
-        String startdate;
+    // returns the date difference between now and the end_date
+    private int getDayDiff(String end_date) {
+        String start_date;
         LocalDate today = LocalDate.now();
-        startdate = String.valueOf(today);
+        start_date = String.valueOf(today);
 
-        int month_end = getMonthInt(enddate);
-        char[] start = new char[startdate.length()];
-        char[] end = new char[enddate.length()];
-        for (int i = 0; i < startdate.length(); i++) {
-            start[i] = startdate.charAt(i);
+        int month_end = getMonthInt(end_date);
+        char[] start = new char[start_date.length()];
+        char[] end = new char[end_date.length()];
+        for (int i = 0; i < start_date.length(); i++) {
+            start[i] = start_date.charAt(i);
         }
-        for (int i = 0; i < enddate.length(); i++) {
-            end[i] = enddate.charAt(i);
+        for (int i = 0; i < end_date.length(); i++) {
+            end[i] = end_date.charAt(i);
         }
         String year = String.copyValueOf(start, 0, 4);
         int y = Integer.parseInt(year);
@@ -154,22 +154,21 @@ public class NotificationService extends Service {
         String day = String.copyValueOf(start, 8, 2);
         int d = Integer.parseInt(day);
 
-        String endyear = String.copyValueOf(end, end.length - 4, 4);
-        int endy = Integer.parseInt(endyear);
-        String endday;
+        String end_day;
         int endd;
         if (Character.isDigit(end[1])) {
-            endday = String.copyValueOf(end, 0, 2);
-            endd = Integer.parseInt(endday);
+            end_day = String.copyValueOf(end, 0, 2);
+            endd = Integer.parseInt(end_day);
         } else {
-            endday = String.copyValueOf(end, 0, 1);
-            endd = Integer.parseInt(endday);
+            end_day = String.copyValueOf(end, 0, 1);
+            endd = Integer.parseInt(end_day);
         }
         return getDayDif(endd, d, month_end, m);
     }
 
-    private int getDayDif(int endd, int d, int monthend, int m) {
-        if (monthend == m) {
+    //helper method for getButtonColor to calculate the days between now and deadline day
+    private int getDayDif(int endd, int d, int month_end, int m) {
+        if (month_end == m) {
             return endd - d;
         } else {
             int i;
@@ -217,7 +216,7 @@ public class NotificationService extends Service {
             return i - d + endd;
         }
     }
-
+    //String month transform into integer
     private int getMonthInt(String month) {
         int i;
         if (month.contains("Jan")) {
@@ -247,8 +246,6 @@ public class NotificationService extends Service {
         } else {
             return 100;
         }
-
-
         return i;
     }
 }

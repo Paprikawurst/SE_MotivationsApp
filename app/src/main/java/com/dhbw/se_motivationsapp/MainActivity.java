@@ -12,20 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
-
 public class MainActivity extends AppCompatActivity {
 
-
-    //declaration
-    private BottomNavigationView bottomNav;
-    private TextView points_text;
     private TextView title;
-    private SharedPreferences spref;
-    private int points;
-    private int goalnumber;
 
-    //on Create of mainActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
         }
         //layout and tools connecting to code
         setContentView(R.layout.activity_main);
-        points_text = findViewById(R.id.points);
+        TextView points_text = findViewById(R.id.points);
         title = findViewById(R.id.variabel_text);
-        bottomNav = findViewById(R.id.bottom_navigation);
+        //declaration
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         View view_toolbar = findViewById(R.id.toolbar);
 
@@ -47,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
                 new Home()).commit();
 
         //read SharedPreferences
-        spref = getSharedPreferences("SP", 0);
-        points = spref.getInt("points", 0);
+        SharedPreferences spref = getSharedPreferences("SP", 0);
+        int points = spref.getInt("points", 0);
         points_text.setText(String.valueOf(points));
-
-        goalnumber = spref.getInt("goalnumber", 0);
 
         view_toolbar.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
 
