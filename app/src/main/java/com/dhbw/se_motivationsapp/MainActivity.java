@@ -50,37 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         goalnumber = spref.getInt("goalnumber", 0);
 
-        //test begin TODO test weg wenn er nicht gebraucht wird
-        /*SharedPreferences.Editor editor = spref.edit();
-        editor.putInt("points", 200);
-
-        points_text.setText(String.valueOf(spref.getInt("points", 0)));
-
-*/
-        //test ende
         view_toolbar.setBackgroundColor(spref.getInt("color", Color.DKGRAY));
-        //editor.commit();
-        //clear SP TODO
-        /*editor.putBoolean("purchased_red",false);
-        editor.putBoolean("purchased_blue",false);
-        editor.putBoolea"purchased_black",false);
-        editor.putBoolean("purchased_green",false);
-        editor.putBoolean("purchased_cyan",false);
-        editor.putBoolean("purchased_darkgray",false);
-        editor.putBoolean("purchased_gray",false);
-
-        editor.putBoolean("activated_red",false);
-        editor.putBoolean("activated_blue",false);
-        editor.putBoolean("activated_black",false);
-        editor.putBoolean("activated_green",false);
-        editor.putBoolean("activated_cyan",false);
-        editor.putBoolean("activated_darkgray",false);
-        editor.putBoolean("activated_gray",false);
-
-        editor.putBoolean("Reward1redeemed",false);
-        editor.putBoolean("Reward2redeemed",false);
-
-        editor.commit();*/
 
     }
 
