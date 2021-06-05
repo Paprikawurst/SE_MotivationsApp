@@ -1,5 +1,6 @@
 package com.dhbw.se_motivationsapp;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
-import android.app.Notification;
 import android.util.Log;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -18,6 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class NotificationService extends Service {
+    final Handler handler = new Handler();
     Timer timer;
     TimerTask timer_task;
     String TAG = "Timers";
@@ -46,8 +47,6 @@ public class NotificationService extends Service {
         super.onDestroy();
     }
 
-    final Handler handler = new Handler();
-
     //calculations for the next time of the notification
     public void startTimer() {
         OffsetDateTime currentTime = OffsetDateTime.now(ZoneId.of("Europe/Berlin"));
@@ -67,7 +66,7 @@ public class NotificationService extends Service {
             min_diff = 0;
         }
 
-        System.out.println(hour_diff );
+        System.out.println(hour_diff);
         System.out.println(min_diff);
         int seconds_untill_next_notification = hour_diff * 3600 + min_diff * 60;
         System.out.println(seconds_untill_next_notification);
@@ -216,6 +215,7 @@ public class NotificationService extends Service {
             return i - d + endd;
         }
     }
+
     //String month transform into integer
     private int getMonthInt(String month) {
         int i;

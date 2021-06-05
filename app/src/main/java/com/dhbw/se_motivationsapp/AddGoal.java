@@ -3,10 +3,8 @@ package com.dhbw.se_motivationsapp;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +17,10 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-
 import androidx.fragment.app.Fragment;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,6 +29,7 @@ import java.util.Calendar;
 
 public class AddGoal extends Fragment implements View.OnClickListener {
 
+    View view;
     //declaration
     private EditText title;
     private EditText description;
@@ -44,7 +41,6 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     private DatePickerDialog date_picker_dialog;
     private Button date_button;
     private SharedPreferences sp;
-    View view;
 
     public AddGoal() {
 
@@ -219,7 +215,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
                         }).show();
             }
 
-        //datepickerdialog opens
+            //datepickerdialog opens
         } else if (v.equals(date_button)) {
             date_picker_dialog.show();
 

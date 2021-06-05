@@ -5,15 +5,18 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -33,11 +36,24 @@ public class Home extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
+    //JSON String transformed to a goal object
+    public static Goal jsonToObject(String goalJson) {
+        final ObjectMapper mapper = new ObjectMapper();
+        try {
+            Goal goal = mapper.readValue(goalJson, Goal.class);// read from json string
+            return goal;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,20 +131,6 @@ public class Home extends Fragment implements View.OnClickListener {
 
         }
         return view;
-    }
-
-    //JSON String transformed to a goal object
-    public static Goal jsonToObject(String goalJson) {
-        final ObjectMapper mapper = new ObjectMapper();
-        try {
-            Goal goal = mapper.readValue(goalJson, Goal.class);// read from json string
-            return goal;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return null;
     }
 
     //returns button color dependent on the time to deadline

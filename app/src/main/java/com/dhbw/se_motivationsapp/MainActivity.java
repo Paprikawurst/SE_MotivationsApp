@@ -7,14 +7,44 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView title;
+    //functionality of navigationbar -> switchs fragments
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+            switch (item.getItemId()) {
+                case R.id.home2:
+                    title.setText("Your Goals");
+                    selectedFragment = new Home();
+                    break;
+                case R.id.goal:
+                    title.setText("Add New Goal");
+                    selectedFragment = new AddGoal();
+                    break;
+                case R.id.reward:
+                    title.setText("Rewards");
+                    selectedFragment = new Reward();
+                    break;
+                case R.id.shop2:
+                    title.setText("Shop");
+                    selectedFragment = new Shop();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    selectedFragment).commit();
+            return true;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,38 +77,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop () {
-        super .onStop() ;
-        startService( new Intent( this, NotificationService. class )) ;
+    protected void onStop() {
+        super.onStop();
+        startService(new Intent(this, NotificationService.class));
     }
-
-    //functionality of navigationbar -> switchs fragments
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
-            switch (item.getItemId()) {
-                case R.id.home2:
-                    title.setText("Your Goals");
-                    selectedFragment = new Home();
-                    break;
-                case R.id.goal:
-                    title.setText("Add New Goal");
-                    selectedFragment = new AddGoal();
-                    break;
-                case R.id.reward:
-                    title.setText("Rewards");
-                    selectedFragment = new Reward();
-                    break;
-                case R.id.shop2:
-                    title.setText("Shop");
-                    selectedFragment = new Shop();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    selectedFragment).commit();
-            return true;
-        }
-    };
 
 }

@@ -1,7 +1,5 @@
 package com.dhbw.se_motivationsapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -20,14 +18,19 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DetailsGoal extends AppCompatActivity implements View.OnClickListener {
 
+    TextView points_text;
     //declaration
     private SharedPreferences sp;
     private EditText title, description, sub;
@@ -42,8 +45,6 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     private Goal goal;
     private ArrayList<String> sub_goals = new ArrayList<>();
     private LinearLayout sub_layout;
-
-    TextView points_text;
 
     //on Create of DetailsGoal
     @Override
