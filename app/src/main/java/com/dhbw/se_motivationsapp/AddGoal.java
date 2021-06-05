@@ -96,10 +96,8 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         month++;
-        String date = makeDateString(year, month, day);
 
-
-        return date;
+        return makeDateString(year, month, day);
     }
 
     private void initDatePicker() {
