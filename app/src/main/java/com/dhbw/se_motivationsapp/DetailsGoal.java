@@ -30,7 +30,7 @@ import java.util.Calendar;
 
 public class DetailsGoal extends AppCompatActivity implements View.OnClickListener {
 
-    //init
+    //declaration
     TextView textView;
     private SharedPreferences sp;
     private EditText title, description, sub;
@@ -48,6 +48,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     TextView points_text;
 
+    //on Create of DetailsGoal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,15 +57,17 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         }
         setContentView(R.layout.activity_details_goal);
 
-
+        //read out the goal which was clicked
         sp = this.getSharedPreferences("SP", 0);
         String goalstr;
+        //get Id from Home.class
         key = "goal" + Home.id;
 
         goalstr = sp.getString(key, null);
 
         goal = Home.jsonToObject(goalstr);
 
+        //connect tools with code
         sub = findViewById(R.id.subInput);
         title = findViewById(R.id.InputTitelId);
         description = findViewById(R.id.DescriptionInputId);
@@ -82,7 +85,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         initDatePicker();
         dateButton = findViewById(R.id.datePickerBtn);
 
-
+//add Listeners to Buttons
         dateButton.setOnClickListener(this);
         delete.setOnClickListener(this);
         back.setOnClickListener(this);
@@ -91,6 +94,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         addSub.setOnClickListener(this);
 
 
+        //fill fragment with goal data
         title.setText(goal.getTitle());
         description.setText(goal.getDescription());
         dateButton.setText(goal.getEnd_date());
@@ -120,7 +124,8 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
         createSubgoals();
 
-        int points = sp.getInt("points", 200);
+        int points = sp.getInt("points", 0);
+
         View view_toolbar = this.findViewById(R.id.toolbar);
         points_text = view_toolbar.findViewById(R.id.points);
         points_text.setText(String.valueOf(points));
@@ -128,6 +133,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    //if back key is pressed then stop activity and get back to MainActivity
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
@@ -135,6 +141,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         this.finish();
     }
 
+    //create subgoals as checkboxes in fragment
     private void createSubgoals() {
         subgoals = goal.getSubgoals();
         int sub_number = subgoals.size();
@@ -148,6 +155,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         for (int i = 0; i < sub_number; i++) {
             try {
                 int c = i + 1;
+                //read out if subgoal is checked
                 String sk = "sub" + String.valueOf(c);
                 boolean done = sp.getBoolean(sk, false);
 
@@ -171,6 +179,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    //get todays date
     private String getTodaysDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -184,10 +193,12 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         return date;
     }
 
+    //returns european date format
     private String makeDateString(int year, int month, int day) {
         return day + "." + getMonthFormat(month) + "." + year;
     }
 
+    //returns month as a String
     private String getMonthFormat(int month) {
         String s;
         switch (month) {
@@ -234,6 +245,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         return s;
     }
 
+    //open datepickerdialog for user when date is clicked
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -255,13 +267,16 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
     }
 
 
+    //on Click Listener
     @Override
     public void onClick(View view) {
         if (view.equals(back)) {
+            //back to MainActivity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             this.finish();
         } else if (view.equals(delete)) {
+            //if Confirmation is checked goal is getting deleted and Mainactivity starts
             new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("Sure?")
                     .setMessage("Do you really want to delete this goal?")
@@ -284,11 +299,12 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
 
         } else if (view.equals(save)) {
+            //method is called
             saveGoalChanges();
 
 
-
         } else if (view.equals(done)) {
+            //if Confirmation is checked goal is getting deleted, user gets reward and Mainactivity starts
             new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("Done?")
                     .setMessage("Did you achieve the goal?")
@@ -316,21 +332,18 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         } else if (view.equals((dateButton))) {
             datePickerDialog.show();
         } else if (view.equals((addSub))) {
+            //if add btn is clicked subgoal is added to arraylist. goal adds updated arraylist
             int sub_number = goal.getSubgoals().size() + 1;//sp.getInt("subNumber", 0);
-            //sub_number++;
             LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layout_params.gravity = Gravity.CENTER_HORIZONTAL;
 
+            //creates checkbox
             String s = String.valueOf(sub.getText());
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(s);
             checkBox.setId(sub_number);
             System.out.println("addmethode:" + sub_number);
-            /*SharedPreferences.Editor editor = sp.edit();
-            editor.putInt("subNumber", sub_number);
-            editor.commit();
-             */
             checkBox.setLayoutParams(layout_params);
             subgoals.add(s);
             subLayout.addView(checkBox);
@@ -338,6 +351,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    //user gets points and rewards dependent on the difficulty of the goal
     private void getReward() {
         int dif = goal.getDifficulty();
         int points = sp.getInt("points", 200);
@@ -373,6 +387,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    //saves changes of the goal int the object and object is saved as JSON String in SP
     private void saveGoalChanges() {
         //Goal Object changes
         String t = String.valueOf(title.getText());
@@ -432,6 +447,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    //check if picked date is in future or today
     private boolean isFuture(String enddate) {
 
         String startdate;
@@ -478,6 +494,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    //String month transform into integer
     private int getMonthInt(String month) {
         int i;
         if (month.contains("Jan")) {
@@ -512,6 +529,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         return i;
     }
 
+    //saves checked subgoals in SP
     private void saveCheckedSubGoals() {
         int sub_number = subgoals.size();
         SharedPreferences.Editor editor = sp.edit();
@@ -529,6 +547,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    //deletes Goal from SP and set every goal behind one key in front
     private void deleteGoalFromSp() {
         int gnum = sp.getInt("goalnumber", 0);
         SharedPreferences.Editor editor = sp.edit();
@@ -548,6 +567,7 @@ public class DetailsGoal extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    //goal object transformed to a JSON String
     public String objectToJson(Goal goal) {
         ObjectMapper mapper = new ObjectMapper();
         try {

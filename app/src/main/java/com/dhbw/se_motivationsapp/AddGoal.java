@@ -33,7 +33,7 @@ import java.util.Calendar;
 
 public class AddGoal extends Fragment implements View.OnClickListener {
 
-    //init
+    //declaration
     private EditText title;
     private EditText description;
     private CheckBox notification;
@@ -44,7 +44,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private SharedPreferences sp;
-
+    View view;
 
     public AddGoal() {
 
@@ -53,42 +53,42 @@ public class AddGoal extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
-    View view;
+
+    //fragement wird gestartet
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_goal, container, false);
+
+        //connect tools and layout with code
         title = view.findViewById(R.id.InputTitelId);
-
-
         title.setText("Sample goal name");
         description = view.findViewById(R.id.DescriptionInputId);
-        //end_date = view.findViewById(R.id.endDateInputId);
         notification = view.findViewById(R.id.NotifcationId);
         easy = view.findViewById(R.id.radioButtoneasy);
         medium = view.findViewById(R.id.radioButtonmedium);
         hard = view.findViewById(R.id.radioButtonhard);
         addbtn = view.findViewById(R.id.addbtn);
 
-
         initDatePicker();
         dateButton = view.findViewById(R.id.datePickerBtn);
         dateButton.setText(getTodaysDate());
 
+        //set Listeners
         dateButton.setOnClickListener(this);
         addbtn.setOnClickListener(this);
+
         sp = view.getContext().getSharedPreferences("SP", 0);
 
 
         return view;
     }
 
+    //get todays date as a string
     private String getTodaysDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -96,12 +96,11 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         month++;
-        String date = makeDateString(year, month, day);
 
-
-        return date;
+        return makeDateString(year, month, day);
     }
 
+    //open datepickerdialog for user when date is clicked
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -120,13 +119,15 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
-        //datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+
     }
 
+    //european date format
     private String makeDateString(int year, int month, int day) {
         return day + "." + getMonthFormat(month) + "." + year;
     }
 
+    //goal object transformed to a JSON String
     public String objectToJson(Goal goal) {
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -141,10 +142,11 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         return null;
     }
 
+    //onClick Listeners
     @Override
     public void onClick(View v) {
+        //goal gets added to Shared Preference
         if (v.equals(addbtn)) {
-
 
 
             String endstring = (String) dateButton.getText();
@@ -163,6 +165,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
             if (t.length() > 0) {
                 String end_date = (String) dateButton.getText();
                 if (isFuture(end_date)) {
+                    //goal object is created
                     Goal newGoal = new Goal(t, String.valueOf(description.getText()), end_date, notification.isChecked(),
                             dif, subgoals);
 
@@ -175,30 +178,11 @@ public class AddGoal extends Fragment implements View.OnClickListener {
 
 
                     String key = "goal" + String.valueOf(gnum);
-            /*Set<String> goalset = new HashSet<>();
-            goalset.add(String.valueOf(title.getText()));
-            goalset.add(newGoal.getDescription());
-            goalset.add(String.valueOf(newGoal.getEnd_date()));
-            goalset.add(String.valueOf(newGoal.isNotification()));
-            goalset.add(String.valueOf(newGoal.getDifficulty()));
-            int i = 0;
-            try {
-                while (newGoal.getSubgoals().get(i) != null) {
-                    goalset.add(newGoal.getSubgoals().get(i));
-                    i++;
-                }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(e.getMessage());
-            }
-
-
-            goalset.add(String.valueOf(newGoal.getStart_date()));
-
-             */
-
                     editor.putString(key, goalstr);
                     editor.commit();
                     Toast.makeText(getContext(), "Sucessfully added", Toast.LENGTH_SHORT).show();
+
+                    //fragment reset
                     dateButton.setText(getTodaysDate());
                     if (easy.isChecked()) {
                         easy.setChecked(false);
@@ -214,6 +198,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
                     }
 
                 } else {
+                    // alert for past date input
                     new androidx.appcompat.app.AlertDialog.Builder(requireContext())
                             .setTitle("Past Date!")
                             .setMessage("Deadline date is in the past.")
@@ -227,6 +212,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
                             }).show();
                 }
             } else {
+                // alert for missing title
                 new androidx.appcompat.app.AlertDialog.Builder(requireContext())
                         .setTitle("Missing title!")
                         .setMessage("Title field can't be empty")
@@ -240,13 +226,14 @@ public class AddGoal extends Fragment implements View.OnClickListener {
                         }).show();
             }
 
-
+//datepickerdialog opens
         } else if (v.equals(dateButton)) {
             datePickerDialog.show();
 
         }
     }
 
+    //check if picked date is in future or today
     private boolean isFuture(String enddate) {
 
         //  System.out.println("Enddatum" + enddate);
@@ -294,6 +281,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         }
     }
 
+    //String month transform into integer
     private int getMonthInt(String month) {
         int i;
         if (month.contains("Jan")) {
@@ -328,6 +316,7 @@ public class AddGoal extends Fragment implements View.OnClickListener {
         return i;
     }
 
+    //integer month transform into String
     public String getMonthFormat(int month) {
         String s;
         switch (month) {

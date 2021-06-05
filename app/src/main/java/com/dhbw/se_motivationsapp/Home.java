@@ -28,12 +28,10 @@ import java.time.LocalDate;
 public class Home extends Fragment implements View.OnClickListener {
 
 
+    //declaration
+
     private SharedPreferences sp;
     public static int id;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
 
     public Home() {
         // Required empty public constructor
@@ -42,8 +40,7 @@ public class Home extends Fragment implements View.OnClickListener {
     public static Home newInstance(String param1, String param2) {
         Home fragment = new Home();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,16 +49,17 @@ public class Home extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        //read SharedPrefernce
         sp = view.getContext().getSharedPreferences("SP", 0);
         int gnum = sp.getInt("goalnumber", 0);
         // set margins
@@ -69,6 +67,7 @@ public class Home extends Fragment implements View.OnClickListener {
         LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
+        //loop through all goals saved in SP and create a button for each of them with the title as button text
         for (int i = 0; i < gnum; i++) {
             int c = i + 1;
             String goalstr;
@@ -129,6 +128,7 @@ public class Home extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    //JSON String transformed to a goal object
     public static Goal jsonToObject(String goalJson) {
         final ObjectMapper mapper = new ObjectMapper();
         try {
@@ -145,6 +145,7 @@ public class Home extends Fragment implements View.OnClickListener {
         return null;
     }
 
+    //returns button color dependent on the time to deadline
     private int getButtonColor(String enddate) {
         String startdate;
         LocalDate today = LocalDate.now();
@@ -175,6 +176,7 @@ public class Home extends Fragment implements View.OnClickListener {
         String endday;
         int endd;
 
+        //check if day consist of one or two digits
         if (Character.isDigit(end[1])) {
             endday = String.copyValueOf(end, 0, 2);
             endd = Integer.parseInt(endday);
@@ -201,6 +203,7 @@ public class Home extends Fragment implements View.OnClickListener {
         }
     }
 
+    //helper method for getButtonColor to calculate the days between now and deadline day
     private int getDayDif(int endd, int d, int monthend, int m) {
         if (monthend == m) {
             return endd - d;
@@ -251,6 +254,7 @@ public class Home extends Fragment implements View.OnClickListener {
         }
     }
 
+    //String month transform into integer
     private int getMonthInt(String month) {
         int i;
         if (month.contains("Jan")) {
@@ -287,7 +291,9 @@ public class Home extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        //set id to the id of the button which is clicked
         id = view.getId();
+        //starts new activity DetailsGoal
         Intent intent = new Intent(getActivity(), DetailsGoal.class);
         startActivity(intent);
         getActivity().finish();
