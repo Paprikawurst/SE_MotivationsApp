@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.app.Notification;
 import android.util.Log;
-
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -44,12 +43,12 @@ public class NotificationService extends Service {
     @Override
     public void onDestroy() {
         Log.e(TAG, "onDestroy");
-        stopTimerTask();
         super.onDestroy();
     }
 
     final Handler handler = new Handler();
 
+    //calculations for the next time of the notification
     public void startTimer() {
         OffsetDateTime currentTime = OffsetDateTime.now(ZoneId.of("Europe/Berlin"));
         int current_hour = currentTime.getHour();
@@ -68,20 +67,16 @@ public class NotificationService extends Service {
             min_diff = 0;
         }
 
+        System.out.println(hour_diff );
+        System.out.println(min_diff);
         int seconds_untill_next_notification = hour_diff * 3600 + min_diff * 60;
-
+        System.out.println(seconds_untill_next_notification);
         timer = new Timer();
         initializeTimerTask();
-        timer.schedule(timerTask, seconds_untill_next_notification * 1000, seconds_untill_next_notification * 1000); //
+        timer.schedule(timerTask, seconds_untill_next_notification * 1000, 86400 * 1000); //
     }
 
-    public void stopTimerTask() {
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
-    }
-
+    //init new timer task
     public void initializeTimerTask() {
         timerTask = new TimerTask() {
             public void run() {
@@ -94,6 +89,7 @@ public class NotificationService extends Service {
         };
     }
 
+    // creates the message for the notification
     private void createNotification() {
         SharedPreferences sp;
         StringBuilder goalappendstr = new StringBuilder();
@@ -134,7 +130,7 @@ public class NotificationService extends Service {
 
     }
 
-
+    // returns the date difference between now and the enddate
     private int getDayDiff(String enddate) {
         String startdate;
         LocalDate today = LocalDate.now();

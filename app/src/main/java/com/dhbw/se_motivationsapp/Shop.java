@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import java.util.Objects;
 
 public class Shop extends Fragment {
 
@@ -28,19 +29,11 @@ public class Shop extends Fragment {
         System.out.println("test1");
     }
 
-    public static Shop newInstance(String param1, String param2) {
-        Shop fragment = new Shop();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        spref = getContext().getSharedPreferences("SP", 0);
+        spref = requireContext().getSharedPreferences("SP", 0);
         points = spref.getInt("points", 0);
 
     }
@@ -217,7 +210,7 @@ public class Shop extends Fragment {
     }
 
     // if a button is clicked this function checks if the skin is already bought and if enough points are achieved
-    public boolean getButtonEvent(CheckBox box, String purchased_skin, int cost) {
+    public void getButtonEvent(CheckBox box, String purchased_skin, int cost) {
 
         if (points >= cost && !box.isEnabled()) {
             box.setEnabled(true);
@@ -229,10 +222,9 @@ public class Shop extends Fragment {
 
             TextView points_text;
 
-            View view_toolbar = getActivity().findViewById(R.id.toolbar);
+            View view_toolbar = requireActivity().findViewById(R.id.toolbar);
             points_text = view_toolbar.findViewById(R.id.points);
             points_text.setText(String.valueOf(points));
-            return true;
         } else {
             if (points < cost && !spref.getBoolean(purchased_skin, false)) {
                 new AlertDialog.Builder(requireContext())
@@ -244,7 +236,7 @@ public class Shop extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         }).show();
-                return false;
+                return;
             }
             if (box.isEnabled()) {
                 new AlertDialog.Builder(requireContext())
@@ -256,11 +248,9 @@ public class Shop extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         }).show();
-                return false;
             }
         }
 
-        return false;
     }
 
     //this function changes the color of the buttons and the toolbar
