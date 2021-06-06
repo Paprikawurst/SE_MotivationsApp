@@ -4,99 +4,32 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler;
-import android.os.IBinder;
-import android.util.Log;
+import android.graphics.Color;
+import android.provider.Settings;
+
+
+import androidx.core.app.NotificationCompat;
+
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class NotificationService extends Service {
-    final Handler handler = new Handler();
-    Timer timer;
-    TimerTask timer_task;
-    String TAG = "Timers";
+class NotificationHelper {
 
-    @Override
-    public IBinder onBind(Intent arg0) {
-        return null;
+    private Context mContext;
+    private static final String NOTIFICATION_CHANNEL_ID = "10001";
+
+    NotificationHelper(Context context) {
+        mContext = context;
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e(TAG, "onStartCommand");
-        super.onStartCommand(intent, flags, startId);
-        startTimer();
-        return START_STICKY;
-    }
-
-    @Override
-    public void onCreate() {
-        Log.e(TAG, "onCreate");
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.e(TAG, "onDestroy");
-        super.onDestroy();
-    }
-
-    //calculations for the next time of the notification
-    public void startTimer() {
-        OffsetDateTime currentTime = OffsetDateTime.now(ZoneId.of("Europe/Berlin"));
-        int current_hour = currentTime.getHour();
-        int current_min = currentTime.getMinute();
-        int hour_diff = current_hour - 6;
-        hour_diff = hour_diff - 24;
-        int min_diff = current_min - 60;
-
-        if (hour_diff < 0) {
-            hour_diff = hour_diff * (-1);
-        }
-        if (min_diff < 0) {
-            min_diff = min_diff * (-1);
-        }
-        if (min_diff == 60) {
-            min_diff = 0;
-        }
-
-        System.out.println(hour_diff);
-        System.out.println(min_diff);
-        int seconds_untill_next_notification = hour_diff * 3600 + min_diff * 60;
-        System.out.println(seconds_untill_next_notification);
-        timer = new Timer();
-        initializeTimerTask();
-        timer.schedule(timer_task, seconds_untill_next_notification * 1000, 86400 * 1000); //
-    }
-
-    //init new timer task
-    public void initializeTimerTask() {
-        timer_task = new TimerTask() {
-            public void run() {
-                handler.post(new Runnable() {
-                    public void run() {
-                        createNotification();
-                    }
-                });
-            }
-        };
-    }
-
-    //creates the message for the notification
-    private void createNotification() {
+    //creates the notification
+    void createNotification()
+    {
         SharedPreferences sp;
         StringBuilder goalappendstr = new StringBuilder();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        String CHANNEL_ID = "MYCHANNEL";
-        NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "name", NotificationManager.IMPORTANCE_LOW);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
-        sp = this.getSharedPreferences("SP", 0);
+        sp = mContext.getSharedPreferences("SP",0);
         int gnum = sp.getInt("goalnumber", 0);
 
         for (int i = 0; i < gnum; i++) {
@@ -115,21 +48,44 @@ public class NotificationService extends Service {
             getDayDiff(enddate);
         }
 
-        Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
-                .setContentTitle("Your open goals:")
-                .setContentIntent(pendingIntent)
-                .setChannelId(CHANNEL_ID)
+        Intent intent = new Intent(mContext , MainActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(mContext,
+                0 /* Request code */, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
+        mBuilder.setContentTitle("Your open goals:")
+                .setContentIntent(resultPendingIntent)
+                .setContentText(goalappendstr.toString())
+                .setAutoCancel(false)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(goalappendstr.toString()))
                 .setSmallIcon(R.drawable.baseline_task_alt_24)
-                .setStyle(new Notification.BigTextStyle().bigText(goalappendstr.toString()))
-                .build();
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setContentIntent(resultPendingIntent);
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.createNotificationChannel(notificationChannel);
-        notificationManager.notify(1, notification);
+        NotificationManager mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+        {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", importance);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            assert mNotificationManager != null;
+            mBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
+            mNotificationManager.createNotificationChannel(notificationChannel);
+        }
+        assert mNotificationManager != null;
+        mNotificationManager.notify(1, mBuilder.build());
     }
 
-    // returns the date difference between now and the end_date
+    //gets the day difference between now and end date
     private int getDayDiff(String end_date) {
         String start_date;
         LocalDate today = LocalDate.now();
@@ -144,8 +100,6 @@ public class NotificationService extends Service {
         for (int i = 0; i < end_date.length(); i++) {
             end[i] = end_date.charAt(i);
         }
-        String year = String.copyValueOf(start, 0, 4);
-        int y = Integer.parseInt(year);
 
         String month = String.copyValueOf(start, 5, 2);
         int m = Integer.parseInt(month);
